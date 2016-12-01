@@ -1,8 +1,91 @@
 package com.example.nadav.javaproject5777.model.entities;
 
+import java.util.Date;
+
 /**
  * Created by nadav on 12/1/2016.
  */
+enum  ActivityType{
+    VACATION_PACKAGE,
+    TRAVEL_AGENCY,
+    ENTERTAINMENT,
+    AIRLINE
+}
 
 public class Activities {
+    private ActivityType actType;
+    private String countryName;
+    private Date startDate;
+    private Date endDate;
+    private double price;
+    private String description;
+    private int businessId;
+
+    public Activities(ActivityType actType, int businessId, String countryName, String description, Date endDate, double price, Date startDate) {
+        this.actType = actType;
+        this.businessId = businessId;
+        this.countryName = countryName;
+        this.description = description;
+        this.endDate = endDate;
+        this.price = price;
+        this.startDate = startDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ActivityType getActType() {
+        return actType;
+    }
+
+    public void setActType(ActivityType actType) {
+        this.actType = actType;
+    }
+
+    public int getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+
 }
