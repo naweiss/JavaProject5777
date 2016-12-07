@@ -4,7 +4,7 @@ package com.example.nadav.javaproject5777.model.entities;
  * Created by nadav on 12/1/2016.
  */
 
-public class Users {
+public class User {
     private int id;
     private String name;
     private String password;
@@ -33,7 +33,7 @@ public class Users {
         this.password = password;
     }
 
-    public Users(int id, String name, String password) {
+    public User(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;

@@ -1,5 +1,7 @@
 package com.example.nadav.javaproject5777.model.entities;
 
+import android.provider.ContactsContract;
+
 import java.net.URL;
 
 /**

@@ -12,7 +12,7 @@ enum  ActivityType{
     AIRLINE
 }
 
-public class Activities {
+public class Activitie {
     private ActivityType actType;
     private String countryName;
     private Date startDate;
@@ -21,7 +21,7 @@ public class Activities {
     private String description;
     private int businessId;
 
-    public Activities(ActivityType actType, int businessId, String countryName, String description, Date endDate, double price, Date startDate) {
+    public Activitie(ActivityType actType, int businessId, String countryName, String description, Date endDate, double price, Date startDate) {
         this.actType = actType;
         this.businessId = businessId;
         this.countryName = countryName;
