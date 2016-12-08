@@ -21,9 +21,9 @@ public class Activitie {
     private String description;
     private int businessId;
 
-    public Activitie(ActivityType actType, int businessId, String countryName, String description, Date endDate, double price, Date startDate) {
-        this.actType = actType;
+    public Activitie(int businessId,ActivityType actType, String countryName, String description, Date endDate, double price, Date startDate) {
         this.businessId = businessId;
+        this.actType = actType;
         this.countryName = countryName;
         this.description = description;
         this.endDate = endDate;

@@ -8,8 +8,7 @@ import com.example.nadav.javaproject5777.model.datasource.ListDB_manager;
 
 public class DB_Factory {
 
-    static DB_Factory db= null;
-    public  DB_Factory getDB (){
+    public static DB_manager getDB (){
          return new ListDB_manager();
     }
 }

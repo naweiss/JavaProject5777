@@ -5,6 +5,8 @@ package com.example.nadav.javaproject5777.model.entities;
  */
 
 public class User {
+    private static int count =0;
+
     private int id;
     private String name;
     private String password;
@@ -33,8 +35,8 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String name, String password) {
-        this.id = id;
+    public User(String name, String password) {
+        this.id = count++;
         this.name = name;
         this.password = password;
     }
