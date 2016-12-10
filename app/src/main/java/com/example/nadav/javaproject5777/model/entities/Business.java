@@ -9,15 +9,20 @@ import java.net.URL;
  */
 
 public class Business {
+
     private static int count =0;
     private int id;
     private String name;
-    private Addresss address;
+    private Address address;
     private String phone;
     private String email;//^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]+)$
     private URL link;
 
-    public Business(Addresss address, String email, URL link, String name, String phone) {
+    public Business() {
+
+    }
+
+    public Business(Address address, String email, URL link, String name, String phone) {
         this.id = count++;
         this.address = address;
         this.email = email;
@@ -26,11 +31,11 @@ public class Business {
         this.phone = phone;
     }
 
-    public Addresss getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Addresss address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

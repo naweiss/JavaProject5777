@@ -1,5 +1,8 @@
 package com.example.nadav.javaproject5777.model.datasource;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 import com.example.nadav.javaproject5777.model.backend.DB_manager;
 import com.example.nadav.javaproject5777.model.entities.Activitie;
 import com.example.nadav.javaproject5777.model.entities.Business;
@@ -19,43 +22,68 @@ public class ListDB_manager implements DB_manager{
     private List<User> users = new ArrayList<User>();
 
     @Override
-    public void addUser(User usr) {
+    public int addUser(ContentValues values) {
+        User usr = Converter.ContentValuesToUser(values);
+        users.add(usr);
+        return usr.getId();
+    }
+
+    @Override
+    public boolean addActivity(ContentValues values) {
+        try {
+            Activitie act = Converter.ContentValuesToActivitie(values);
+            activities.add(act);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
 
     }
 
     @Override
-    public void addActivity(Activitie activitie) {
-
-    }
-
-    @Override
-    public void addBusiness(Business business) {
-
+    public int addBusiness(ContentValues values) {
+        try {
+            Business bus = Converter.ContentValuesToBusiness(values);
+            businesses.add(bus);
+            return bus.getId();
+        }
+        catch (Exception ex)
+        {
+            return -1;
+        }
     }
 
     @Override
     public Boolean checkIfNewActivityOrBusiness() {
-        return false;
-    }
-
-    @Override
-    public List<User> getAllUsers() {
         return null;
     }
 
     @Override
-    public List<Activitie> getAllActivity() {
-        return null;
+    public Cursor getAllUsers() {
+        return Converter.usersListToCursor(users);
     }
 
     @Override
-    public List<Activitie> getBusinessActivity(Business business) {
-        return null;
+    public Cursor getAllActivity() {
+        return Converter.activitieListToCursor(activities);
     }
 
     @Override
-    public List<Business> getAllBusinesses() {
-        return null;
+    public Cursor getBusinessActivity(int bussinessId) {
+        List<Activitie> businessActivity = new ArrayList<Activitie>();
+
+        for (Activitie a : activities) {
+            if (a.getBusinessId() == bussinessId) {
+                businessActivity.add(a);
+            }
+        }
+        return Converter.activitieListToCursor(businessActivity);
     }
 
+    @Override
+    public Cursor getAllBusinesses() {
+        return Converter.businessListToCursor(businesses);
+    }
 }

@@ -1,5 +1,8 @@
 package com.example.nadav.javaproject5777.model.backend;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+
 import com.example.nadav.javaproject5777.model.entities.Activitie;
 import com.example.nadav.javaproject5777.model.entities.Business;
 import com.example.nadav.javaproject5777.model.entities.User;
@@ -12,12 +15,12 @@ import java.util.List;
 
 public interface DB_manager {
 
-    public void addUser(User usr);
-    public void addActivity(Activitie activitie);
-    public void addBusiness(Business business);
+    public int addUser(ContentValues values);
+    public boolean addActivity(ContentValues values);
+    public int addBusiness(ContentValues values);
     public Boolean checkIfNewActivityOrBusiness();
-    public List<User> getAllUsers();
-    public List<Activitie>getAllActivity();
-    public List<Activitie>getBusinessActivity(Business business);
-    public List<Business>getAllBusinesses();
+    public Cursor getAllUsers();
+    public Cursor getAllActivity();
+    public Cursor getBusinessActivity(int businessId);
+    public Cursor getAllBusinesses();
 }

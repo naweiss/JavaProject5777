@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.nadav.javaproject5777.R;
-
-import java.net.URL;
-import java.util.Date;
+import com.example.nadav.javaproject5777.model.entities.ActivityType;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,5 +21,6 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show();
         }*/
+        //Toast.makeText(this, ActivityType.values()[0].toString(),Toast.LENGTH_LONG).show();
     }
 }

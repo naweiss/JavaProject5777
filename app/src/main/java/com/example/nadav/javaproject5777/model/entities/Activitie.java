@@ -2,16 +2,6 @@ package com.example.nadav.javaproject5777.model.entities;
 
 import java.util.Date;
 
-/**
- * Created by nadav on 12/1/2016.
- */
-enum  ActivityType{
-    VACATION_PACKAGE,
-    TRAVEL_AGENCY,
-    ENTERTAINMENT,
-    AIRLINE
-}
-
 public class Activitie {
     private ActivityType actType;
     private String countryName;
@@ -29,6 +19,10 @@ public class Activitie {
         this.endDate = endDate;
         this.price = price;
         this.startDate = startDate;
+    }
+
+    public Activitie() {
+
     }
 
     public String getDescription() {
