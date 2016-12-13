@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">JavaProject5777</string>
+    <string name="username">Username</string>
+    <string name="password">Password(optimal)</string>
+    <string name="remember">remember me</string>
+    <string name="connect">Sign in</string>
+    <string name="newUser">Sign up</string>
+    <string name="text_view_add">DON\'T HAVE ACCOUNT?</string>
+    <string name="image_containt_description">the Logo</string>
+
 </resources>
