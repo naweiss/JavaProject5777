@@ -21,6 +21,7 @@ public class Login extends AppCompatActivity {
         final EditText userName = (EditText)findViewById(R.id.username);
         final EditText password = (EditText)findViewById(R.id.password);
         Button btnLogin = (Button) findViewById(R.id.connect);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.remember);
 
 
         SharedPreferences preferences=getSharedPreferences("MYPREF",MODE_PRIVATE);
