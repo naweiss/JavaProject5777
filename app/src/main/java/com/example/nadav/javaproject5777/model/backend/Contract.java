@@ -23,7 +23,7 @@ public class Contract {
         /**
          * The content:// style URI for this table
          */
-        public static final Uri USER_URI = Uri.withAppendedPath(AUTHORITY_URI, "user");
+        public static final Uri USER_URI = Uri.withAppendedPath(AUTHORITY_URI, "users");
     }
 
     public static class Business {
