@@ -24,32 +24,40 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_perm_identity_white_24dp"
+            android:drawablePadding="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="30dp"
             android:inputType="textImeMultiLine"
             android:layout_gravity="center"
-            android:hint="@string/username"/>
+            android:hint="@string/username"
+            android:backgroundTint="#ffffff"
+            android:textColor="@android:color/white" />
+
         <EditText
             android:id="@+id/password"
             android:layout_width="fill_parent"
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_outline_white_24dp"
+            android:drawablePadding="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:inputType="numberPassword"
-            android:hint="@string/password"/>
+            android:hint="@string/password"
+             />
         <CheckBox
             android:id="@+id/remember"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="40dp"
-            android:duplicateParentState="false"
             android:text="@string/remember"
-            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
             android:checked="false"
-            android:fontFamily="sans-serif" />
+            android:focusable="false"
+            android:textColor="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
+            />
 
         <Button
             android:id="@+id/connect"
@@ -58,7 +66,10 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:text="@string/connect"
-            tools:background="@color/colorPrimary" />
+            android:textColor="@android:color/white"
+            android:background="#3e64cb"
+
+             />
 
         <TextView
             android:id="@+id/textView"
@@ -74,8 +85,8 @@
             android:text="@string/newUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-             />
+            android:textColor="@android:color/holo_red_dark"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored" />
 
 
 </LinearLayout>

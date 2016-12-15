@@ -1,6 +1,7 @@
 package com.example.nadav.javaproject5777.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,14 @@ public class Login extends AppCompatActivity {
                 catch (Exception ex){
                     Toast.makeText(Login.this,"failed",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        Button btnRegister = (Button)findViewById(R.id.newUser);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerScreen = new Intent(Login.this,AddUser.class);
+                startActivity(registerScreen);
             }
         });
 
