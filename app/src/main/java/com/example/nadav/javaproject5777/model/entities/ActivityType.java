@@ -7,5 +7,5 @@ public enum ActivityType{
     VACATION_PACKAGE,
     TRAVEL_AGENCY,
     ENTERTAINMENT,
-    AIRLINE
+    CRUISE
 }

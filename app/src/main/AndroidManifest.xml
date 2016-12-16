@@ -10,6 +10,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".controller.MainActivity"></activity>
         <activity android:name=".controller.AddUser"></activity>
+        <activity android:name=".controller.AddActivity">
+        </activity>
+        <activity android:name=".controller.AddBusiness"></activity>
+
 
         <provider
             android:name=".model.backend.ActivityContentProvider"

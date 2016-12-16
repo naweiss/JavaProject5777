@@ -10,9 +10,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.nadav.javaproject5777.controller.MainActivity">
 
-    <TextView
+    <Button
+        android:text="Add activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello nadav!"
-        android:id="@+id/textview"/>
+        android:id="@+id/AddActivity_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/AddBusiness"
+        android:layout_alignStart="@+id/AddBusiness"
+        android:layout_marginBottom="67dp" />
+
+    <Button
+        android:text="Add business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AddBusiness"
+        android:layout_marginLeft="106dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

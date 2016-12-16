@@ -51,6 +51,9 @@ public class Login extends AppCompatActivity {
                 catch (Exception ex){
                     Toast.makeText(Login.this,"failed",Toast.LENGTH_SHORT).show();
                 }
+                Intent registerScreen = new Intent(Login.this,MainActivity.class);
+                startActivity(registerScreen);
+
             }
         });
         Button btnRegister = (Button)findViewById(R.id.newUser);

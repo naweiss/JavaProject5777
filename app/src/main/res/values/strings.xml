@@ -8,5 +8,25 @@
     <string name="newUser">Sign up</string>
     <string name="text_view_add">DON\'T HAVE ACCOUNT?</string>
     <string name="image_containt_description">the Logo</string>
+    <string name="email_business">Email</string>
+    <string name="id_business">Id</string>
+    <string name="phonenumber">Phone number</string>
+    <string name="business_link">Link</string>
+    <string name="business_name">Name</string>
+    <string name="business_address">Address</string>
+    <string name="business_City">City</string>
+    <string name="business_country">Country</string>
+    <string name="business_zipCode">Zip code</string>
+    <string name="btn_add">Add</string>
+    <string name="type_activities">Chosen type of activity:</string>
+    <string-array name="typeActivities_combo">
+        <item>Package vacancy</item>
+        <item>Entertainment</item>
+        <item>Cruise</item>
+    </string-array>
+    <string name="activity_price">Price</string>
+    <string name="activity_businessId">Business id</string>
+    <string name="activity_description">Description</string>
+
 
 </resources>

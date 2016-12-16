@@ -1,10 +1,13 @@
 package com.example.nadav.javaproject5777.controller;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +29,16 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
         findViews();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
+
     private EditText editTextAddUser;
     private EditText editTextAddPassword;
     private EditText editTextConfirmPassword;
@@ -79,6 +91,9 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
                 return null;
             }
         }.execute();
+        Toast.makeText(this,"new user added",Toast.LENGTH_LONG).show();
+        Intent mainScreen = new Intent(AddUser.this,MainActivity.class);
+        startActivity(mainScreen);
     }
 
 }

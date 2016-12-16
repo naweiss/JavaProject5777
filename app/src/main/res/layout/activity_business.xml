@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="450dp"
+    android:layout_gravity="center"
+    android:gravity="top"
+    android:background="#60bebebe"
+
+    android:weightSum="1"
+    tools:context="com.example.nadav.javaproject5777.controller.AddBusiness">
+    <!--android:alpha="0.4"-->
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:alpha="0.4"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        android:id="@+id/imageView" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+         <EditText
+            android:id="@+id/idbusiness"
+            android:hint="@string/id_business"
+
+            android:layout_weight="2"
+            style="@style/MyEditTextStyle" />
+          <EditText
+              android:id="@+id/name_business"
+              android:hint="@string/business_name"
+              android:layout_weight="1.5"
+              style="@style/MyEditTextStyle" /></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/address_business"
+            android:hint="@string/business_address"
+            android:layout_weight="1"
+            style="@style/MyEditTextStyle" />
+        <EditText
+            android:id="@+id/city_business"
+            android:hint="@string/business_City"
+            android:layout_weight="2"
+            style="@style/MyEditTextStyle"  />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/zipCode_business"
+            android:hint="@string/business_zipCode"
+            android:layout_weight="1"
+            style="@style/MyEditTextStyle"  />
+        <EditText
+            android:id="@+id/business_country"
+            android:hint="@string/business_country"
+            android:layout_weight="1"
+            style="@style/MyEditTextStyle" />
+
+    </LinearLayout>
+    <EditText
+        android:hint="@string/phonenumber"
+        android:layout_marginTop="15dp"
+        style="@style/MyEditTextStyle"
+        android:id="@+id/bsuiness_phone" />
+
+    <EditText
+        android:id="@+id/email_business"
+        android:hint="@string/username"
+        android:layout_marginTop="15dp"
+        style="@style/MyEditTextStyle"
+
+        />
+
+    <EditText
+        android:hint="@string/business_link"
+        android:layout_marginTop="15dp"
+        style="@style/MyEditTextStyle"
+
+        android:id="@+id/LinkBusiness" />
+
+    <Button
+        android:text="@string/btn_add"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_addBusiness"
+        android:background="@drawable/button_rounded"
+        android:textColor="#ffffff"
+        />
+</LinearLayout>
