@@ -21,7 +21,7 @@ import com.example.nadav.javaproject5777.R;
  * Created by jerem on 15.12.16.
  */
 
-public class AddActivity extends AppCompatActivity  {
+public class AddActivity extends AppCompatActivity implements View.OnClickListener {
     DateFormat dateFormat = DateFormat.getDateInstance();
     Calendar date = Calendar.getInstance();
     private TextView start;
@@ -41,29 +41,23 @@ public class AddActivity extends AppCompatActivity  {
         finishDate = (ImageButton)findViewById(R.id.imageButton_finish);
         start = (TextView)findViewById(R.id.textViewStart);
         finish = (TextView)findViewById(R.id.textViewFinish);
-        add = (Button)findViewById(R.id.add);
+        add = (Button)findViewById(R.id.button_add);
 
-        startDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateDateStart();
-            }
-        });
-        finishDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateDatefinish();
-            }
-        });
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addActivity();
-            }
-        });
+        startDate.setOnClickListener(this);
+        finishDate.setOnClickListener(this);
+        add.setOnClickListener(this);
 
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view == startDate)
+            updateDateStart();
+        if(view == finishDate)
+            updateDatefinish();
+        if(view == add)
+            addActivity();
+    }
 
     private void updateTextStart(){
         start.setText(dateFormat.format(date.getTime()));
