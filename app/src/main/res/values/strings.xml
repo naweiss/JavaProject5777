@@ -18,7 +18,7 @@
     <string name="business_country">Country</string>
     <string name="business_zipCode">Zip code</string>
     <string name="btn_add">Add</string>
-    <string name="type_activities">Chosen type of activity:</string>
+    <string name="type_activities">Activity type:</string>
     <string-array name="typeActivities_combo">
         <item>Package vacancy</item>
         <item>Entertainment</item>
