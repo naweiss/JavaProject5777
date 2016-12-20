@@ -4,6 +4,7 @@ import android.net.Uri;
 
 /**
  * Created by nadav on 12/10/2016.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class Contract {
@@ -15,6 +16,7 @@ public class Contract {
      * A content:// style uri to the authority for the contacts provider
      */
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
+    public static final String BROADCAST_URI = AUTHORITY+"/update";
 
     public static class User {
         public static final String USER_ID = "_ID";

@@ -20,11 +20,15 @@ public class ListDB_manager implements DB_manager{
     private List<Activitie> activities = new ArrayList<Activitie>();
     private List<Business> businesses = new ArrayList<Business>();
     private List<User> users = new ArrayList<User>();
+    private Boolean new_activity = false;
+    private Boolean new_user = false;
+    private Boolean new_businesse = false;
 
     @Override
     public int addUser(ContentValues values) {
         User usr = Converter.ContentValuesToUser(values);
         users.add(usr);
+        new_user = true;
         return usr.getId();
     }
 
@@ -33,6 +37,7 @@ public class ListDB_manager implements DB_manager{
         try {
             Activitie act = Converter.ContentValuesToActivitie(values);
             activities.add(act);
+            new_activity = true;
             return true;
         }
         catch (Exception ex)
@@ -47,6 +52,7 @@ public class ListDB_manager implements DB_manager{
         try {
             Business bus = Converter.ContentValuesToBusiness(values);
             businesses.add(bus);
+            new_businesse = true;
             return bus.getId();
         }
         catch (Exception ex)
@@ -56,8 +62,33 @@ public class ListDB_manager implements DB_manager{
     }
 
     @Override
-    public Boolean checkIfNewActivityOrBusiness() {
-        return null;
+    public Boolean areNewActivities() {
+        if(new_activity) {
+            new_activity = false;
+            return true;
+        }
+        else
+            return  false;
+    }
+
+    @Override
+    public Boolean areNewBusinesses() {
+        if(new_businesse) {
+            new_businesse = false;
+            return true;
+        }
+        else
+            return  false;
+    }
+
+    @Override
+    public Boolean areNewUsers() {
+        if(new_user) {
+            new_user = false;
+            return true;
+        }
+        else
+            return  false;
     }
 
     @Override

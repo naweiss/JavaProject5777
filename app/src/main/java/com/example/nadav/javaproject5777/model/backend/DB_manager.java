@@ -18,7 +18,9 @@ public interface DB_manager {
     public int addUser(ContentValues values);
     public boolean addActivity(ContentValues values);
     public int addBusiness(ContentValues values);
-    public Boolean checkIfNewActivityOrBusiness();
+    public Boolean areNewActivities();
+    public Boolean areNewBusinesses();
+    public Boolean areNewUsers();
     public Cursor getAllUsers();
     public Cursor getAllActivity();
     public Cursor getBusinessActivity(int businessId);
