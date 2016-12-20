@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="450dp"
+    android:layout_height="470dp"
     android:layout_gravity="center"
     android:gravity="top"
     android:background="#60bebebe"
@@ -19,6 +19,7 @@
         android:layout_height="70dp"
         android:alpha="0.4"
         android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/bell"
         android:id="@+id/imageView" />
     <LinearLayout

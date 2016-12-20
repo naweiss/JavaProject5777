@@ -24,11 +24,12 @@
         android:layout_marginBottom="40dp"
         android:id="@+id/textView_Account"
          />
+
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="100dp"
         android:alpha="0.4"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         android:src="@drawable/ic_account_circle_black_24dp"
         android:id="@+id/imageView" />
 
