@@ -22,6 +22,8 @@ import java.util.List;
  */
 
 public class Converter {
+    public static DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
     public static ContentValues businessToContentValues(Business business) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(Contract.Business.BUSINESS_ID, business.getId());
@@ -47,7 +49,7 @@ public class Converter {
     }
 
     public static ContentValues activitieToContentValues(Activitie activitie) {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(Contract.Activitie.ACTIVITIE_ACT_TYPE, activitie.getActType().toString());
         contentValues.put(Contract.Activitie.ACTIVITIE_BUSSINES_ID, activitie.getBusinessId());
@@ -60,8 +62,6 @@ public class Converter {
     }
 
     public static Activitie ContentValuesToActivitie(ContentValues contentValues) throws Exception {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-
         Activitie act = new Activitie();
         act.setActType(ActivityType.valueOf(contentValues.getAsString(Contract.Activitie.ACTIVITIE_ACT_TYPE)));
         act.setBusinessId(contentValues.getAsInteger(Contract.Activitie.ACTIVITIE_BUSSINES_ID));
@@ -133,7 +133,7 @@ public class Converter {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
 
         for (Activitie a : activities) {
-            matrixCursor.addRow(new Object[]{a.getActType(), a.getCountryName(), a.getStartDate(),a.getEndDate(),a.getDescription(),a.getPrice(),a.getBusinessId()});
+            matrixCursor.addRow(new Object[]{a.getActType(), a.getCountryName(),df.format(a.getStartDate()),df.format(a.getEndDate()),a.getDescription(),a.getPrice(),a.getBusinessId()});
         }
 
         return matrixCursor;

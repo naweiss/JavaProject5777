@@ -51,7 +51,7 @@ public class Contract {
         public static final String ACTIVITIE_END_DATE = "endDate";
         public static final String ACTIVITIE_PRICE = "price";
         public static final String ACTIVITIE_DESCTIPTION = "description";
-        public static final String ACTIVITIE_BUSSINES_ID = "businessId";
+        public static final String ACTIVITIE_BUSSINES_ID = "_ID";//"businessId";
         /**
          * The content:// style URI for this table
          */

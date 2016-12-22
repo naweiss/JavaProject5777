@@ -91,6 +91,7 @@
           android:id="@+id/priceActivity"
           android:hint="@string/activity_price"
           android:layout_weight="1"
+          android:inputType="numberDecimal"
           style="@style/MyEditTextStyle"
           />
 
@@ -98,6 +99,7 @@
           android:hint="@string/activity_businessId"
           android:layout_weight="1"
           style="@style/MyEditTextStyle"
+          android:inputType="number"
           android:id="@+id/businessId_activity" />
 
   </LinearLayout>

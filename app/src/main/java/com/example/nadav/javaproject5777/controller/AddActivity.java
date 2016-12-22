@@ -2,8 +2,10 @@ package com.example.nadav.javaproject5777.controller;
 
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.Exchanger;
 
 import android.app.DatePickerDialog;
@@ -14,6 +16,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -35,7 +38,7 @@ import com.example.nadav.javaproject5777.model.entities.User;
  */
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
-    DateFormat dateFormat = DateFormat.getDateInstance();
+    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     Calendar date = Calendar.getInstance();
     private TextView start;
     private TextView finish;
@@ -80,10 +83,12 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             updateDatefinish();
         if(view == add)
             addActivity();
+
     }
 
     private void updateTextStart(){
         start.setText(dateFormat.format(date.getTime()));
+        Toast.makeText(this,start.getText().toString(),Toast.LENGTH_LONG).show();
     }
     private void updateTextFinish(){
         finish.setText(dateFormat.format(date.getTime()));
@@ -113,14 +118,14 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         }
     };
 
-    public void addActivity()
-    {
+    public void addActivity() {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
         final Uri uri= Contract.Activitie.ACTIVITIE_URI;
         Activitie act=new Activitie();
         try {
-            act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString()));
+
+            act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString().toUpperCase()));
             act.setPrice(Double.parseDouble(this.price.getText().toString()));
             act.setBusinessId(Integer.valueOf(this.businessId.getText().toString()));
             act.setCountryName(this.country.getText().toString());

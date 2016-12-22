@@ -99,4 +99,5 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
          Intent mainScreen = new Intent(AddBusiness.this,MainActivity.class);
          startActivity(mainScreen);
     }
+
 }

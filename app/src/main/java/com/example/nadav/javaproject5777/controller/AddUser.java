@@ -38,7 +38,9 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-
+    private String username;
+    private String checkPass;
+    private String confirmPass;
     private EditText editTextAddUser;
     private EditText editTextAddPassword;
     private EditText editTextConfirmPassword;
@@ -68,8 +70,17 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if ( v == buttonAddUser ) {
-            addUser();
-            // Handle clicks for buttonAddUser
+            username = editTextAddUser.getText().toString();
+            checkPass = editTextAddPassword.getText().toString();
+            confirmPass =editTextConfirmPassword.getText().toString();
+
+            if(!isValid())
+                Toast.makeText(this,"The sign up failed",Toast.LENGTH_SHORT).show();
+
+            else {
+                addUser();
+                // Handle clicks for buttonAddUser
+            }
 
         }
     }
@@ -79,6 +90,7 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         User user=new User();
         user.setName(this.editTextAddUser.getText().toString());
         user.setPassword(this.editTextAddPassword.getText().toString());
+
 
         final ContentValues contentValues = Converter.userToContentValues(user);
         new AsyncTask<Void,Void,Void>()
@@ -94,6 +106,23 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         Toast.makeText(this,"new user added",Toast.LENGTH_LONG).show();
         Intent mainScreen = new Intent(AddUser.this,MainActivity.class);
         startActivity(mainScreen);
+    }
+    // validating password with retype password
+    private boolean isValid() {
+         Boolean valid = true;
+        if (username.isEmpty()) {
+            editTextAddUser.setError("Please enter a username");
+            valid = false;
+        }
+        if (checkPass.isEmpty() || checkPass.length() < 6){
+            editTextAddPassword.setError("Please enter a valid password");
+            valid=false;
+        }
+        else if(!checkPass.equals(confirmPass)) {
+            editTextConfirmPassword.setError("Confirm password did not match");
+            valid = false;
+        }
+        return valid;
     }
 
 }
