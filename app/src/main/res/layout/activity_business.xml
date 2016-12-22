@@ -72,25 +72,26 @@
             style="@style/MyEditTextStyle" />
 
     </LinearLayout>
+
     <EditText
         android:hint="@string/phonenumber"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
-        android:id="@+id/bsuiness_phone" />
+        android:id="@+id/bsuiness_phone"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/email_business"
         android:hint="@string/email_business"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
-
+        android:inputType="textEmailAddress"
         />
 
     <EditText
         android:hint="@string/business_link"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
-
         android:id="@+id/LinkBusiness" />
 
     <Button

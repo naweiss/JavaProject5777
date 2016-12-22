@@ -16,7 +16,7 @@
 
 
     <TextView
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:layout_gravity="top"
         android:textAlignment="center"
         android:layout_height="wrap_content"
@@ -46,14 +46,14 @@
         android:hint="@string/password"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
-
+        android:inputType="textPassword"
         android:id="@+id/editText_addPassword" />
 
     <EditText
         android:hint="@string/confirm_psd"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
-
+        android:inputType="textPassword"
         android:id="@+id/editText_confirmPassword" />
 
     <Button

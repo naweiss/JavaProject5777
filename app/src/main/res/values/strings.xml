@@ -27,7 +27,7 @@
     <string name="activity_price">Price</string>
     <string name="activity_businessId">Business id</string>
     <string name="activity_description">Description</string>
-
-
-
+    <string name="start">Start:</string>
+    <string name="finish">Finish</string>
+    <string name="create_account">Create Account</string>
 </resources>

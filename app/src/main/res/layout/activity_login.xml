@@ -13,9 +13,10 @@
     android:weightSum="1">
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/monlogo2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="20dp"
             android:layout_weight="0.63"
             android:contentDescription="@string/image_containt_description"/>
 
@@ -28,7 +29,7 @@
             android:drawablePadding="5dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:inputType="textImeMultiLine"
             android:layout_gravity="center"
             android:hint="@string/username"
@@ -47,7 +48,7 @@
             android:layout_marginRight="40dp"
             android:alpha="0.5"
             android:backgroundTint="#ffffff"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:textColorHint="#ffffff"
             android:hint="@string/password"
              />
@@ -55,7 +56,7 @@
             android:id="@+id/remember"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
             android:text="@string/remember"
