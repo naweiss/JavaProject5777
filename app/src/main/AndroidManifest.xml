@@ -12,6 +12,7 @@
         <activity android:name=".controller.AddUser"/>
         <activity android:name=".controller.AddActivity"  android:label="Add activity"/>
         <activity android:name=".controller.AddBusiness" />
+        <activity android:name=".controller.ListActivities" />
 
         <provider
             android:name=".model.backend.ActivityContentProvider"

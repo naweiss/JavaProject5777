@@ -126,7 +126,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             act.setCountryName(this.country.getText().toString());
             act.setDescription(this.description.getText().toString());
             act.setStartDate(df.parse(this.start.getText().toString()));
-            //act.setStartDate(this.start.date);
+
             act.setEndDate(df.parse(this.finish.getText().toString()));
         }catch (Exception ex){}
 

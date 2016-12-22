@@ -14,12 +14,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button addActy;
     private Button addBusiness;
+    private Button listActivities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addActy = (Button)findViewById(R.id.AddActivity_button);
         addBusiness = (Button)findViewById(R.id.AddBusiness);
+        listActivities = (Button)findViewById(R.id.buttonList);
+        listActivities.setOnClickListener(this);
         addActy.setOnClickListener(this);
         addBusiness.setOnClickListener(this);
 
@@ -35,7 +38,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent activityScreen = new Intent(MainActivity.this,AddBusiness.class);
             startActivity(activityScreen);
         }
+        if(view == listActivities){
+            Intent activityScreen = new Intent(MainActivity.this,ListActivities.class);
+            startActivity(activityScreen);
 
 
     }
+}
 }

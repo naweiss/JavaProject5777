@@ -15,7 +15,7 @@ import com.example.nadav.javaproject5777.model.backend.Contract;
 
 public class ListActivities extends ListActivity {
 
-   /** @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter
@@ -23,14 +23,14 @@ public class ListActivities extends ListActivity {
                         this,
                         R.layout.item_row,
                         null,
-                        new String[]{Course.COURSE_ID, Course.COURSE_NAME},
+                        new String[]{Contract.Activitie.ACTIVITIE_ACT_TYPE, Contract.Activitie.ACTIVITIE_START_DATE},
                         new int[]{R.id.itemId, R.id.itemName}
                 );
 
         new AsyncTask<Void, Void, Cursor>() {
             @Override
             protected Cursor doInBackground(Void... params) {
-                Cursor  cursor = getContentResolver().query(Contract.Activitie.COURSE_URI, null, null, null, null, null);
+                Cursor cursor = getContentResolver().query(Contract.Activitie.ACTIVITIE_URI, null, null, null, null, null);
                 return cursor;
             }
 
@@ -41,8 +41,8 @@ public class ListActivities extends ListActivity {
             }
         }.execute();
 
-   }
 
-        this.setListAdapter(adapter);**/
+        this.setListAdapter(adapter);
+    }
 
 }
