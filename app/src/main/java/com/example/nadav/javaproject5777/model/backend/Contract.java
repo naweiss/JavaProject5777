@@ -34,7 +34,7 @@ public class Contract {
         public static final String BUSINESS_ADDRESS_COUNTRY = "country";
         public static final String BUSINESS_ADDRESS_CITY = "city";
         public static final String BUSINESS_ADDRESS_STREET = "street";
-        public static final String BUSINESS_ADDRESS_HOUSE_NUMBER = "houseNumber";
+        public static final String BUSINESS_ADDRESS_ZIPCODE = "zipeCode";
         public static final String BUSINESS_PHONE = "phone";
         public static final String BUSINESS_EMAIL = "email";
         public static final String BUSINESS_LINK = "link";

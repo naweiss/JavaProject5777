@@ -9,12 +9,12 @@ public class Address {
         private String Country;
         private String City;
         private String Street;
-        private int HouseNumber;
+        private int zipCode;
 
-        public Address(String country,String city, String street, int houseNumber) {
+        public Address(String country,String city, String street, int zip) {
             City = city;
             Country = country;
-            HouseNumber = houseNumber;
+            zipCode = zip;
             Street = street;
         }
 
@@ -34,12 +34,12 @@ public class Address {
             City = city;
         }
 
-        public int getHouseNumber() {
-            return HouseNumber;
+        public int getZipCode() {
+            return zipCode;
         }
 
-        public void setHouseNumber(int houseNumber) {
-            HouseNumber = houseNumber;
+        public void setZipCode(int zip) {
+            zipCode = zip;
         }
 
         public String getStreet() {

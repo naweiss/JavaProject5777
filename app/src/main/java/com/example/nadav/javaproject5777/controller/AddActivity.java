@@ -2,20 +2,33 @@ package com.example.nadav.javaproject5777.controller;
 
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.Exchanger;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nadav.javaproject5777.R;
+import com.example.nadav.javaproject5777.model.backend.Contract;
+import com.example.nadav.javaproject5777.model.datasource.Converter;
+import com.example.nadav.javaproject5777.model.entities.Activitie;
+import com.example.nadav.javaproject5777.model.entities.ActivityType;
+import com.example.nadav.javaproject5777.model.entities.User;
 
 /**
  * Created by jerem on 15.12.16.
@@ -29,6 +42,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private ImageButton startDate;
     private ImageButton finishDate;
     private Button add;
+    private EditText price;
+    private EditText country;
+    private EditText description;
+    private Spinner typeOfactivities;
+    private EditText businessId;
 
 
 
@@ -42,6 +60,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         start = (TextView)findViewById(R.id.textViewStart);
         finish = (TextView)findViewById(R.id.textViewFinish);
         add = (Button)findViewById(R.id.button_add);
+        price = (EditText) findViewById(R.id.priceActivity);
+        country = (EditText)findViewById(R.id.country_activity);
+        description = (EditText)findViewById(R.id.description);
+        businessId = (EditText)findViewById(R.id.businessId_activity);
+        typeOfactivities = (Spinner) findViewById(R.id.spinner_typeActivities);
 
         startDate.setOnClickListener(this);
         finishDate.setOnClickListener(this);
@@ -92,6 +115,33 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
     public void addActivity()
     {
+        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
+        final Uri uri= Contract.Activitie.ACTIVITIE_URI;
+        Activitie act=new Activitie();
+        try {
+            act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString()));
+            act.setPrice(Double.parseDouble(this.price.getText().toString()));
+            act.setBusinessId(Integer.valueOf(this.businessId.getText().toString()));
+            act.setCountryName(this.country.getText().toString());
+            act.setDescription(this.description.getText().toString());
+            act.setStartDate(df.parse(this.start.getText().toString()));
+            //act.setStartDate(this.start.date);
+            act.setEndDate(df.parse(this.finish.getText().toString()));
+        }catch (Exception ex){}
+
+        final ContentValues contentValues = Converter.activitieToContentValues(act);
+        new AsyncTask<Void,Void,Void>()
+        {
+            @Override
+            protected Void doInBackground(Void... params) {
+                getContentResolver().insert(uri,contentValues);
+                Cursor users = getContentResolver().query(uri, null, null, null, null, null);
+                //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
+                return null;
+            }
+        }.execute();
+
         Toast.makeText(this,"new activity added",Toast.LENGTH_LONG).show();
         Intent mainScreen = new Intent(AddActivity.this,MainActivity.class);
         startActivity(mainScreen);

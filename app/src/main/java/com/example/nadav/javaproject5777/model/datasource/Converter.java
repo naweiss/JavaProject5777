@@ -29,7 +29,7 @@ public class Converter {
         contentValues.put(Contract.Business.BUSINESS_ADDRESS_COUNTRY, business.getAddress().getCountry());
         contentValues.put(Contract.Business.BUSINESS_ADDRESS_CITY, business.getAddress().getCity());
         contentValues.put(Contract.Business.BUSINESS_ADDRESS_STREET, business.getAddress().getStreet());
-        contentValues.put(Contract.Business.BUSINESS_ADDRESS_HOUSE_NUMBER, business.getAddress().getHouseNumber());
+        contentValues.put(Contract.Business.BUSINESS_ADDRESS_ZIPCODE, business.getAddress().getZipCode());
         contentValues.put(Contract.Business.BUSINESS_PHONE, business.getPhone());
         contentValues.put(Contract.Business.BUSINESS_EMAIL, business.getEmail());
         contentValues.put(Contract.Business.BUSINESS_LINK, business.getLink().toString());
@@ -92,7 +92,7 @@ public class Converter {
         Address addresss = new Address(contentValues.getAsString(Contract.Business.BUSINESS_ADDRESS_COUNTRY),
                 contentValues.getAsString(Contract.Business.BUSINESS_ADDRESS_CITY),
                 contentValues.getAsString(Contract.Business.BUSINESS_ADDRESS_STREET),
-                contentValues.getAsInteger(Contract.Business.BUSINESS_ADDRESS_HOUSE_NUMBER));
+                contentValues.getAsInteger(Contract.Business.BUSINESS_ADDRESS_ZIPCODE));
         bus.setAddress(addresss);
         bus.setPhone(contentValues.getAsString(Contract.Business.BUSINESS_PHONE));
         bus.setEmail(contentValues.getAsString(Contract.Business.BUSINESS_EMAIL));
@@ -147,7 +147,7 @@ public class Converter {
                         Contract.Business.BUSINESS_ADDRESS_COUNTRY,
                         Contract.Business.BUSINESS_ADDRESS_CITY,
                         Contract.Business.BUSINESS_ADDRESS_STREET,
-                        Contract.Business.BUSINESS_ADDRESS_HOUSE_NUMBER,
+                        Contract.Business.BUSINESS_ADDRESS_ZIPCODE,
                         Contract.Business.BUSINESS_EMAIL,
                         Contract.Business.BUSINESS_PHONE,
                         Contract.Business.BUSINESS_LINK,
@@ -156,7 +156,7 @@ public class Converter {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
 
         for (Business b : businesses) {
-            matrixCursor.addRow(new Object[]{b.getId(), b.getName(), b.getAddress().getCountry(),b.getAddress().getCity(),b.getAddress().getStreet(),b.getAddress().getHouseNumber(),b.getEmail(),b.getPhone(),b.getLink()});
+            matrixCursor.addRow(new Object[]{b.getId(), b.getName(), b.getAddress().getCountry(),b.getAddress().getCity(),b.getAddress().getStreet(),b.getAddress().getZipCode(),b.getEmail(),b.getPhone(),b.getLink()});
         }
 
         return matrixCursor;
