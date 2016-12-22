@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="username">שם משתמש</string>
+    <string name="password">סיסמה</string>
+    <string name="confirm_psd">אישור סיסמא</string>
+    <string name="remember">זכור אותי</string>
+    <string name="connect">התחבר</string>
+    <string name="newUser">הרשמה</string>
+    <string name="text_view_add"><b>אין לך חשבון?</b></string>
+    <string name="email_business">אימייל</string>
+    <string name="id_business">מזהה</string>
+    <string name="phonenumber">מספר טלפון</string>
+    <string name="business_link">קישור</string>
+    <string name="business_name">שם</string>
+    <string name="business_address">כתובת</string>
+    <string name="business_City">עיר</string>
+    <string name="business_country">מדינה</string>
+    <string name="business_zipCode">מיקוד</string>
+    <string name="btn_add">הוספה</string>
+    <string name="type_activities">סוג פעילות:</string>
+    <string-array name="typeActivities_combo">
+        <item>Package vacancy</item>
+        <item>Entertainment</item>
+        <item>Cruise</item>
+    </string-array>
+    <string name="activity_price">מחיר</string>
+    <string name="activity_businessId">מזהה עסק</string>
+</resources>
