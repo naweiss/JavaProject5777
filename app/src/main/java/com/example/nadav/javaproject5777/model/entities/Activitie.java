@@ -1,8 +1,12 @@
 package com.example.nadav.javaproject5777.model.entities;
 
+import com.example.nadav.javaproject5777.model.backend.Contract;
+
 import java.util.Date;
 
 public class Activitie {
+    private static int count=1;
+    private int id;
     private ActivityType actType;
     private String countryName;
     private Date startDate;
@@ -11,7 +15,9 @@ public class Activitie {
     private String description;
     private int businessId;
 
+
     public Activitie(int businessId,ActivityType actType, String countryName, String description, Date endDate, double price, Date startDate) {
+        this.id=count++;
         this.businessId = businessId;
         this.actType = actType;
         this.countryName = countryName;
@@ -22,7 +28,7 @@ public class Activitie {
     }
 
     public Activitie() {
-
+            this.id=count++;
     }
 
     public String getDescription() {
@@ -82,4 +88,11 @@ public class Activitie {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

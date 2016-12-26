@@ -5,7 +5,20 @@ package com.example.nadav.javaproject5777.model.entities;
  */
 public enum ActivityType{
     VACATION_PACKAGE,
-    TRAVEL_AGENCY,
     ENTERTAINMENT,
-    CRUISE
+    CRUISE;
+//    VACATION_PACKAGE("Package vacancy"),
+//    ENTERTAINMENT("Entertainment"),
+//    CRUISE ("Cruise");
+//
+//    private String friendlyName;
+//
+//    private ActivityType(String friendlyName){
+//        this.friendlyName = friendlyName;
+//    }
+//
+//    @Override public String toString(){
+//        return friendlyName;
+//    }
 }
+

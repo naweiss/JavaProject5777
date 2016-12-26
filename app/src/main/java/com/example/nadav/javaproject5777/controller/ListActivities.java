@@ -23,8 +23,8 @@ public class ListActivities extends ListActivity {
                         this,
                         R.layout.item_row,
                         null,
-                        new String[]{Contract.Activitie.ACTIVITIE_ACT_TYPE, Contract.Activitie.ACTIVITIE_START_DATE},
-                        new int[]{R.id.itemId, R.id.itemName}
+                        new String[]{Contract.Activitie.ACTIVITIE_ID,Contract.Activitie.ACTIVITIE_ACT_TYPE, Contract.Activitie.ACTIVITIE_START_DATE},
+                        new int[]{R.id.itemId,R.id.itemType, R.id.itemName}
                 );
 
         new AsyncTask<Void, Void, Cursor>() {

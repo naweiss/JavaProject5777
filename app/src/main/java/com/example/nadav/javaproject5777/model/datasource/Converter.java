@@ -51,6 +51,7 @@ public class Converter {
     public static ContentValues activitieToContentValues(Activitie activitie) {
 
         ContentValues contentValues = new ContentValues();
+        contentValues.put(Contract.Activitie.ACTIVITIE_ID,activitie.getId());
         contentValues.put(Contract.Activitie.ACTIVITIE_ACT_TYPE, activitie.getActType().toString());
         contentValues.put(Contract.Activitie.ACTIVITIE_BUSSINES_ID, activitie.getBusinessId());
         contentValues.put(Contract.Activitie.ACTIVITIE_COUNTRY_NAME, activitie.getCountryName());
@@ -63,6 +64,7 @@ public class Converter {
 
     public static Activitie ContentValuesToActivitie(ContentValues contentValues) throws Exception {
         Activitie act = new Activitie();
+        act.setId(contentValues.getAsInteger(Contract.Activitie.ACTIVITIE_ID));
         act.setActType(ActivityType.valueOf(contentValues.getAsString(Contract.Activitie.ACTIVITIE_ACT_TYPE)));
         act.setBusinessId(contentValues.getAsInteger(Contract.Activitie.ACTIVITIE_BUSSINES_ID));
         act.setCountryName(contentValues.getAsString(Contract.Activitie.ACTIVITIE_COUNTRY_NAME));
@@ -121,6 +123,7 @@ public class Converter {
     public static Cursor activitieListToCursor(List<Activitie> activities) {
         String[] columns = new String[]
                 {
+                        Contract.Activitie.ACTIVITIE_ID,
                         Contract.Activitie.ACTIVITIE_ACT_TYPE,
                         Contract.Activitie.ACTIVITIE_COUNTRY_NAME,
                         Contract.Activitie.ACTIVITIE_START_DATE,
@@ -133,7 +136,7 @@ public class Converter {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
 
         for (Activitie a : activities) {
-            matrixCursor.addRow(new Object[]{a.getActType(), a.getCountryName(),df.format(a.getStartDate()),df.format(a.getEndDate()),a.getDescription(),a.getPrice(),a.getBusinessId()});
+            matrixCursor.addRow(new Object[]{a.getId(),a.getActType(), a.getCountryName(),df.format(a.getStartDate()),df.format(a.getEndDate()),a.getDescription(),a.getPrice(),a.getBusinessId()});
         }
 
         return matrixCursor;

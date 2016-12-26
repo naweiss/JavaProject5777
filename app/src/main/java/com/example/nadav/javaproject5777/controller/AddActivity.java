@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -68,7 +69,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         description = (EditText)findViewById(R.id.description);
         businessId = (EditText)findViewById(R.id.businessId_activity);
         typeOfactivities = (Spinner) findViewById(R.id.spinner_typeActivities);
-
+        //typeOfactivities.setAdapter(new ArrayAdapter<ActivityType>(this,android.R.layout.simple_spinner_item,ActivityType.values()));
         startDate.setOnClickListener(this);
         finishDate.setOnClickListener(this);
         add.setOnClickListener(this);
@@ -124,6 +125,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         final Uri uri= Contract.Activitie.ACTIVITIE_URI;
         Activitie act=new Activitie();
         try {
+//            ActivityType a = (ActivityType) typeOfactivities.getSelectedItem();
+//            act.setActType(a);
 
             act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString().toUpperCase()));
             act.setPrice(Double.parseDouble(this.price.getText().toString()));

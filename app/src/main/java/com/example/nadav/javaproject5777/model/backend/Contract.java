@@ -45,13 +45,14 @@ public class Contract {
     }
 
     public static class Activitie {
+        public static final String ACTIVITIE_ID ="_ID";
         public static final String ACTIVITIE_ACT_TYPE = "actType";
         public static final String ACTIVITIE_COUNTRY_NAME = "countryName";
         public static final String ACTIVITIE_START_DATE = "startDate";
         public static final String ACTIVITIE_END_DATE = "endDate";
         public static final String ACTIVITIE_PRICE = "price";
         public static final String ACTIVITIE_DESCTIPTION = "description";
-        public static final String ACTIVITIE_BUSSINES_ID = "_ID";//"businessId";
+        public static final String ACTIVITIE_BUSSINES_ID = "businessId";
         /**
          * The content:// style URI for this table
          */
