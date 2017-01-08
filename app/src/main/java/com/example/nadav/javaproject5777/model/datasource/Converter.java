@@ -159,7 +159,18 @@ public class Converter {
         MatrixCursor matrixCursor = new MatrixCursor(columns);
 
         for (Business b : businesses) {
-            matrixCursor.addRow(new Object[]{b.getId(), b.getName(), b.getAddress().getCountry(),b.getAddress().getCity(),b.getAddress().getStreet(),b.getAddress().getZipCode(),b.getEmail(),b.getPhone(),b.getLink()});
+            matrixCursor.addRow(new Object[]
+                    {
+                            b.getId(),
+                            b.getName(),
+                            b.getAddress().getCountry(),
+                            b.getAddress().getCity(),
+                            b.getAddress().getStreet(),
+                            b.getAddress().getZipCode(),
+                            b.getEmail(),
+                            b.getPhone(),
+                            b.getLink()
+                    });
         }
 
         return matrixCursor;

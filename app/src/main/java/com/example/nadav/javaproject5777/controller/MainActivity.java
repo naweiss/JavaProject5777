@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EdgeEffect;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nadav.javaproject5777.R;
@@ -15,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button addActy;
     private Button addBusiness;
     private Button listActivities;
+    private Button go;
+    private EditText editTextId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listActivities.setOnClickListener(this);
         addActy.setOnClickListener(this);
         addBusiness.setOnClickListener(this);
+        go = (Button)findViewById(R.id.buttonGO);
+        editTextId = (EditText) findViewById(R.id.editTextID);
+        go.setOnClickListener(this);
 
     }
 
@@ -41,8 +48,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view == listActivities){
             Intent activityScreen = new Intent(MainActivity.this,ListActivities.class);
             startActivity(activityScreen);
-
-
-    }
+        }
+        if(view == go){
+            Intent activityScreen = new Intent(MainActivity.this,ListActivities.class);
+            String str = editTextId.getText().toString();
+            activityScreen.putExtra("key",str);
+            startActivity(activityScreen);
+        }
 }
 }

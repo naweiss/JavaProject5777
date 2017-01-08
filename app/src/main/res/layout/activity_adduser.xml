@@ -44,6 +44,7 @@
 
     <EditText
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
 
@@ -51,6 +52,7 @@
 
     <EditText
         android:hint="@string/confirm_psd"
+        android:inputType="textPassword"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
 

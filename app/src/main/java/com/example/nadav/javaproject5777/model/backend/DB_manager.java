@@ -16,7 +16,7 @@ import java.util.List;
 public interface DB_manager {
 
     public int addUser(ContentValues values);
-    public boolean addActivity(ContentValues values);
+    public int addActivity(ContentValues values);
     public int addBusiness(ContentValues values);
     public Boolean areNewActivities();
     public Boolean areNewBusinesses();

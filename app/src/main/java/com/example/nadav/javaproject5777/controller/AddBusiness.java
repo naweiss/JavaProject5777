@@ -67,7 +67,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
 
     public void addBusiness(){
 
-        final Uri uri= Contract.Activitie.ACTIVITIE_URI;
+        final Uri uri= Contract.Business.BUSINESS_URI;
         Business business=new Business();
         Address addr = new Address(
                 this.country.getText().toString(),
@@ -90,7 +90,7 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
             @Override
             protected Void doInBackground(Void... params) {
                 getContentResolver().insert(uri,contentValues);
-                Cursor users = getContentResolver().query(uri, null, null, null, null, null);
+                //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
                 //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
                 return null;
             }

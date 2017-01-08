@@ -72,9 +72,7 @@ public class ActivityContentProvider extends ContentProvider {
                 return ContentUris.withAppendedId(uri, id);
 
             case "activitie":
-                boolean ok = manager.addActivity(contentValues);
-                if(ok)
-                    id = 1;
+                id = manager.addActivity(contentValues);
                 return ContentUris.withAppendedId(uri, id);
         }
         return null;

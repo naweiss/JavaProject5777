@@ -19,7 +19,7 @@ public class Contract {
     public static final String BROADCAST_URI = AUTHORITY+"/update";
 
     public static class User {
-        public static final String USER_ID = "_ID";
+        public static final String USER_ID = "_id";
         public static final String USER_NAME = "name";
         public static final String USER_PASSWORD = "password";
         /**
@@ -29,12 +29,12 @@ public class Contract {
     }
 
     public static class Business {
-        public static final String BUSINESS_ID = "_ID";
+        public static final String BUSINESS_ID = "_id";
         public static final String BUSINESS_NAME = "name";
         public static final String BUSINESS_ADDRESS_COUNTRY = "country";
         public static final String BUSINESS_ADDRESS_CITY = "city";
         public static final String BUSINESS_ADDRESS_STREET = "street";
-        public static final String BUSINESS_ADDRESS_ZIPCODE = "zipCode";
+        public static final String BUSINESS_ADDRESS_ZIPCODE = "zipcode";
         public static final String BUSINESS_PHONE = "phone";
         public static final String BUSINESS_EMAIL = "email";
         public static final String BUSINESS_LINK = "link";
@@ -46,13 +46,13 @@ public class Contract {
 
     public static class Activitie {
         public static final String ACTIVITIE_ID ="_ID";
-        public static final String ACTIVITIE_ACT_TYPE = "actType";
-        public static final String ACTIVITIE_COUNTRY_NAME = "countryName";
-        public static final String ACTIVITIE_START_DATE = "startDate";
-        public static final String ACTIVITIE_END_DATE = "endDate";
+        public static final String ACTIVITIE_ACT_TYPE = "activity_type";
+        public static final String ACTIVITIE_COUNTRY_NAME = "country";
+        public static final String ACTIVITIE_START_DATE = "start_date";
+        public static final String ACTIVITIE_END_DATE = "end_date";
         public static final String ACTIVITIE_PRICE = "price";
         public static final String ACTIVITIE_DESCTIPTION = "description";
-        public static final String ACTIVITIE_BUSSINES_ID = "businessId";
+        public static final String ACTIVITIE_BUSSINES_ID = "businessID";
         /**
          * The content:// style URI for this table
          */

@@ -98,7 +98,7 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Void doInBackground(Void... params) {
                 getContentResolver().insert(uri,contentValues);
-                Cursor users = getContentResolver().query(uri, null, null, null, null, null);
+                //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
                 //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
                 return null;
             }

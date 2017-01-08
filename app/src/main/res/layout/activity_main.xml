@@ -21,18 +21,6 @@
         android:layout_marginBottom="67dp" />
 
     <Button
-        android:text="Add business"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/AddBusiness"
-        android:layout_marginLeft="106dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
         android:text="see list of activities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,4 +28,39 @@
         android:id="@+id/buttonList"
         android:layout_above="@+id/AddActivity_button"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Add business"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AddBusiness"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/buttonList"
+        android:layout_alignEnd="@+id/buttonList"
+        android:layout_marginRight="69dp"
+        android:layout_marginEnd="69dp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="enter the id:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="id"
+        android:id="@+id/editTextID"
+       />
+
+    <Button
+        android:text="go"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/buttonGO"
+        /></LinearLayout>
 </RelativeLayout>

@@ -33,16 +33,16 @@ public class ListDB_manager implements DB_manager{
     }
 
     @Override
-    public boolean addActivity(ContentValues values) {
+    public int addActivity(ContentValues values) {
         try {
             Activitie act = Converter.ContentValuesToActivitie(values);
             activities.add(act);
             new_activity = true;
-            return true;
+            return act.getId();
         }
         catch (Exception ex)
         {
-            return false;
+            return -1;
         }
 
     }
