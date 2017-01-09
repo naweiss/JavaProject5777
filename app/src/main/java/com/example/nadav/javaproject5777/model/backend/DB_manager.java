@@ -21,6 +21,7 @@ public interface DB_manager {
     public Boolean areNewActivities();
     public Boolean areNewBusinesses();
     public Boolean areNewUsers();
+    public Boolean isUserExist(String name,String password);
     public Cursor getAllUsers();
     public Cursor getAllActivity();
     public Cursor getBusinessActivity(int businessId);

@@ -1,6 +1,7 @@
 package com.example.nadav.javaproject5777.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +15,12 @@ import com.example.nadav.javaproject5777.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private final String pref = "MYPREF";
     private Button addActy;
     private Button addBusiness;
     private Button listActivities;
     private Button go;
+    private Button logout;
     private EditText editTextId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addActy.setOnClickListener(this);
         addBusiness.setOnClickListener(this);
         go = (Button)findViewById(R.id.buttonGO);
+        logout = (Button)findViewById(R.id.logout);
+        logout.setOnClickListener(this);
         editTextId = (EditText) findViewById(R.id.editTextID);
         go.setOnClickListener(this);
 
@@ -55,5 +60,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             activityScreen.putExtra("key",str);
             startActivity(activityScreen);
         }
-}
+        if(view == logout){
+            SharedPreferences preferences = getSharedPreferences(pref,MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            if(preferences.contains("REMEMBER_ME")){
+                editor.remove("REMEMBER_ME");
+                editor.commit();
+            }
+            Intent intent = new Intent(MainActivity.this,Login.class);
+            startActivity(intent);
+        }
+    }
 }

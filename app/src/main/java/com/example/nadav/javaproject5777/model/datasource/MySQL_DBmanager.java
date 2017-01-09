@@ -95,6 +95,26 @@ public class MySQL_DBmanager implements DB_manager {
     }
 
     @Override
+    public Boolean isUserExist(String name,String password) {
+        try {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("name",name);
+            contentValues.put("password",password);
+            String result = PHPtools.POST(WEB_URL + "isUserExist.php", contentValues);
+            if (result.equals("user exist")) {
+                printLog("foundUser:\n" + result);
+                return true;
+            }else {
+                printLog("notFoundUser:\n" + result);
+                return false;
+            }
+        } catch (IOException e) {
+            printLog("Find Exception:\n" + e);
+            return false;
+        }
+    }
+
+    @Override
     public Cursor getAllUsers() {
         try {
             MatrixCursor matrixCursor = new MatrixCursor(new String[]

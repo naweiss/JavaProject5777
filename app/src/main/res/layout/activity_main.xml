@@ -63,4 +63,13 @@
 
         android:id="@+id/buttonGO"
         /></LinearLayout>
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/AddActivity_button"
+        android:layout_alignLeft="@+id/buttonList"
+        android:layout_alignStart="@+id/buttonList"
+        android:id="@+id/logout" />
 </RelativeLayout>

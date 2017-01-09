@@ -5,6 +5,7 @@ package com.example.nadav.javaproject5777.model.backend;
         import android.content.ContentUris;
         import android.content.ContentValues;
         import android.database.Cursor;
+        import android.database.MatrixCursor;
         import android.net.Uri;
         import android.support.annotation.Nullable;
         import android.util.Log;
@@ -34,7 +35,13 @@ public class ActivityContentProvider extends ContentProvider {
         // String s = AcademyContract.Student.STUDENT_URI.getLastPathSegment();
         switch (listName) {
             case "user":
-                return manager.getAllUsers();//
+                if(selectionArgs == null)
+                    return manager.getAllUsers();//
+                else {
+                    MatrixCursor matrixCursor = new MatrixCursor(new String[] {"exist"});
+                    matrixCursor.addRow(new Object[]{ manager.isUserExist(selectionArgs[0], selectionArgs[1]) });
+                    return matrixCursor;
+                }
 
             case "business":
                 return manager.getAllBusinesses();//

@@ -20,6 +20,9 @@ import com.example.nadav.javaproject5777.model.backend.Contract;
 
 public class Login extends AppCompatActivity {
 
+    private final String pref = "MYPREF";
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +30,13 @@ public class Login extends AppCompatActivity {
         final EditText userName = (EditText)findViewById(R.id.username);
         final EditText password = (EditText)findViewById(R.id.password);
         Button btnLogin = (Button) findViewById(R.id.connect);
-        CheckBox checkBox = (CheckBox) findViewById(R.id.remember);
+        final CheckBox checkBox = (CheckBox) findViewById(R.id.remember);
 
-
-        SharedPreferences preferences=getSharedPreferences("MYPREF",MODE_PRIVATE);
+        preferences = getSharedPreferences(pref,MODE_PRIVATE);
+        if(preferences.contains("REMEMBER_ME")){
+            Intent registerScreen = new Intent(Login.this, MainActivity.class);
+            startActivity(registerScreen);
+        }
         if(preferences.contains("NAME")){
             userName.setText(preferences.getString("NAME",null));
         }
@@ -43,16 +49,16 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     boolean existUser = false;
-                    SharedPreferences preferences = getSharedPreferences("MYPREF", MODE_PRIVATE);
                     final String user = userName.getText().toString();
                     final String pass = password.getText().toString();
                     AsyncTask task=new Task().execute(user, pass);
-                    Object a = task.get();
-                    existUser = (Boolean)a ;
+                    existUser = (Boolean)task.get();
                     if (existUser) {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("NAME", user);
                         editor.putString("PASSWORD", pass);
+                        if(checkBox.isChecked())
+                            editor.putString("REMEMBER_ME", "True");
                         editor.commit();
                         Toast.makeText(Login.this, "save name and password", Toast.LENGTH_SHORT).show();
 
@@ -83,15 +89,9 @@ public class Login extends AppCompatActivity {
         protected Boolean doInBackground(String... params) {
             String user = params[0];
             String pass = params[1];
-            Cursor users = getContentResolver().query(Contract.User.USER_URI, null, null, null, null);
-            boolean flag = false;
-            while (users.moveToNext()) {
-                if (user.equals(users.getString(users.getColumnIndex(Contract.User.USER_NAME))) &&
-                        pass.equals(users.getString(users.getColumnIndex(Contract.User.USER_PASSWORD)))) {
-                    flag = true;
-                    break;
-                }
-            }
+            Cursor users = getContentResolver().query(Contract.User.USER_URI, null, null, params, null);
+            users.moveToNext();
+            boolean flag = "true".equals(users.getString(users.getColumnIndex("exist")));
             return flag;
         }
     }

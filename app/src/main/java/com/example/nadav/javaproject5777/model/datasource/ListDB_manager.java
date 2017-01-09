@@ -92,6 +92,20 @@ public class ListDB_manager implements DB_manager{
     }
 
     @Override
+    public Boolean isUserExist(String name,String password) {
+        try {
+            for(User user: users)
+                if(user.getName().equals(name) && user.getPassword().equals(password))
+                    return  true;
+            return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    @Override
     public Cursor getAllUsers() {
         return Converter.usersListToCursor(users);
     }
