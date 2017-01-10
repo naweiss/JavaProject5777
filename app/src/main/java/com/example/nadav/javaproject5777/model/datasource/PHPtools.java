@@ -19,6 +19,7 @@ public class PHPtools {
     public static String GET(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setReadTimeout(9000);
         con.setRequestMethod("GET");
         if (con.getResponseCode() == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -34,7 +35,7 @@ public class PHPtools {
             // print result
             return response.toString();
         } else {
-            return "";
+            return "URL Connection Error";
         }
     }
 
@@ -51,6 +52,8 @@ public class PHPtools {
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setReadTimeout(9000);
+        con.setConnectTimeout(9000);
         con.setRequestMethod("POST");
 
         // For POST only - START
@@ -76,7 +79,7 @@ public class PHPtools {
             in.close();
             return response.toString();
         }
-        else return "";
+        else return "URL Connection Error";
     }
 
 }

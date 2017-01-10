@@ -124,5 +124,4 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         }
         return valid;
     }
-
 }

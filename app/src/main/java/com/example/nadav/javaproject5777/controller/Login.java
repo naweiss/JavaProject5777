@@ -1,12 +1,9 @@
 package com.example.nadav.javaproject5777.controller;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.database.MatrixCursor;
 import android.os.AsyncTask;
-import android.support.v4.app.NotificationCompatSideChannelService;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,7 +48,7 @@ public class Login extends AppCompatActivity {
                     boolean existUser = false;
                     final String user = userName.getText().toString();
                     final String pass = password.getText().toString();
-                    AsyncTask task=new Task().execute(user, pass);
+                    AsyncTask task=new isUserExist().execute(user, pass);
                     existUser = (Boolean)task.get();
                     if (existUser) {
                         SharedPreferences.Editor editor = preferences.edit();
@@ -83,7 +80,8 @@ public class Login extends AppCompatActivity {
         });
 
     }
-    private class Task extends AsyncTask<String,Void,Boolean>
+
+    private class isUserExist extends AsyncTask<String,Void,Boolean>
     {
         @Override
         protected Boolean doInBackground(String... params) {
