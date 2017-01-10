@@ -20,6 +20,7 @@ public class PHPtools {
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setReadTimeout(9000);
+        con.setConnectTimeout(9000);
         con.setRequestMethod("GET");
         if (con.getResponseCode() == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
