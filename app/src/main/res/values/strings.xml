@@ -20,7 +20,7 @@
     <string name="btn_add">Add</string>
     <string name="type_activities">Activity type:</string>
     <string-array name="typeActivities_combo">
-        <item>Package vacancy</item>
+        <item>Vacation package</item>
         <item>Entertainment</item>
         <item>Cruise</item>
     </string-array>

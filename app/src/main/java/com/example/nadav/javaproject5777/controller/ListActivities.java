@@ -23,7 +23,7 @@ public class ListActivities extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Intent intent= getIntent();
         final String value1= intent.getStringExtra("key");
-        final String[] mSelectionArgs = {value1};
+        final String[] mSelectionArgs = value1 != null ? new String[] {value1} : null;
 
         super.onCreate(savedInstanceState);
         final SimpleCursorAdapter adapter = new SimpleCursorAdapter
