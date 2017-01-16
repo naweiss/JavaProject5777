@@ -15,7 +15,7 @@ public class Business {
     private String name;
     private Address address;
     private String phone;
-    private String email;//^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]+)$
+    private String email;
     private URL link;
 
     public Business() {

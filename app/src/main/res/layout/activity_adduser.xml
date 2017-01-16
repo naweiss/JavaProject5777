@@ -7,7 +7,7 @@
     android:layout_height="450dp"
     android:layout_gravity="center"
     android:gravity="top"
-    android:background="#60bebebe"
+    android:background="#30bebebe"
 
     android:weightSum="1"
     tools:context="com.example.nadav.javaproject5777.controller.AddUser">
@@ -18,6 +18,7 @@
     <TextView
         android:text="Create Account"
         android:layout_gravity="top"
+        android:textSize="20dp"
         android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"

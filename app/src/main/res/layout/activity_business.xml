@@ -3,106 +3,150 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="300dp"
-    android:layout_height="470dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
     android:layout_gravity="center"
     android:gravity="top"
-    android:background="#60bebebe"
+   android:background="#ffffff"
 
     android:weightSum="1"
-    tools:context="com.example.nadav.javaproject5777.controller.AddBusiness">
+
+    tools:context="com.example.nadav.javaproject5777.controller.AddBusiness"><!--android:background="#30bebebe"-->
+
+
+
     <!--android:alpha="0.4"-->
 
 
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="142dp"
+    android:background="#FF4081"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:alpha="0.4"
-        android:layout_marginBottom="40dp"
+        android:alpha="0.9"
         android:layout_marginTop="20dp"
-        android:src="@drawable/bank"
+        android:src="@drawable/ic_business_center_white_24dp"
         android:id="@+id/imageView" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-         <EditText
-            android:id="@+id/idbusiness"
-            android:hint="@string/id_business"
 
-            android:layout_weight="2"
-            style="@style/MyEditTextStyle" />
-          <EditText
-              android:id="@+id/name_business"
-              android:hint="@string/business_name"
-              android:layout_weight="1.5"
-              style="@style/MyEditTextStyle" /></LinearLayout>
+    <TextView
+        android:text="Business"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/textViewTitleBusiness" /></LinearLayout>
+
+
+    <EditText
+        android:id="@+id/name_business"
+        android:hint="@string/business_name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+         />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/address_business"
             android:hint="@string/business_address"
             android:layout_weight="1"
-            style="@style/MyEditTextStyle" />
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
         <EditText
             android:id="@+id/city_business"
             android:hint="@string/business_City"
-            android:layout_weight="2"
-            style="@style/MyEditTextStyle"  />
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+              />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
-        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="40dp"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/zipCode_business"
             android:hint="@string/business_zipCode"
+            android:inputType="number"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
-            style="@style/MyEditTextStyle"  />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/business_country"
             android:hint="@string/business_country"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/MyEditTextStyle" />
+             />
 
     </LinearLayout>
 
     <EditText
         android:hint="@string/phonenumber"
         android:layout_marginTop="15dp"
-        style="@style/MyEditTextStyle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
         android:id="@+id/bsuiness_phone"
         android:inputType="phone" />
 
     <EditText
         android:id="@+id/email_business"
         android:hint="@string/email_business"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
-        style="@style/MyEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
         android:inputType="textEmailAddress"
-        />
+        /> <!--style="@style/MyEditTextStyle"-->
 
     <EditText
         android:hint="@string/business_link"
         android:layout_marginTop="15dp"
-        style="@style/MyEditTextStyle"
-        android:id="@+id/LinkBusiness" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:id="@+id/LinkBusiness" /><!--style="@style/MyEditTextStyle"-->
 
     <Button
         android:text="@string/btn_add"
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content"
         android:id="@+id/button_addBusiness"
-        android:background="@drawable/button_rounded"
+        android:layout_marginBottom="10dp"
+        android:background="#FF4081"
         android:textColor="#ffffff"
-        />
+        android:textSize="20dp"
+        /><!-- @drawable/button_rounded-->
 </LinearLayout>
