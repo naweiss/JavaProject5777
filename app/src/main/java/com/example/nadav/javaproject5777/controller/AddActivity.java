@@ -4,9 +4,12 @@ package com.example.nadav.javaproject5777.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Exchanger;
+import java.util.concurrent.ExecutionException;
 
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -18,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -50,8 +54,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private EditText country;
     private EditText description;
     private Spinner typeOfactivities;
-    private EditText businessId;
-
+    private Spinner businessName;
+    private Cursor bussineses = null;
 
 
     @Override
@@ -67,13 +71,35 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         price = (EditText) findViewById(R.id.priceActivity);
         country = (EditText)findViewById(R.id.country_activity);
         description = (EditText)findViewById(R.id.description);
-        businessId = (EditText)findViewById(R.id.businessId_activity);
+        businessName = (Spinner)findViewById(R.id.businessId_activity);
         typeOfactivities = (Spinner) findViewById(R.id.spinner_typeActivities);
+        try {
+            AsyncTask task = new bussinesIds().execute();
+            ArrayAdapter<String> adapter  = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, (List<String>)task.get());
+            businessName.setAdapter(adapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+            finish();
+        }
         //typeOfactivities.setAdapter(new ArrayAdapter<ActivityType>(this,android.R.layout.simple_spinner_item,ActivityType.values()));
         startDate.setOnClickListener(this);
         finishDate.setOnClickListener(this);
         add.setOnClickListener(this);
 
+    }
+
+    private class bussinesIds extends AsyncTask<Void,Void,List<String>>
+    {
+        @Override
+        protected List<String> doInBackground(Void... params) {
+            bussineses = getContentResolver().query(Contract.Business.BUSINESS_URI, null, null, null, null);
+            List<String> names = new ArrayList<>();
+            while (bussineses.moveToNext()) {
+                names.add(bussineses.getString(1));
+            }
+            bussineses.moveToFirst();
+            return names;
+        }
     }
 
     @Override
@@ -128,9 +154,17 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 //            ActivityType a = (ActivityType) typeOfactivities.getSelectedItem();
 //            act.setActType(a);
 
-            act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString().toUpperCase()));
+            act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString().replace(' ', '_').toUpperCase()));
             act.setPrice(Double.parseDouble(this.price.getText().toString()));
-            act.setBusinessId(Integer.valueOf(this.businessId.getText().toString()));
+            int id = -1;
+            while (bussineses.moveToNext()) {
+                if (this.businessName.getSelectedItem().toString().equals(bussineses.getString(1)))
+                    id = Integer.valueOf(bussineses.getString(0));
+            }
+            bussineses.moveToFirst();
+            if(id == -1)
+                throw  new Exception("Invalid Bussines");
+            act.setBusinessId(id);
             act.setCountryName(this.country.getText().toString());
             act.setDescription(this.description.getText().toString());
             act.setStartDate(df.parse(this.start.getText().toString()));

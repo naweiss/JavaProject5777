@@ -96,13 +96,12 @@
           style="@style/MyEditTextStyle"
           />
 
-      <EditText
-          android:hint="@string/activity_businessId"
+      <Spinner
           android:layout_weight="1"
-          style="@style/MyEditTextStyle"
           android:inputType="number"
-          android:id="@+id/businessId_activity" />
-
+          android:id="@+id/businessId_activity"
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"></Spinner>
   </LinearLayout>
 
 
