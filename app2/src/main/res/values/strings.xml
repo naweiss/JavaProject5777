@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">jeremie.javaproject5777</string>
+    <string name="app_name">app2</string>
+    <string name="nadav_weiss">נדב וויס</string>
+    <string name="mist">mist</string>
+    <string name="background_image">background image</string>
+    <string name="user_image">user image</string>
+    <string name="open_menu">Open menu</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
