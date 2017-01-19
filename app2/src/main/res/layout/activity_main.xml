@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nadav.testproject.Fragments.MainFragment">
+    tools:context="com.example.jeremie.javaproject5777.Fragments.MainFragment">
 
     <Button
         android:text="Button"
