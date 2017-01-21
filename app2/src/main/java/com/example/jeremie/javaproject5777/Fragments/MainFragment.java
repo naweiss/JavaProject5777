@@ -11,8 +11,9 @@ import android.view.ViewGroup;
 
 import com.example.jeremie.javaproject5777.Address;
 import com.example.jeremie.javaproject5777.Business;
-import com.example.jeremie.javaproject5777.MyAdapter;
+import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 import com.example.jeremie.javaproject5777.R;
+import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 
 import java.net.URL;
 
@@ -25,9 +26,9 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -46,7 +47,7 @@ public class MainFragment extends Fragment {
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")};
-            mAdapter = new MyAdapter(myDataset,view.getContext());
+            mAdapter = new RecyclerViewAdapter(myDataset,view.getContext());
             mRecyclerView.setAdapter(mAdapter);
         }catch (Exception e){}
         return view;
