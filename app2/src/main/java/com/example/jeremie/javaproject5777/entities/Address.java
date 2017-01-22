@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.entities;
 
 /**
  * Created by nadav on 12/25/2016.

@@ -95,7 +95,14 @@ public class MenuActivity extends AppCompatActivity
             @Override
             public Fragment getItem(int position) {
                 //je créé pour chaque onglet un RecyclerViewFragment
-                return RecyclerViewFragment.newInstance();
+                switch (position){
+                    case 0:
+                        fragment = RecyclerViewFragment.newInstance();break;
+                        //return RecyclerViewFragment.newInstance();
+                    case 1:
+                        fragment = new BlankFragment();
+                }
+                return fragment;
             }
 
             @Override

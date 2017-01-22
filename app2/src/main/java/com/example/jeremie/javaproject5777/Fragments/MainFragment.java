@@ -9,11 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jeremie.javaproject5777.Address;
-import com.example.jeremie.javaproject5777.Business;
+import com.example.jeremie.javaproject5777.entities.Address;
+import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 
 import java.net.URL;
 

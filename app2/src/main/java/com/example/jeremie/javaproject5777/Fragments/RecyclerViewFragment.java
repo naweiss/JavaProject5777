@@ -9,16 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jeremie.javaproject5777.Address;
-import com.example.jeremie.javaproject5777.Business;
+import com.example.jeremie.javaproject5777.entities.Address;
+import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jerem on 19.01.17.
@@ -60,6 +58,7 @@ public class RecyclerViewFragment extends Fragment {
 
             //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
             mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(myDataset, view.getContext()));
+            
             mRecyclerView.setAdapter(mAdapter);
 
             //notifier le MaterialViewPager qu'on va utiliser une RecyclerView

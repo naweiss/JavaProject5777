@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.jeremie.javaproject5777.entities.Business;
+
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
