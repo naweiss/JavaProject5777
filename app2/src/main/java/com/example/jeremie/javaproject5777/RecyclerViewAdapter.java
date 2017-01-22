@@ -14,13 +14,15 @@ import android.widget.TextView;
 
 import com.example.jeremie.javaproject5777.entities.Business;
 
+import java.util.List;
+
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private Business[] mDataset;
+    private List<Business> mDataset;
     private Context context;
 
     // Provide a reference to the views for each data item
@@ -46,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerViewAdapter(Business[] myDataset, Context context) {
+    public RecyclerViewAdapter(List<Business>myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
@@ -69,10 +71,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.name.setText(mDataset[position].getName());
-        holder.phone.setText(mDataset[position].getPhone());
-        holder.address.setText(mDataset[position].getAddress().toString());
-        holder.email.setText(mDataset[position].getEmail());
+        holder.name.setText(mDataset.get(position).getName());
+        holder.phone.setText(mDataset.get(position).getPhone());
+        holder.address.setText(mDataset.get(position).getAddress().toString());
+        holder.email.setText(mDataset.get(position).getEmail());
         new AsyncTask<String,Void,Void>(){
             Bitmap myBitmap = null;
 
@@ -97,12 +99,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.imageView.setVisibility(View.VISIBLE);
                 holder.imageView.setImageBitmap(ExtractFavicon.getRoundedCornerBitmap(myBitmap,5));
             }
-        }.execute(mDataset[position].getLink().toString());
+        }.execute(mDataset.get(position).getLink().toString());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }

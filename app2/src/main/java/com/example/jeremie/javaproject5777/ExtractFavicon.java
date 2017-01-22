@@ -99,6 +99,8 @@ public class ExtractFavicon{
             URL url = new URL("http://icons.better-idea.org/allicons.json?url=" + src);
             HttpURLConnection connection = null;
             connection = (HttpURLConnection) url.openConnection();
+            connection.setReadTimeout(8000);
+            connection.setConnectTimeout(8000);
             connection.setDoInput(true);
             connection.connect();
             InputStream inputStream = connection.getInputStream();

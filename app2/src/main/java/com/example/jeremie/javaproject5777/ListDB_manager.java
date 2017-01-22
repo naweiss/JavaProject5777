@@ -47,12 +47,12 @@ public class ListDB_manager {
     }
 
 
-    public Cursor getAllActivity() {
-        return Converter.activitieListToCursor(activities);
+    public List<Activitie> getAllActivity() {
+        return activities;
     }
 
 
-    public Cursor getBusinessActivity(int bussinessId) {
+    public List<Activitie> getBusinessActivity(int bussinessId) {
         List<Activitie> businessActivity = new ArrayList<Activitie>();
 
         for (Activitie a : activities) {
@@ -60,11 +60,11 @@ public class ListDB_manager {
                 businessActivity.add(a);
             }
         }
-        return Converter.activitieListToCursor(businessActivity);
+        return businessActivity;
     }
 
 
-    public Cursor getAllBusinesses() {
-        return Converter.businessListToCursor(businesses);
+    public List<Business> getAllBusinesses() {
+        return businesses;
     }
 }

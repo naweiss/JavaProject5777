@@ -46,8 +46,8 @@ public class MainFragment extends Fragment {
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")
                             ,new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")};
-            mAdapter = new RecyclerViewAdapter(myDataset,view.getContext());
-            mRecyclerView.setAdapter(mAdapter);
+            //mAdapter = new RecyclerViewAdapter(myDataset,view.getContext());
+            //mRecyclerView.setAdapter(mAdapter);
         }catch (Exception e){}
         return view;
     }
