@@ -93,6 +93,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         @Override
         protected List<String> doInBackground(Void... params) {
             bussineses = getContentResolver().query(Contract.Business.BUSINESS_URI, null, null, null, null);
+            if(bussineses == null)
+                return null;
             List<String> names = new ArrayList<>();
             while (bussineses.moveToNext()) {
                 names.add(bussineses.getString(1));

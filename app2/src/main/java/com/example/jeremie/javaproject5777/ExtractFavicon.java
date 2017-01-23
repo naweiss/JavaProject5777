@@ -34,6 +34,8 @@ public class ExtractFavicon{
         String hexColor = String.format("%06X", (0xFFFFFF & randomColor()));
         URL default_url = new URL("http://icons.better-idea.org/lettericons/" + Character.toUpperCase(latter) + "-"+new Integer(size)+"-" + hexColor + ".png");
         HttpURLConnection connection = (HttpURLConnection) default_url.openConnection();
+        connection.setReadTimeout(5000);
+        connection.setConnectTimeout(5000);
         connection.setDoInput(true);
         connection.connect();
         InputStream inputStream = connection.getInputStream();
@@ -43,6 +45,8 @@ public class ExtractFavicon{
     private static Bitmap download(URL src){
         try {
             HttpURLConnection connection = (HttpURLConnection) src.openConnection();
+            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(5000);
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
@@ -99,8 +103,8 @@ public class ExtractFavicon{
             URL url = new URL("http://icons.better-idea.org/allicons.json?url=" + src);
             HttpURLConnection connection = null;
             connection = (HttpURLConnection) url.openConnection();
-            connection.setReadTimeout(8000);
-            connection.setConnectTimeout(8000);
+            connection.setReadTimeout(5000);
+            connection.setConnectTimeout(5000);
             connection.setDoInput(true);
             connection.connect();
             InputStream inputStream = connection.getInputStream();

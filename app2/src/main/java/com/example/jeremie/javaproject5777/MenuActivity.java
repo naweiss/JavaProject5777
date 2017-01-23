@@ -30,13 +30,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.jeremie.javaproject5777.Fragments.BlankFragment;
-import com.example.jeremie.javaproject5777.Fragments.MainFragment;
-import com.example.jeremie.javaproject5777.Fragments.RecyclerViewFragment;
 import com.example.jeremie.javaproject5777.Fragments.TabsFragment;
-import com.example.jeremie.javaproject5777.entities.Business;
-import com.github.florent37.materialviewpager.MaterialViewPager;
-import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
-import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
 import java.util.concurrent.ExecutionException;
 
@@ -45,7 +39,6 @@ public class MenuActivity extends AppCompatActivity
 
     private Fragment fragment = null;
     private FragmentManager manager = getSupportFragmentManager();
-    public static ListDB_manager db_manager = new ListDB_manager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,33 +48,7 @@ public class MenuActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         try {
-            new AsyncTask<Void, Void, Cursor>() {
-                @Override
-                protected Cursor doInBackground(Void... params) {
-                    ContentResolver resolver = getContentResolver();
-                    Cursor mCursor = resolver.query(Contract.Business.BUSINESS_URI, null, null, null, null);
-                    return mCursor;
-                }
-
-                @Override
-                protected void onPostExecute(Cursor cursor) {
-                    super.onPostExecute(cursor);
-                    try {
-                        int i = 0;
-                        db_manager.clearBusinesses();
-                        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                            // The Cursor is now set to the right position
-                            ContentValues map = new ContentValues();
-                            DatabaseUtils.cursorRowToContentValues(cursor,map);
-
-                            db_manager.addBusiness(map);
-
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }.execute().get();
+            new AsyncTaskUpdate().execute(getBaseContext()).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

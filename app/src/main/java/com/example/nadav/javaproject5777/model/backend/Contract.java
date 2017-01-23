@@ -16,7 +16,7 @@ public class Contract {
      * A content:// style uri to the authority for the contacts provider
      */
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
-    public static final String BROADCAST_URI = AUTHORITY+"/update";
+    public static final String BROADCAST_URI = AUTHORITY+".update";
 
     public static class User {
         public static final String USER_ID = "_id";

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.nadav.javaproject5777.R;
 import com.example.nadav.javaproject5777.model.backend.Contract;
+import com.example.nadav.javaproject5777.model.backend.UpdateService;
 import com.example.nadav.javaproject5777.model.datasource.Converter;
 import com.example.nadav.javaproject5777.model.entities.Address;
 import com.example.nadav.javaproject5777.model.entities.Business;
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(MainActivity.this, UpdateService.class);
+        startService(intent);
+
         addActy = (Button)findViewById(R.id.AddActivity_button);
         addBusiness = (Button)findViewById(R.id.AddBusiness_button);
 

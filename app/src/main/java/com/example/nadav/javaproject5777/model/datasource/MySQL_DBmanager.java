@@ -1,12 +1,15 @@
 package com.example.nadav.javaproject5777.model.datasource;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.util.Log;
 
+import com.example.nadav.javaproject5777.controller.MainActivity;
 import com.example.nadav.javaproject5777.model.backend.Contract;
 import com.example.nadav.javaproject5777.model.backend.DB_manager;
+import com.example.nadav.javaproject5777.model.backend.UpdateService;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,8 +25,9 @@ public class MySQL_DBmanager implements DB_manager {
     private final String UserName="naweiss";
     private final String WEB_URL = "http://"+UserName+".vlab.jct.ac.il/travel/";
 
-    private boolean updateFlag = false;
-
+    private boolean usersFlag = false;
+    private boolean businessFlag = false;
+    private boolean activityFlag = false;
 
     public void printLog(String message)
     {
@@ -39,7 +43,7 @@ public class MySQL_DBmanager implements DB_manager {
             String result = PHPtools.POST(WEB_URL + "addUser.php", values);
             int id = Integer.parseInt(result);
             if (id > 0)
-                updateFlag=true;
+                usersFlag=true;
             printLog("addUser:\n" + result);
             return id;
         } catch (IOException e) {
@@ -54,7 +58,7 @@ public class MySQL_DBmanager implements DB_manager {
             String result = PHPtools.POST(WEB_URL + "/addActivity.php", values);
             int id = Integer.parseInt(result);
             if (id > 0)
-                updateFlag=true;
+                activityFlag=true;
             printLog("addActivity:\n" + result);
             return id;
         } catch (IOException e) {
@@ -70,7 +74,7 @@ public class MySQL_DBmanager implements DB_manager {
             String result = PHPtools.POST(WEB_URL + "addBusiness.php", values);
             int id = Integer.parseInt(result);
             if (id > 0)
-                updateFlag=true;
+                businessFlag=true;
             printLog("addBusiness:\n" + result);
             return id;
         } catch (IOException e) {
@@ -81,17 +85,32 @@ public class MySQL_DBmanager implements DB_manager {
 
     @Override
     public Boolean areNewActivities() {
-        return null;
+        if(activityFlag) {
+            activityFlag = false;
+            return true;
+        }
+        else
+            return  false;
     }
 
     @Override
     public Boolean areNewBusinesses() {
-        return null;
+        if(businessFlag) {
+            businessFlag = false;
+            return true;
+        }
+        else
+            return  false;
     }
 
     @Override
     public Boolean areNewUsers() {
-        return null;
+        if(usersFlag) {
+            usersFlag = false;
+            return true;
+        }
+        else
+            return  false;
     }
 
     @Override

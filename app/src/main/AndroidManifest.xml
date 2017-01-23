@@ -21,8 +21,8 @@
         <provider
             android:name=".model.backend.ActivityContentProvider"
             android:authorities="com.example.nadav.javaproject5777"
-            android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:enabled="true"/>
 
         <activity android:name=".controller.Login">
             <intent-filter>

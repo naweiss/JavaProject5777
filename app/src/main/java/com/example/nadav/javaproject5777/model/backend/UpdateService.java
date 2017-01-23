@@ -13,7 +13,7 @@ public class UpdateService extends Service {
     @Override
     public void onCreate() {
         Log.i(TAG, "Service onCreate");
-        isRunning = true;
+        //isRunning = true;
     }
 
     @Override
@@ -26,26 +26,29 @@ public class UpdateService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                if(manager.areNewActivities() || manager.areNewBusinesses() || manager.areNewUsers()) {
-                    Intent intent = new Intent(Contract.BROADCAST_URI);
-                    sendBroadcast(intent);
-                }
                 //Your logic that service will perform will be placed here
                 //In this example we are just looping and waits for 1000 milliseconds in each loop.
-                for (int i = 0; i < 5; i++) {
-                    try {
+                try {
+                    //while (isRunning) {
+                    while(true){
                         Thread.sleep(5000);//Check every 5 seconds
-                    } catch (Exception e) {
+                        if(manager.areNewActivities()) {
+                            Intent intent = new Intent(Contract.BROADCAST_URI);
+                            intent.putExtra("type","activities");
+                            sendBroadcast(intent);
+                        }
+                        else if (manager.areNewBusinesses())
+                        {
+                            Intent intent = new Intent(Contract.BROADCAST_URI);
+                            intent.putExtra("type","businesses");
+                            sendBroadcast(intent);
+                        }
                     }
-
-                    if(isRunning){
-                        Log.i(TAG, "Service running");
-                    }
+                }catch (Exception e) {
                 }
 
                 //Stop service once it finishes its task
-                stopSelf();
+                //stopSelf();
             }
         }).start();
 
@@ -62,7 +65,7 @@ public class UpdateService extends Service {
     @Override
     public void onDestroy() {
 
-        isRunning = false;
+        //isRunning = false;
 
         Log.i(TAG, "Service onDestroy");
     }

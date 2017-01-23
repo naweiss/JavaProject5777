@@ -15,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.jeremie.javaproject5777.AsyncTaskUpdate;
 import com.example.jeremie.javaproject5777.Contract;
 import com.example.jeremie.javaproject5777.Converter;
+import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.MenuActivity;
 import com.example.jeremie.javaproject5777.entities.Address;
 import com.example.jeremie.javaproject5777.entities.Business;
@@ -37,6 +39,7 @@ public class RecyclerViewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+
 
     public static RecyclerViewFragment newInstance() {
         return new RecyclerViewFragment();
@@ -68,7 +71,7 @@ public class RecyclerViewFragment extends Fragment {
                             , new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")};*/
 
             //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
-            mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(MenuActivity.db_manager.getAllBusinesses(), getActivity().getBaseContext()));
+            mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(AsyncTaskUpdate.db_manager.getAllBusinesses(), getActivity().getBaseContext()));
 
             mRecyclerView.setAdapter(mAdapter);
 
