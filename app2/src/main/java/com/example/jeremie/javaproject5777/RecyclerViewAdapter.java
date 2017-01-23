@@ -97,7 +97,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             protected void onPostExecute(Void aVoid) {
                 holder.bar.setVisibility(View.INVISIBLE);
                 holder.imageView.setVisibility(View.VISIBLE);
-                holder.imageView.setImageBitmap(ExtractFavicon.getRoundedCornerBitmap(myBitmap,5));
+                holder.imageView.setImageBitmap(ExtractFavicon.getRoundedCornerBitmap(myBitmap,myBitmap.getWidth()/10));
             }
         }.execute(mDataset.get(position).getLink().toString());
     }
