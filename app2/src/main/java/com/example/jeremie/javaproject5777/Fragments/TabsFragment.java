@@ -12,8 +12,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -27,8 +30,8 @@ public class TabsFragment extends Fragment {
     View headerLogo;
     ImageView headerLogoContent;
 
-    public static TabsFragment newInstance() {
-        return new TabsFragment();
+    public TabsFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -36,12 +39,13 @@ public class TabsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //les vues définies dans @layout/header_logo
         final int tabCount = 2;
-        headerLogo = findViewById(R.id.headerLogo);
-        headerLogoContent = (ImageView) findViewById(R.id.headerLogoContent);
+        headerLogo = getView().findViewById(R.id.headerLogo);
+        headerLogoContent = (ImageView) getView().findViewById(R.id.headerLogoContent);
 
         //le MaterialViewPager
-        this.materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
-        this.materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        this.materialViewPager = (MaterialViewPager) getView().findViewById(R.id.materialViewPager);
+        this.materialViewPager.getToolbar().setVisibility(View.GONE);
+        this.materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
 
             int oldItemPosition = -1;
 
@@ -115,7 +119,7 @@ public class TabsFragment extends Fragment {
         });
 
         //permet au viewPager de garder 4 pages en mémoire (à ne pas utiliser sur plus de 4 pages !)
-        this.materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
+        //this.materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
         //relie les tabs au viewpager
         this.materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
 

@@ -18,6 +18,13 @@ public class ListDB_manager {
     private List<Activitie> activities = new ArrayList<Activitie>();
     private List<Business> businesses = new ArrayList<Business>();
 
+    public void clearActivities(){
+        activities.clear();
+    }
+
+    public void clearBusinesses(){
+        businesses.clear();
+    }
 
     public int addActivity(ContentValues values) {
         try {
