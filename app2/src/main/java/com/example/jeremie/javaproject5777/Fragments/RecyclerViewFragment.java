@@ -2,13 +2,18 @@ package com.example.jeremie.javaproject5777.Fragments;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jeremie.javaproject5777.AsyncTaskUpdate;
+import com.example.jeremie.javaproject5777.Business_details;
 import com.example.jeremie.javaproject5777.Contract;
 import com.example.jeremie.javaproject5777.Converter;
 import com.example.jeremie.javaproject5777.ListDB_manager;
@@ -35,7 +41,7 @@ import java.util.List;
  * Created by jerem on 19.01.17.
  */
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment  {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -80,4 +86,6 @@ public class RecyclerViewFragment extends Fragment {
 
         }catch (Exception e){}
     }
+
+
 }

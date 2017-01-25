@@ -1,10 +1,13 @@
 package com.example.jeremie.javaproject5777;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.jeremie.javaproject5777.entities.Business;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -25,6 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Business> mDataset;
     private Context context;
 
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -36,6 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView phone;
         public ImageView imageView;
         public ProgressBar bar;
+        public int Id = 0;
         public ViewHolder(View v) {
             super(v);
             name = (TextView)v.findViewById(R.id.name);
@@ -50,6 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Provide a suitable constructor (depends on the kind of dataset)
     public RecyclerViewAdapter(List<Business>myDataset, Context context) {
         mDataset = myDataset;
+
         this.context = context;
     }
 
@@ -62,7 +69,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .inflate(R.layout.card_view_row, parent, false);
         // set the view's size, margins, paddings and layout parameters
         //...
-        ViewHolder vh = new ViewHolder(v);
+
+        final ViewHolder vh = new ViewHolder(v);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,Business_details.class);
+                ImageView img = vh.imageView;
+                img.buildDrawingCache();
+                intent.putExtra("Image",img.getDrawingCache());
+                intent.putExtra("ID",vh.Id);
+                context.startActivity(intent);
+
+            }
+        });
         return vh;
     }
 
@@ -71,6 +91,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
+        holder.Id = mDataset.get(position).getId();
         holder.name.setText(mDataset.get(position).getName());
         holder.phone.setText(mDataset.get(position).getPhone());
         holder.address.setText(mDataset.get(position).getAddress().toString());
@@ -107,4 +128,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         return mDataset.size();
     }
+
 }

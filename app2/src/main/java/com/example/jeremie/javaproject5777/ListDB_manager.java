@@ -52,7 +52,14 @@ public class ListDB_manager {
             return -1;
         }
     }
-
+    public Business getBusiness(int bussinessId){
+        Business business = new Business();
+        for (Business b : businesses) {
+            if (b.getId() == bussinessId)
+                business = b;break;
+        }
+        return business;
+    }
 
     public List<Activitie> getAllActivity() {
         return activities;

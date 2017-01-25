@@ -5,7 +5,7 @@
     <color name="purple">#673AB7</color>
     <color name="cyan">#00BCD4</color>
     <color name="orange">#e95609</color>
-
+    <color name="colorAccent">#FF4081</color>
     <color name="accent_color">@color/blue</color>
     <color name="colorPrimary">@color/blue</color>
     <color name="colorPrimaryDark">@color/blue</color>

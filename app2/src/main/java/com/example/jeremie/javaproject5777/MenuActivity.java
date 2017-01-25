@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Color;
@@ -54,6 +55,8 @@ public class MenuActivity extends AppCompatActivity
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        fragment= new TabsFragment();
+        manager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +101,8 @@ public class MenuActivity extends AppCompatActivity
             fragment = new BlankFragment();
             manager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
         } else if (id == R.id.nav_slideshow) {
+            Intent mainScreen = new Intent(MenuActivity.this,Business_details.class);
+            startActivity(mainScreen);
 
         } else if (id == R.id.nav_manage) {
 
