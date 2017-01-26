@@ -43,7 +43,7 @@ import com.example.nadav.javaproject5777.model.entities.User;
  */
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
-    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Calendar date = Calendar.getInstance();
     private TextView start;
     private TextView finish;
@@ -148,7 +148,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     };
 
     public void addActivity() {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         final Uri uri= Contract.Activitie.ACTIVITIE_URI;
         Activitie act=new Activitie();
@@ -159,11 +159,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             act.setActType(ActivityType.valueOf(this.typeOfactivities.getSelectedItem().toString().replace(' ', '_').toUpperCase()));
             act.setPrice(Double.parseDouble(this.price.getText().toString()));
             int id = -1;
-            while (bussineses.moveToNext()) {
+            bussineses.moveToFirst();
+            do{
                 if (this.businessName.getSelectedItem().toString().equals(bussineses.getString(1)))
                     id = Integer.valueOf(bussineses.getString(0));
-            }
-            bussineses.moveToFirst();
+            }while (bussineses.moveToNext());
             if(id == -1)
                 throw  new Exception("Invalid Bussines");
             act.setBusinessId(id);

@@ -23,8 +23,6 @@ import com.example.jeremie.javaproject5777.Fragments.RecyclerViewFragment;
 import com.example.jeremie.javaproject5777.Fragments.details;
 import com.example.jeremie.javaproject5777.entities.Business;
 
-import static com.example.jeremie.javaproject5777.AsyncTaskUpdate.db_manager;
-
 /**
  * Created by jerem on 25.01.17.
  */
@@ -51,6 +49,8 @@ public class Business_details extends AppCompatActivity {
     TabLayout tabLayout;
     CollapsingToolbarLayout collapsingToolbar;
 
+    private ListDB_manager db_manager = ListDB_manager.newInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,7 @@ public class Business_details extends AppCompatActivity {
         if(id == -1)
             finish();
         business = db_manager.getBusiness(id);
+
 
 
         collapsingToolbar.setTitle(business.getName());
@@ -120,10 +121,6 @@ public class Business_details extends AppCompatActivity {
                 case 0:
 
                     fragment = new details();
-                    Bundle args = new Bundle();
-                    args.putString("data", "1");
-                    fragment.setArguments(args);
-
                     break;
                 case 1:
                     fragment = new details();break;

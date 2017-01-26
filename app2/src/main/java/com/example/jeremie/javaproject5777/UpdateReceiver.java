@@ -27,6 +27,16 @@ public class UpdateReceiver extends BroadcastReceiver {
                     e.printStackTrace();
                 }
             }
+            else if(intentData.equals("activities")) {
+                Toast.makeText(context, "UPDATE", Toast.LENGTH_LONG).show();
+                try {
+                    new AsyncTaskUpdateActivities().execute(context).get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

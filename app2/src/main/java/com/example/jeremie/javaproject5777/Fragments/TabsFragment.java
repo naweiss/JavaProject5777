@@ -90,10 +90,10 @@ public class TabsFragment extends Fragment {
                 Fragment fragment = null;
                 switch (position){
                     case 0:
-                        fragment = RecyclerViewFragment.newInstance();break;
+                        fragment = RecyclerViewFragment.newInstance(0);break;
                     //return RecyclerViewFragment.newInstance();
                     case 1:
-                        fragment = RecyclerViewFragment.newInstance();break;
+                        fragment = RecyclerViewFragment.newInstance(1);break;
                 }
                 return fragment;
             }

@@ -109,11 +109,14 @@
         android:hint="@string/business_country"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
+        android:inputType="textCapWords"
         android:id="@+id/country_activity" />
+
     <EditText
         android:hint="@string/activity_description"
         android:layout_marginTop="15dp"
         style="@style/MyEditTextStyle"
+        android:inputType="textNoSuggestions|textCapSentences"
         android:id="@+id/description" />
 
     <Button

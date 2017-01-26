@@ -21,11 +21,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jeremie.javaproject5777.AsyncTaskUpdate;
+import com.example.jeremie.javaproject5777.AsyncTaskUpdateActivities;
 import com.example.jeremie.javaproject5777.Business_details;
 import com.example.jeremie.javaproject5777.Contract;
 import com.example.jeremie.javaproject5777.Converter;
 import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.MenuActivity;
+import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
 import com.example.jeremie.javaproject5777.entities.Address;
 import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.R;
@@ -33,6 +35,7 @@ import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
+import java.net.Proxy;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,19 +48,29 @@ public class RecyclerViewFragment extends Fragment  {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
+    private ListDB_manager db_manager = ListDB_manager.newInstance();
 
+    public static RecyclerViewFragment newInstance(int type) {
+        RecyclerViewFragment f = new RecyclerViewFragment();
 
-    public static RecyclerViewFragment newInstance() {
-        return new RecyclerViewFragment();
+        Bundle args = new Bundle();
+        args.putInt("index", type);
+        f.setArguments(args);
+        return f;
+        //return new RecyclerViewFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_recyclerview, container, false);
+
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Bundle args = getArguments();
+        int index = args.getInt("index", -1);
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -77,8 +90,11 @@ public class RecyclerViewFragment extends Fragment  {
                             , new Business(new Address("Israel", "Hifa", "Arlozorov", 031231), "avi_levi@gmail.com", new URL("http://www.google.com"), "avi levi", "056-712-3123")};*/
 
             //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
-            mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(AsyncTaskUpdate.db_manager.getAllBusinesses(), getActivity().getBaseContext()));
-
+            if(index == 0){
+                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(db_manager.getAllBusinesses(), getActivity().getBaseContext()));}
+            else if(index==1){
+                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapterActivities(db_manager.getAllActivity(), getActivity().getBaseContext()));
+            }
             mRecyclerView.setAdapter(mAdapter);
 
             //notifier le MaterialViewPager qu'on va utiliser une RecyclerView

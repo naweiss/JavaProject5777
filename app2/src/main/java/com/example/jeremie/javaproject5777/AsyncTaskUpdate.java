@@ -14,7 +14,7 @@ import android.os.AsyncTask;
 
 public class AsyncTaskUpdate extends AsyncTask<Context, Void, Cursor> {
 
-    public static ListDB_manager db_manager = new ListDB_manager();
+    private ListDB_manager db_manager = ListDB_manager.newInstance();
 
     @Override
     protected Cursor doInBackground(Context... contexts) {
@@ -29,7 +29,6 @@ public class AsyncTaskUpdate extends AsyncTask<Context, Void, Cursor> {
     protected void onPostExecute(Cursor cursor) {
         super.onPostExecute(cursor);
         try {
-            int i = 0;
             db_manager.clearBusinesses();
             for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                 // The Cursor is now set to the right position

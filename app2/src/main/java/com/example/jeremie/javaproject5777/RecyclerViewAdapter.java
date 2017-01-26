@@ -1,10 +1,16 @@
 package com.example.jeremie.javaproject5777;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.telecom.Call;
@@ -14,18 +20,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.support.v4.util.Pair;
 
 import com.example.jeremie.javaproject5777.entities.Business;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.example.jeremie.javaproject5777.R.id.backgroundImageView;
+import static com.example.jeremie.javaproject5777.R.id.imageView;
+
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>  {
     private List<Business> mDataset;
     private Context context;
 
@@ -72,16 +82,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,Business_details.class);
+
+
+                Intent intent = new Intent(context, Business_details.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ImageView img = vh.imageView;
                 img.buildDrawingCache();
-                intent.putExtra("Image",img.getDrawingCache());
-                intent.putExtra("ID",vh.Id);
+                intent.putExtra("Image", img.getDrawingCache());
+                intent.putExtra("ID", vh.Id);
+                String transitionName = "image";
                 context.startActivity(intent);
+                    //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            //(Activity) v.getContext(),img,transitionName);
+                    //ActivityCompat.startActivity(context, intent, options.toBundle());
 
-            }
+                }
+
         });
         return vh;
     }

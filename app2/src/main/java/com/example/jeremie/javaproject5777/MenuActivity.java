@@ -50,6 +50,7 @@ public class MenuActivity extends AppCompatActivity
 
         try {
             new AsyncTaskUpdate().execute(getBaseContext()).get();
+            new AsyncTaskUpdateActivities().execute(getBaseContext()).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

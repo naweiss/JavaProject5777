@@ -20,7 +20,7 @@ import java.util.List;
  */
 
 public class Converter {
-    public static DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+    public static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
     public static ContentValues businessToContentValues(Business business) {
         ContentValues contentValues = new ContentValues();

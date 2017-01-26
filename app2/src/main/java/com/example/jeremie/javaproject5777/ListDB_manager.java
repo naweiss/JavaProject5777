@@ -15,6 +15,15 @@ import java.util.List;
 
 public class ListDB_manager {
 
+    private static ListDB_manager manager = null;
+    public static ListDB_manager newInstance() {
+        if(manager == null)
+            manager = new ListDB_manager();
+        return manager;
+    }
+
+    private ListDB_manager(){}
+
     private List<Activitie> activities = new ArrayList<Activitie>();
     private List<Business> businesses = new ArrayList<Business>();
 
@@ -56,7 +65,7 @@ public class ListDB_manager {
         Business business = new Business();
         for (Business b : businesses) {
             if (b.getId() == bussinessId)
-                business = b;break;
+                business = b;
         }
         return business;
     }
