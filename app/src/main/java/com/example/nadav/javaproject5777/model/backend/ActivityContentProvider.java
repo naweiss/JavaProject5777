@@ -16,6 +16,7 @@ package com.example.nadav.javaproject5777.model.backend;
  */
 
 public class ActivityContentProvider extends ContentProvider {
+    final  int e=2;
     DB_manager manager = DB_Factory.getDB();
     final String TAG = "activityContent";
 
@@ -95,4 +96,5 @@ public class ActivityContentProvider extends ContentProvider {
         return 0;
     }
 }
+
 

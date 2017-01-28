@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.jeremie.javaproject5777.Fragments.FragmentBusinessActivities;
 import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.Fragments.RecyclerViewFragment;
 import com.example.jeremie.javaproject5777.Fragments.details;
@@ -123,7 +124,8 @@ public class Business_details extends AppCompatActivity {
                     fragment = new details();
                     break;
                 case 1:
-                    fragment = new details();break;
+                    fragment = new FragmentBusinessActivities().newInstance(id);
+                    break;
 
             }
             return fragment;

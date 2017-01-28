@@ -7,10 +7,11 @@ import android.net.Uri;
  * Package: ${PACKAGE_NAME}
  */
 
-public class Contract {
+public class Contract extends ActivityContentProvider {
     /**
      * The authority for the contacts provider
      */
+
     public static final String AUTHORITY = "com.example.nadav.javaproject5777";
     /**
      * A content:// style uri to the authority for the contacts provider

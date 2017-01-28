@@ -1,63 +1,39 @@
 package com.example.jeremie.javaproject5777.Fragments;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jeremie.javaproject5777.AsyncTaskUpdate;
-import com.example.jeremie.javaproject5777.AsyncTaskUpdateActivities;
-import com.example.jeremie.javaproject5777.Business_details;
-import com.example.jeremie.javaproject5777.Contract;
-import com.example.jeremie.javaproject5777.Converter;
 import com.example.jeremie.javaproject5777.ListDB_manager;
-import com.example.jeremie.javaproject5777.MenuActivity;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
-import com.example.jeremie.javaproject5777.entities.Address;
-import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
+import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
-import java.net.Proxy;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by jerem on 19.01.17.
+ * Created by jerem on 28.01.17.
  */
 
-public class RecyclerViewFragment extends Fragment  {
+public class FragmentBusinessActivities extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private ListDB_manager db_manager = ListDB_manager.newInstance();
 
-    public static RecyclerViewFragment newInstance(int type) {
-        RecyclerViewFragment f = new RecyclerViewFragment();
+    public static FragmentBusinessActivities newInstance(int type) {
+        FragmentBusinessActivities frag = new FragmentBusinessActivities();
 
         Bundle args = new Bundle();
-        args.putInt("index", type);
-        f.setArguments(args);
-        return f;
-        //return new RecyclerViewFragment();
+        args.putInt("ID", type);
+        frag.setArguments(args);
+        return frag;
+
     }
 
     @Override
@@ -70,7 +46,7 @@ public class RecyclerViewFragment extends Fragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        int index = args.getInt("index", -1);
+        int id = args.getInt("ID", -1);
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -82,18 +58,14 @@ public class RecyclerViewFragment extends Fragment  {
         try {
 
             //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
-            if(index == 0){
-                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(db_manager.getAllBusinesses(), getActivity().getBaseContext()));}
-            else if(index==1){
-                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapterActivities(db_manager.getAllActivity(), getActivity().getBaseContext()));
-            }
+            mAdapter = new RecyclerViewAdapterActivities(db_manager.getBusinessActivity(id), getActivity().getBaseContext());
             mRecyclerView.setAdapter(mAdapter);
 
             //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
-            MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
+
 
         }catch (Exception e){}
     }
 
-
 }
+

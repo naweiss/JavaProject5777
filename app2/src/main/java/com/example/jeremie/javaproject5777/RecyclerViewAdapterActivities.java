@@ -47,7 +47,7 @@ public class RecyclerViewAdapterActivities extends RecyclerView.Adapter<Recycler
         // each data item is just a string in this case
         public TextView title;
         public ImageView imageView;
-
+        public String activityType;
         public int Id = 0;
         public ViewHolder(View v) {
             super(v);
@@ -84,7 +84,14 @@ public class RecyclerViewAdapterActivities extends RecyclerView.Adapter<Recycler
         // - replace the contents of the view with that element
         holder.Id = mDataset.get(position).getId();
         holder.title.setText(mDataset.get(position).getDescription());
-        holder.imageView.setImageResource(R.drawable.header);
+        holder.activityType =mDataset.get(position).getActType().toString();
+        if(holder.activityType == "CRUISE")
+           holder.imageView.setImageResource(R.drawable.cruise);
+        else if(holder.activityType == "ENTERTAINMENT")
+            holder.imageView.setImageResource(R.drawable.entertainment);
+        else
+            holder.imageView.setImageResource(R.drawable.hotel);
+
 
 
     }
