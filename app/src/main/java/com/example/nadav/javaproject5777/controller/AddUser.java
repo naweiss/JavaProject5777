@@ -29,7 +29,7 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adduser);
         findViews();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

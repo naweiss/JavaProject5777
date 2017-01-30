@@ -67,7 +67,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         finishDate = (ImageButton)findViewById(R.id.imageButton_finish);
         start = (TextView)findViewById(R.id.textViewStart);
         finish = (TextView)findViewById(R.id.textViewFinish);
-        add = (Button)findViewById(R.id.button_add);
+        add = (Button)findViewById(R.id.button_addActivity);
         price = (EditText) findViewById(R.id.priceActivity);
         country = (EditText)findViewById(R.id.country_activity);
         description = (EditText)findViewById(R.id.description);
@@ -81,7 +81,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             e.printStackTrace();
             finish();
         }
-        //typeOfactivities.setAdapter(new ArrayAdapter<ActivityType>(this,android.R.layout.simple_spinner_item,ActivityType.values()));
         startDate.setOnClickListener(this);
         finishDate.setOnClickListener(this);
         add.setOnClickListener(this);

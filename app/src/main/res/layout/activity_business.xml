@@ -23,13 +23,12 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="142dp"
-    android:background="#FF4081"
+    android:background="@color/colorPrimary"
     android:layout_marginBottom="10dp"
     android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:alpha="0.9"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_business_center_white_24dp"
         android:id="@+id/imageView" />
@@ -78,6 +77,7 @@
             android:layout_height="wrap_content"
               />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="15dp"
@@ -117,6 +117,7 @@
     <EditText
         android:id="@+id/email_business"
         android:hint="@string/email_business"
+        android:backgroundTint="#ffffff"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
@@ -145,7 +146,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_addBusiness"
         android:layout_marginBottom="10dp"
-        android:background="#FF4081"
+        android:background="@color/colorPrimary"
         android:textColor="#ffffff"
         android:textSize="20dp"
         /><!-- @drawable/button_rounded-->

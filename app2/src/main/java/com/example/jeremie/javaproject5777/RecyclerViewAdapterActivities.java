@@ -1,6 +1,7 @@
 package com.example.jeremie.javaproject5777;
 
 import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,7 +36,7 @@ import static com.example.jeremie.javaproject5777.R.id.imageView;
  * Package: com.example.nadav.testproject
  */
 
-public class RecyclerViewAdapterActivities extends RecyclerView.Adapter<RecyclerViewAdapterActivities.ViewHolder>  {
+public class RecyclerViewAdapterActivities extends  RecyclerView.Adapter<RecyclerViewAdapterActivities.ViewHolder>  {
     private List<Activitie> mDataset;
     private Context context;
 
