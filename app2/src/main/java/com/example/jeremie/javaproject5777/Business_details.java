@@ -68,6 +68,7 @@ public class Business_details extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         id = getIntent().getIntExtra("ID",-1);
         if(id == -1)
@@ -77,7 +78,6 @@ public class Business_details extends AppCompatActivity {
 
 
         collapsingToolbar.setTitle(business.getName());
-
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -97,12 +97,21 @@ public class Business_details extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // todo: goto back activity from here
+                finish();
+                return true;
 
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -120,7 +129,6 @@ public class Business_details extends AppCompatActivity {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-
                     fragment = new details();
                     break;
                 case 1:
@@ -145,7 +153,7 @@ public class Business_details extends AppCompatActivity {
                 case 0:
                     return "details";
                 case 1:
-                    return "listview";
+                    return "activities";
             }
             return null;
         }
