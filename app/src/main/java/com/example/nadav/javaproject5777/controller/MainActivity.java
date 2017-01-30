@@ -38,6 +38,7 @@ import com.example.nadav.javaproject5777.model.entities.Business;
 
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final Pattern validPhone = Pattern.compile("^0[0-9]{8}$");
     private static final Pattern validMobile = Pattern.compile("^05[0-9]{8}$");
     private static final Pattern validEmail = Pattern.compile("^\\s*[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\\.[a-zA-Z]{2,4}\\s*$");
-    private static final Pattern validUrl = Pattern.compile("^http(s)?:\\/\\/(www\\.)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$");
+    private static final Pattern validUrl = Pattern.compile("^(www\\.)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$");
 
     private final String pref = "MYPREF";
     private Button addActy;
@@ -125,6 +126,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void onBackPressed() {
+        
+    }
+
+    @Override
     public void onClick(View view) {
          if(view == addBusiness){
 
@@ -185,30 +191,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             try {
                 AsyncTask task = new bussinesIds().execute();
-                ArrayAdapter<String> adapter  = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, (List<String>)task.get());
+                ArrayAdapter<String> adapter  = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, (List<String>)task.get());
                 businessName.setAdapter(adapter);
             } catch (Exception e) {
                 e.printStackTrace();
                 finish();
             }
-            startDate.setOnClickListener(this);
-            finishDate.setOnClickListener(this);
-            addActivity.setOnClickListener(this);
 
             addActivityDialog.setView(viewActivity);
             final AlertDialog dialog1 = addActivityDialog.create();
             dialog1.show();
 
+            finishDate.setEnabled(false);
             startDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    insertStartDate.setText("");
+                    insertFinishDate.setText("");
                     updateDateStart();
+                    finishDate.setEnabled(true);
                 }
             });
             finishDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    updateDatefinish();
+                    try {
+                        updateDatefinish();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
             addActivity.setOnClickListener(new View.OnClickListener() {
@@ -243,8 +254,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateDateStart(){
         new DatePickerDialog(this,c,date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH)).show();
     }
-    private void updateDatefinish(){
-        new DatePickerDialog(this,d,date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH)).show();
+    private void updateDatefinish() throws ParseException {
+        DatePickerDialog dpdialog = new DatePickerDialog(this,d,date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH));
+        dpdialog.getDatePicker().setMinDate(dateFormat.parse(insertStartDate.getText().toString()).getTime());
+        dpdialog.show();
+
     }
     DatePickerDialog.OnDateSetListener c =new DatePickerDialog.OnDateSetListener(){
         @Override
@@ -320,7 +334,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             business.setAddress(addr);
             business.setPhone(this.phoneNumberEditText.getText().toString());
             business.setEmail(this.emailEditText.getText().toString());
-            business.setLink(new URL(this.linkEditText.getText().toString()));
+            String url = this.linkEditText.getText().toString();
+            if(!url.startsWith("http://") || !url.startsWith("https://"))
+                url = "http://".concat(url);
+            business.setLink(new URL(url));
         }catch (Exception ex){}
 
         final ContentValues contentValues = Converter.businessToContentValues(business);

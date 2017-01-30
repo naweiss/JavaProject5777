@@ -13,7 +13,7 @@
 
     android:weightSum="1"
 
-    tools:context="com.example.nadav.javaproject5777.controller.AddBusiness">
+    tools:context="com.example.nadav.javaproject5777.controller.MainActivity">
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="142dp"
-        android:background="#FF4081"
+        android:background="@color/colorPrimary"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
         <ImageView
@@ -144,7 +144,7 @@
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="textWebEditText"
+            android:inputType="textUri"
             android:id="@+id/LinkBusiness" /><!--style="@style/MyEditTextStyle"-->
 
         <Button
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/button_addBusiness"
             android:layout_marginBottom="10dp"
-            android:background="#FF4081"
+            android:background="@color/colorPrimary"
             android:textColor="#ffffff"
             android:textSize="20dp"
             /><!-- @drawable/button_rounded-->

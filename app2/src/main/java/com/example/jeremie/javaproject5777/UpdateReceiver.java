@@ -3,11 +3,15 @@ package com.example.jeremie.javaproject5777;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
 public class UpdateReceiver extends BroadcastReceiver {
+
+    final String TAG = "activityContent";
+
     public UpdateReceiver() {
     }
 
@@ -18,9 +22,10 @@ public class UpdateReceiver extends BroadcastReceiver {
         if (intent.getAction().matches("com.example.nadav.javaproject5777.update")) {
             String intentData = intent.getStringExtra("type");
             if(intentData.equals("businesses")) {
-                Toast.makeText(context, "businesses update", Toast.LENGTH_LONG).show();
                 try {
                     new AsyncTaskUpdate().execute(context).get();
+                    Toast.makeText(context, "businesses update", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "businesses update");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -28,9 +33,10 @@ public class UpdateReceiver extends BroadcastReceiver {
                 }
             }
             else if(intentData.equals("activities")) {
-                Toast.makeText(context, "activities update", Toast.LENGTH_LONG).show();
                 try {
                     new AsyncTaskUpdateActivities().execute(context).get();
+                    Toast.makeText(context, "activities update", Toast.LENGTH_LONG).show();
+                    Log.d(TAG, "activities update");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
