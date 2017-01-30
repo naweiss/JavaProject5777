@@ -31,16 +31,31 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
              />
-
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
         <TextView
             android:id="@+id/descriptionActivity"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:background="?android:selectableItemBackground"
             android:padding="20dp"
             android:fontFamily="sans-serif"
             android:textColor="#333"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="normal|bold" />
+          <ImageButton
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignRight="@id/descriptionActivity"
+              android:layout_alignParentRight="true"
+              android:layout_centerInParent="true"
+              android:background="#ffffff"
+              android:layout_marginRight="20dp"
+              android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+              android:adjustViewBounds="true"
+               />
+
+        </RelativeLayout>
     </LinearLayout>
 
 

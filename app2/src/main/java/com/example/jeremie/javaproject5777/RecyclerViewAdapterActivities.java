@@ -1,6 +1,7 @@
 package com.example.jeremie.javaproject5777;
 
 import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
