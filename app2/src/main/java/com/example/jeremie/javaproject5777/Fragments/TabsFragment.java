@@ -65,7 +65,7 @@ public class TabsFragment extends Fragment {
                     switch (position) {
                         case 0:
                             imageUrl = "https://static.pexels.com/photos/164661/pexels-photo-164661.jpeg";
-                            color = getResources().getColor(R.color.green);
+                            color = getResources().getColor(R.color.cyan);
                             newDrawable = getResources().getDrawable(R.drawable.business_logo);
                             break;
                         case 1:
