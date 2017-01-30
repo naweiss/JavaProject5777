@@ -25,9 +25,8 @@ public class MySQL_DBmanager implements DB_manager {
     private final String UserName="naweiss";
     private final String WEB_URL = "http://"+UserName+".vlab.jct.ac.il/travel/";
 
-    private int usersMaxID = -1;
-    private int businessMaxID = -1;
-    private int activityMaxID = -1;
+    private static int businessMaxID = -1;
+    private static int activityMaxID = -1;
 
     public void printLog(String message)
     {
@@ -109,8 +108,10 @@ public class MySQL_DBmanager implements DB_manager {
     @Override
     public Boolean areNewActivities() {
         int temp = getActivityMaxID();
-        if(temp != -1 && temp > activityMaxID)
+        if(temp != -1 && temp > activityMaxID) {
+            activityMaxID = temp;
             return true;
+        }
         return  false;
 
     }
@@ -118,8 +119,10 @@ public class MySQL_DBmanager implements DB_manager {
     @Override
     public Boolean areNewBusinesses() {
         int temp =  getBusinessMaxID();
-        if(temp != -1 && temp > businessMaxID)
+        if(temp != -1 && temp > businessMaxID) {
+            businessMaxID = temp;
             return true;
+        }
         return  false;
     }
 

@@ -34,10 +34,9 @@ public class AsyncTaskUpdate extends AsyncTask<Context, Void, Cursor> {
                 // The Cursor is now set to the right position
                 ContentValues map = new ContentValues();
                 DatabaseUtils.cursorRowToContentValues(cursor,map);
-
                 db_manager.addBusiness(map);
-
             }
+            db_manager.NotifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
         }

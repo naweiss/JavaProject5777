@@ -13,7 +13,7 @@ public class UpdateService extends Service {
     @Override
     public void onCreate() {
         Log.i(TAG, "Service onCreate");
-        //isRunning = true;
+        isRunning = true;
     }
 
     @Override
@@ -29,9 +29,9 @@ public class UpdateService extends Service {
                 //Your logic that service will perform will be placed here
                 //In this example we are just looping and waits for 1000 milliseconds in each loop.
                 try {
-                    //while (isRunning) {
-                    while(true){
-                        Thread.sleep(5000);//Check every 5 seconds
+                    while (isRunning) {
+                    //while(true){
+                        Thread.sleep(1000);//Check every 5 seconds
                         if(manager.areNewActivities()) {
                             Intent intent = new Intent(Contract.BROADCAST_URI);
                             intent.putExtra("type","activities");
@@ -65,8 +65,7 @@ public class UpdateService extends Service {
     @Override
     public void onDestroy() {
 
-        //isRunning = false;
-
+        isRunning = false;
         Log.i(TAG, "Service onDestroy");
     }
 }

@@ -1,6 +1,7 @@
 package com.example.jeremie.javaproject5777;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -62,8 +63,6 @@ public class Business_details extends AppCompatActivity {
         ImageView pict = (ImageView)findViewById(R.id.backgroundImageView);
         Bitmap bit = getIntent().getParcelableExtra("Image");
         pict.setImageBitmap(bit);
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

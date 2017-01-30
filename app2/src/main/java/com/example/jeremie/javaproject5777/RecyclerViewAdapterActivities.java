@@ -23,8 +23,10 @@ import android.widget.TextView;
 import android.support.v4.util.Pair;
 
 import com.example.jeremie.javaproject5777.entities.Activitie;
+import com.example.jeremie.javaproject5777.entities.Business;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.jeremie.javaproject5777.R.id.backgroundImageView;
@@ -35,9 +37,16 @@ import static com.example.jeremie.javaproject5777.R.id.imageView;
  * Package: com.example.nadav.testproject
  */
 
-public class RecyclerViewAdapterActivities extends RecyclerView.Adapter<RecyclerViewAdapterActivities.ViewHolder>  {
+public class RecyclerViewAdapterActivities extends UpdateableRecyclerViewAdapter<RecyclerViewAdapterActivities.ViewHolder>  {
     private List<Activitie> mDataset;
     private Context context;
+
+    @Override
+    public void Update(ListDB_manager manager) {
+        List<Activitie> lst = manager.getAllActivity();
+        mDataset.clear();
+        mDataset.addAll(lst);
+    }
 
 
     // Provide a reference to the views for each data item

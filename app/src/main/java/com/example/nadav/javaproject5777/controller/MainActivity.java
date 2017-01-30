@@ -1,6 +1,7 @@
 package com.example.nadav.javaproject5777.controller;
 
 import android.app.Dialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText phoneNumberEditText;
     private EditText emailEditText;
     private EditText linkEditText;
+    private AlertDialog dialog;
     String name, street , city, zipCode, country ,phone ,email ,link;
 
     @Override
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         Intent intent = new Intent(MainActivity.this, UpdateService.class);
+        stopService(intent);
         startService(intent);
 
         addActy = (Button)findViewById(R.id.AddActivity_button);
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
              Button add = (Button) viewBusiness.findViewById(R.id.button_addBusiness);
              addBusinessDialog.setView(viewBusiness);
-             final AlertDialog dialog = addBusinessDialog.create();
+             dialog = addBusinessDialog.create();
              dialog.show();
              add.setOnClickListener(new View.OnClickListener() {
                  @Override
@@ -117,7 +120,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                          Toast.makeText(MainActivity.this, "The sign up failed", Toast.LENGTH_SHORT).show();
                      else {
                          addBusiness();
-                         dialog.dismiss();
                      }
                  }
              });
@@ -166,17 +168,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception ex){}
 
         final ContentValues contentValues = Converter.businessToContentValues(business);
-        new AsyncTask<Void,Void,Void>()
+        new AsyncTask<Void,Void,Boolean>()
         {
             @Override
-            protected Void doInBackground(Void... params) {
-                getContentResolver().insert(uri,contentValues);
+            protected Boolean doInBackground(Void... params) {
+                Uri ans = getContentResolver().insert(uri,contentValues);
+                long id = ContentUris.parseId(ans);
                 //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
                 //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
-                return null;
+                return (id != -1);
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                if(aBoolean) {
+                    Toast.makeText(getBaseContext(), "new business added", Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }
+                else
+                    Toast.makeText(getBaseContext(), "failed", Toast.LENGTH_LONG).show();
             }
         }.execute();
-        Toast.makeText(this,"new business added",Toast.LENGTH_LONG).show();
         //Intent mainScreen = new Intent(AddBusiness.this,MainActivity.class);
         //startActivity(mainScreen);
     }

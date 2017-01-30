@@ -15,7 +15,23 @@ import java.util.List;
 
 public class ListDB_manager {
 
+    public interface NotifyDataSetChangedListener {
+        public void onDataSetChanged();
+    }
+
+    private NotifyDataSetChangedListener update = null;
+
+    public void setDataSetChangedListener(NotifyDataSetChangedListener listener) {
+        this.update = listener;
+    }
+
+    public void NotifyDataSetChanged(){
+        if(update != null)
+            update.onDataSetChanged();
+    }
+
     private static ListDB_manager manager = null;
+
     public static ListDB_manager newInstance() {
         if(manager == null)
             manager = new ListDB_manager();
@@ -26,6 +42,7 @@ public class ListDB_manager {
 
     private List<Activitie> activities = new ArrayList<Activitie>();
     private List<Business> businesses = new ArrayList<Business>();
+
 
     public void clearActivities(){
         activities.clear();

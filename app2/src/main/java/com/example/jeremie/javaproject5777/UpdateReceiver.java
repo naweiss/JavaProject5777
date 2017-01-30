@@ -18,7 +18,7 @@ public class UpdateReceiver extends BroadcastReceiver {
         if (intent.getAction().matches("com.example.nadav.javaproject5777.update")) {
             String intentData = intent.getStringExtra("type");
             if(intentData.equals("businesses")) {
-                Toast.makeText(context, "UPDATE", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "businesses update", Toast.LENGTH_LONG).show();
                 try {
                     new AsyncTaskUpdate().execute(context).get();
                 } catch (InterruptedException e) {
@@ -28,7 +28,7 @@ public class UpdateReceiver extends BroadcastReceiver {
                 }
             }
             else if(intentData.equals("activities")) {
-                Toast.makeText(context, "UPDATE", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "activities update", Toast.LENGTH_LONG).show();
                 try {
                     new AsyncTaskUpdateActivities().execute(context).get();
                 } catch (InterruptedException e) {

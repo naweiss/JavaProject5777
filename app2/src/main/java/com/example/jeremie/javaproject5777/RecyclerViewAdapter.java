@@ -5,14 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,25 +14,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.support.v4.util.Pair;
 
 import com.example.jeremie.javaproject5777.entities.Business;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static com.example.jeremie.javaproject5777.R.id.backgroundImageView;
-import static com.example.jeremie.javaproject5777.R.id.imageView;
 
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
  */
-
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>  {
+public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerViewAdapter.ViewHolder> {
     private List<Business> mDataset;
     private Context context;
 
+    @Override
+    public void Update(ListDB_manager manager) {
+        mDataset.clear();
+        mDataset.addAll(manager.getAllBusinesses());
+    }
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -66,9 +60,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Provide a suitable constructor (depends on the kind of dataset)
     public RecyclerViewAdapter(List<Business>myDataset, Context context) {
         mDataset = myDataset;
-
         this.context = context;
     }
+
 
     // Create new views (invoked by the layout manager)
     @Override

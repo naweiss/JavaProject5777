@@ -1,6 +1,7 @@
 package com.example.nadav.javaproject5777.controller;
 
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 
@@ -107,19 +108,28 @@ public class AddBusiness extends AppCompatActivity implements View.OnClickListen
         }catch (Exception ex){}
 
         final ContentValues contentValues = Converter.businessToContentValues(business);
-        new AsyncTask<Void,Void,Void>()
+        new AsyncTask<Void,Void,Boolean>()
         {
             @Override
-            protected Void doInBackground(Void... params) {
-                getContentResolver().insert(uri,contentValues);
+            protected Boolean doInBackground(Void... params) {
+                Uri ans = getContentResolver().insert(uri,contentValues);
+                long id = ContentUris.parseId(ans);
                 //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
                 //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
-                return null;
+                return (id != -1);
+            }
+
+            @Override
+            protected void onPostExecute(Boolean aBoolean) {
+                if(aBoolean) {
+                    Toast.makeText(getBaseContext(), "new business added", Toast.LENGTH_LONG).show();
+                    Intent mainScreen = new Intent(AddBusiness.this, MainActivity.class);
+                    startActivity(mainScreen);
+                }
+                else
+                    Toast.makeText(getBaseContext(), "failed", Toast.LENGTH_LONG).show();
             }
         }.execute();
-         Toast.makeText(this,"new business added",Toast.LENGTH_LONG).show();
-         Intent mainScreen = new Intent(AddBusiness.this,MainActivity.class);
-         startActivity(mainScreen);
     }
 
     private boolean isValid() {

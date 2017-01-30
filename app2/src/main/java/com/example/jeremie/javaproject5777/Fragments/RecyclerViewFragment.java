@@ -15,6 +15,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.MenuPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.example.jeremie.javaproject5777.Converter;
 import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.MenuActivity;
 import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
+import com.example.jeremie.javaproject5777.UpdateableRecyclerViewAdapter;
 import com.example.jeremie.javaproject5777.entities.Address;
 import com.example.jeremie.javaproject5777.entities.Business;
 import com.example.jeremie.javaproject5777.R;
@@ -47,7 +49,7 @@ import java.util.List;
 public class RecyclerViewFragment extends Fragment  {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private UpdateableRecyclerViewAdapter mAdapter;
     private ListDB_manager db_manager = ListDB_manager.newInstance();
 
     public static RecyclerViewFragment newInstance(int type) {
@@ -83,11 +85,20 @@ public class RecyclerViewFragment extends Fragment  {
 
             //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
             if(index == 0){
-                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapter(db_manager.getAllBusinesses(), getActivity().getBaseContext()));}
+                mAdapter = new RecyclerViewAdapter(db_manager.getAllBusinesses(), getActivity().getBaseContext());}
             else if(index==1){
-                mAdapter = new RecyclerViewMaterialAdapter(new RecyclerViewAdapterActivities(db_manager.getAllActivity(), getActivity().getBaseContext()));
+                mAdapter = new RecyclerViewAdapterActivities(db_manager.getAllActivity(), getActivity().getBaseContext());
             }
-            mRecyclerView.setAdapter(mAdapter);
+            db_manager.setDataSetChangedListener(new ListDB_manager.NotifyDataSetChangedListener() {
+                @Override
+                public void onDataSetChanged() {
+                    mAdapter.Update(db_manager);
+                    mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(mAdapter));
+                    mAdapter.notifyDataSetChanged();
+                }
+            });
+            //mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(mAdapter));
+            mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(mAdapter));
 
             //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
             MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);

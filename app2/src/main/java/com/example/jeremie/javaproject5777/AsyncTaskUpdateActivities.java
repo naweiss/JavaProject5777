@@ -28,16 +28,15 @@ protected Cursor doInBackground(Context... contexts) {
 protected void onPostExecute(Cursor cursor) {
         super.onPostExecute(cursor);
         try {
-        int i = 0;
-        db_manager.clearActivities();
-        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-        // The Cursor is now set to the right position
-        ContentValues map = new ContentValues();
-        DatabaseUtils.cursorRowToContentValues(cursor,map);
-
-        db_manager.addActivity(map);
-
-        }
+                int i = 0;
+                db_manager.clearActivities();
+                for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                        // The Cursor is now set to the right position
+                        ContentValues map = new ContentValues();
+                        DatabaseUtils.cursorRowToContentValues(cursor, map);
+                        db_manager.addActivity(map);
+                }
+                db_manager.NotifyDataSetChanged();
         } catch (Exception e) {
         e.printStackTrace();
         }
