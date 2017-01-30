@@ -25,9 +25,9 @@ public class MySQL_DBmanager implements DB_manager {
     private final String UserName="naweiss";
     private final String WEB_URL = "http://"+UserName+".vlab.jct.ac.il/travel/";
 
-    private boolean usersFlag = false;
-    private boolean businessFlag = false;
-    private boolean activityFlag = false;
+    private int usersMaxID = -1;
+    private int businessMaxID = -1;
+    private int activityMaxID = -1;
 
     public void printLog(String message)
     {
@@ -37,13 +37,40 @@ public class MySQL_DBmanager implements DB_manager {
     {
         Log.d(this.getClass().getName(),"Exception-->\n"+message);
     }
+
+    private int getActivityMaxID() {
+        try {
+            String str = PHPtools.GET(WEB_URL + "/getActivityMaxID.php");
+            JSONArray array = new JSONObject(str).getJSONArray("MaxID");
+            if(array.length() != 1)
+                return -1;
+            JSONObject jsonObject = array.getJSONObject(0);
+            return jsonObject.getInt(Contract.Activitie.ACTIVITIE_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    private int getBusinessMaxID() {
+        try {
+            String str = PHPtools.GET(WEB_URL + "/getBusinessMaxID.php");
+            JSONArray array = new JSONObject(str).getJSONArray("MaxID");
+            if(array.length() != 1)
+                return -1;
+            JSONObject jsonObject = array.getJSONObject(0);
+            return jsonObject.getInt(Contract.Business.BUSINESS_ID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
     @Override
     public int addUser(ContentValues values) {
         try {
             String result = PHPtools.POST(WEB_URL + "addUser.php", values);
             int id = Integer.parseInt(result);
-            if (id > 0)
-                usersFlag=true;
             printLog("addUser:\n" + result);
             return id;
         } catch (IOException e) {
@@ -57,8 +84,6 @@ public class MySQL_DBmanager implements DB_manager {
         try {
             String result = PHPtools.POST(WEB_URL + "/addActivity.php", values);
             int id = Integer.parseInt(result);
-            if (id > 0)
-                activityFlag=true;
             printLog("addActivity:\n" + result);
             return id;
         } catch (IOException e) {
@@ -73,8 +98,6 @@ public class MySQL_DBmanager implements DB_manager {
         try {
             String result = PHPtools.POST(WEB_URL + "addBusiness.php", values);
             int id = Integer.parseInt(result);
-            if (id > 0)
-                businessFlag=true;
             printLog("addBusiness:\n" + result);
             return id;
         } catch (IOException e) {
@@ -85,32 +108,19 @@ public class MySQL_DBmanager implements DB_manager {
 
     @Override
     public Boolean areNewActivities() {
-        if(activityFlag) {
-            activityFlag = false;
+        int temp = getActivityMaxID();
+        if(temp != -1 && temp > activityMaxID)
             return true;
-        }
-        else
-            return  false;
+        return  false;
+
     }
 
     @Override
     public Boolean areNewBusinesses() {
-        if(businessFlag) {
-            businessFlag = false;
+        int temp =  getBusinessMaxID();
+        if(temp != -1 && temp > businessMaxID)
             return true;
-        }
-        else
-            return  false;
-    }
-
-    @Override
-    public Boolean areNewUsers() {
-        if(usersFlag) {
-            usersFlag = false;
-            return true;
-        }
-        else
-            return  false;
+        return  false;
     }
 
     @Override

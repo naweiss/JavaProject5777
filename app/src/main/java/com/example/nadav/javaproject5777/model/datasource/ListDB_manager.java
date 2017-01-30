@@ -82,16 +82,6 @@ public class ListDB_manager implements DB_manager{
     }
 
     @Override
-    public Boolean areNewUsers() {
-        if(new_user) {
-            new_user = false;
-            return true;
-        }
-        else
-            return  false;
-    }
-
-    @Override
     public Boolean isUserExist(String name,String password) {
         try {
             for(User user: users)
