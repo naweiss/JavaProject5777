@@ -23,6 +23,8 @@
         <item>Vacation package</item>
         <item>Entertainment</item>
         <item>Cruise</item>
+        <item>Ski</item>
+        <item>Tourist</item>
     </string-array>
     <string name="activity_price">Price</string>
     <string name="activity_businessId">Business id</string>

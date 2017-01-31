@@ -24,6 +24,10 @@ import com.example.nadav.javaproject5777.model.entities.User;
 
 public class AddUser extends AppCompatActivity implements View.OnClickListener{
 
+    /**
+     * Call the function to initialize the views and connect the layout to the activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +36,6 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
-            onBackPressed();
-        return super.onOptionsItemSelected(item);
-    }
     private String username;
     private String checkPass;
     private String confirmPass;
@@ -47,25 +45,19 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
     private Button buttonAddUser;
 
     /**
-     * Find the Views in the layout<br />
-     * <br />
-     * Auto-created on 2016-12-15 12:51:45 by Android Layout Finder
-     * (http://www.buzzingandroid.com/tools/android-layout-finder)
+     * Find the Views in the layout
      */
     private void findViews() {
         editTextAddUser = (EditText)findViewById( R.id.editText_addUser );
         editTextAddPassword = (EditText)findViewById( R.id.editText_addPassword );
         editTextConfirmPassword = (EditText)findViewById( R.id.editText_confirmPassword );
         buttonAddUser = (Button)findViewById( R.id.button_addUser );
-
         buttonAddUser.setOnClickListener( this );
     }
 
     /**
-     * Handle button click events<br />
-     * <br />
-     * Auto-created on 2016-12-15 12:51:45 by Android Layout Finder
-     * (http://www.buzzingandroid.com/tools/android-layout-finder)
+     * Handle button click for buttonAddUser
+     * @param v
      */
     @Override
     public void onClick(View v) {
@@ -73,17 +65,19 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
             username = editTextAddUser.getText().toString();
             checkPass = editTextAddPassword.getText().toString();
             confirmPass =editTextConfirmPassword.getText().toString();
-
+            //before call the function adduser check the fields by calling isValid
             if(!isValid())
                 Toast.makeText(this,"The sign up failed",Toast.LENGTH_SHORT).show();
 
             else {
                 addUser();
-                // Handle clicks for buttonAddUser
             }
-
         }
     }
+
+    /**
+     *We register the new user in the database
+     */
     public void addUser(){
 
         final Uri uri=Contract.User.USER_URI;
@@ -98,8 +92,6 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
             @Override
             protected Void doInBackground(Void... params) {
                 getContentResolver().insert(uri,contentValues);
-                //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
-                //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
                 return null;
             }
         }.execute();
@@ -107,7 +99,11 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
         Intent mainScreen = new Intent(AddUser.this,MainActivity.class);
         startActivity(mainScreen);
     }
-    // validating password with retype password
+
+    /**
+     * This function verifies that all fields have been filled and are valid
+     * @return boolen value
+     */
     private boolean isValid() {
          Boolean valid = true;
         if (username.isEmpty()) {

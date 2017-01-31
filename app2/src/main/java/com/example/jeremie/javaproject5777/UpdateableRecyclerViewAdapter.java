@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.jeremie.javaproject5777.entities.Business;
 
+
 import java.util.List;
 
 /**
@@ -15,5 +16,6 @@ interface Updatable{
     public void Update(ListDB_manager manager);
 }
 public abstract class UpdateableRecyclerViewAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> implements Updatable{
-
 }
+
+

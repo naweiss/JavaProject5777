@@ -59,7 +59,7 @@ public class RecyclerViewFragment extends Fragment  {
         args.putInt("index", type);
         f.setArguments(args);
         return f;
-        //return new RecyclerViewFragment();
+
     }
 
     @Override

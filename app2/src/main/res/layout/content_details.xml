@@ -120,6 +120,17 @@
             android:clickable="true"
             android:padding="@dimen/activity_horizontal_margin">
 
+
+
+            <ImageView
+                android:id="@+id/ivContactItem3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_email_black"
+                android:tint="@color/colorAccent"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,16 +145,6 @@
                 android:layout_toRightOf="@id/ivContactItem3"
                 android:id="@+id/textView2" />
 
-            <ImageView
-                android:id="@id/ivContactItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_email_black"
-                android:tint="@color/colorAccent"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin" />
-
             <TextView
                 android:id="@id/tvEmail"
                 android:layout_width="wrap_content"
@@ -156,7 +157,9 @@
                 android:textColorLink="#212121"
                 android:autoLink="email"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignLeft="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                />
 
         </RelativeLayout>
 
@@ -179,27 +182,9 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
             <TextView
-                android:id="@+id/tvLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_toEndOf="@id/ivContactItem6"
-                android:layout_toStartOf="@+id/chkState6"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="221B Baker Street, England"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#212121"
-                android:textColorLink="#212121"
-                android:autoLink="web"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_toRightOf="@id/ivContactItem6"
-                android:layout_toLeftOf="@+id/chkState6" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvLink"
+                android:layout_below="@+id/tvLink"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="8dp"
                 android:layout_toEndOf="@id/ivContactItem6"
@@ -207,7 +192,23 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="#727272"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_toRightOf="@id/ivContactItem6" />
+                android:layout_toRightOf="@id/ivContactItem6"
+                android:id="@+id/textView4" />
+
+            <TextView
+                android:id="@id/tvLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="221B Baker Street, England"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#212121"
+                android:textColorLink="#212121"
+                android:autoLink="web"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/textView4"
+                android:layout_alignStart="@+id/textView4" />
 
 
         </RelativeLayout>

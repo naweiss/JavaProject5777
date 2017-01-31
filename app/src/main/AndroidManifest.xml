@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".controller.MainActivity" />
         <activity android:name=".controller.AddUser"/>
-        <activity android:name=".controller.ListActivities" />
 
         <provider
             android:name=".model.backend.ActivityContentProvider"
