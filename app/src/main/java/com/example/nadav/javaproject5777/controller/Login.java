@@ -36,10 +36,6 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         findView();
 
-        final String user = userName.getText().toString();
-        final String pass = password.getText().toString();
-        final boolean isChecked = checkBox.isChecked();
-
         preferences = getSharedPreferences(pref,MODE_PRIVATE);
         if(preferences.contains("REMEMBER_ME")){
             Intent registerScreen = new Intent(Login.this, MainActivity.class);
@@ -61,6 +57,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+                    final String user = userName.getText().toString();
+                    final String pass = password.getText().toString();
                     boolean existUser = false;
                     AsyncTask task=new isUserExist().execute(user, pass);
                     existUser = (Boolean)task.get();
@@ -68,6 +66,7 @@ public class Login extends AppCompatActivity {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("NAME", user);
                         editor.putString("PASSWORD", pass);
+                        final boolean isChecked = checkBox.isChecked();
                         if(isChecked)
                             editor.putString("REMEMBER_ME", "True");
                         editor.commit();
@@ -120,8 +119,7 @@ public class Login extends AppCompatActivity {
     {
         @Override
         protected Boolean doInBackground(String... params) {
-            String user = params[0];
-            String pass = params[1];
+
             Cursor users = getContentResolver().query(Contract.User.USER_URI, null, null, params, null);
             users.moveToNext();
             boolean flag = "true".equals(users.getString(users.getColumnIndex("exist")));

@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private final String pref = "MYPREF";
     //ressources for
+    private TextView welcome;
     private Button addActy;
     private Button addBusiness;
     private Button go;
@@ -93,7 +94,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Cursor bussineses = null;
     private Toolbar toolbar;
-
+    /**
+     * Call the function to initialize the views and connect the layout to the activity
+     * use the shared preference to display the name user
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,19 +110,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar =(Toolbar)findViewById(R.id.logout1);
         setSupportActionBar(toolbar);
+        findview();
 
+        Typeface myTypeface = Typeface.createFromAsset(getAssets(),"segoe_print.ttf");
+        SharedPreferences preferences = getSharedPreferences(pref,MODE_PRIVATE);
+        welcome.setText("Welcome "+ preferences.getString("NAME",null));
+        welcome.setTypeface(myTypeface);
+
+    }
+
+    /**
+     * Find the Views in the layout
+     */
+    public void findview(){
         addActy = (Button)findViewById(R.id.AddActivity_button);
         addBusiness = (Button)findViewById(R.id.AddBusiness_button);
         addActy.setOnClickListener(this);
         addBusiness.setOnClickListener(this);
         logout = (Button)findViewById(R.id.logout);
         logout.setOnClickListener(this);
-        Typeface myTypeface = Typeface.createFromAsset(getAssets(),"segoe_print.ttf");
-        TextView welcome = (TextView) findViewById(R.id.textViewWelcome);
-        SharedPreferences preferences = getSharedPreferences(pref,MODE_PRIVATE);
-        welcome.setText("Welcome "+ preferences.getString("NAME",null));
-        welcome.setTypeface(myTypeface);
-
+        welcome = (TextView) findViewById(R.id.textViewWelcome);
     }
 
     @Override
@@ -389,6 +401,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return names;
         }
     }
+
     private  boolean isValidActivity(){
         Boolean valid = true;
         if(priceAct.isEmpty()) {
