@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.jeremie.javaproject5777.entities.Business;
 
+
 import java.util.List;
 
 
@@ -59,6 +60,7 @@ public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerV
 
     // Provide a suitable constructor (depends on the kind of dataset)
     public RecyclerViewAdapter(List<Business>myDataset, Context context) {
+        super();
         mDataset = myDataset;
         this.context = context;
     }
@@ -142,5 +144,7 @@ public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerV
     public int getItemCount() {
         return mDataset.size();
     }
+
+
 
 }

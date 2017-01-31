@@ -11,6 +11,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.Preference;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,21 +48,21 @@ import java.util.regex.Pattern;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    //regex for check validity off inout
+    //regex for check validity off input
     private static final Pattern validPhone = Pattern.compile("^0[0-9]{8}$");
     private static final Pattern validMobile = Pattern.compile("^05[0-9]{8}$");
     private static final Pattern validEmail = Pattern.compile("^\\s*[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\\.[a-zA-Z]{2,4}\\s*$");
     private static final Pattern validUrl = Pattern.compile("^(www\\.)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$");
 
     private final String pref = "MYPREF";
+    //ressources for
     private Button addActy;
     private Button addBusiness;
-
     private Button go;
     private Button logout;
     private EditText editTextId;
 
-    //editText for new business
+    //ressources for new business dialog
     private EditText nameEditText;
     private EditText streetEditText;
     private EditText cityEdiText;
@@ -73,23 +74,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AlertDialog dialog;
     String name, street , city, zipCode, country ,phone ,email ,link;
 
-    //ressources for new activities
+    //ressources for new activities dialog
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Calendar date = Calendar.getInstance();
     private TextView start;
     private TextView finish;
+    private EditText price;
+    private EditText description;
+    private EditText countryActivity;
     private TextView insertStartDate;
     private TextView insertFinishDate;
     private ImageButton startDate;
     private ImageButton finishDate;
     private Button addActivity;
-    private EditText price;
-    private EditText countryActivity;
-    private EditText description;
     private Spinner typeOfactivities;
     private Spinner businessName;
-    private Cursor bussineses = null;
+    private String priceAct, countryAct, descripAct ,dateStartAct, dateEndAct;
 
+    private Cursor bussineses = null;
     private Toolbar toolbar;
 
     @Override
@@ -106,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         addActy = (Button)findViewById(R.id.AddActivity_button);
         addBusiness = (Button)findViewById(R.id.AddBusiness_button);
-
         addActy.setOnClickListener(this);
         addBusiness.setOnClickListener(this);
         logout = (Button)findViewById(R.id.logout);
@@ -160,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      phone = phoneNumberEditText.getText().toString();
                      email = emailEditText.getText().toString();
                      link = linkEditText.getText().toString();
-                     if (!isValid())
+                     if (!isValidBusiness())
                          Toast.makeText(MainActivity.this, "The sign up failed", Toast.LENGTH_SHORT).show();
                      else {
                          addBusiness();
@@ -172,8 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
          }
         if(view == addActy){
-            //Intent activityScreen = new Intent(MainActivity.this,AddActivity.class);
-            //startActivity(activityScreen);
+
             AlertDialog.Builder addActivityDialog= new AlertDialog.Builder(MainActivity.this);
             View viewActivity = getLayoutInflater().inflate(R.layout.activity_activities,null);
             startDate = (ImageButton) viewActivity.findViewById(R.id.imageButton_start);
@@ -225,8 +225,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             addActivity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addActivity();
-                    dialog1.dismiss();
+                    priceAct = price.getText().toString();
+                    descripAct = description.getText().toString();
+                    dateStartAct = insertStartDate.getText().toString();
+                    dateEndAct = insertFinishDate.getText().toString();
+                    countryAct = countryActivity.getText().toString();
+                    if(! isValidActivity())
+                        Toast.makeText(MainActivity.this, "The sign up failed", Toast.LENGTH_SHORT).show();
+                    else {
+                        addActivity();
+                        dialog1.dismiss();
+                    }
                 }
             });
 
@@ -380,7 +389,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return names;
         }
     }
-    private boolean isValid() {
+    private  boolean isValidActivity(){
+        Boolean valid = true;
+        if(priceAct.isEmpty()) {
+            price.setError("Please enter a price.");
+            valid = false;
+        }
+        if(descripAct.isEmpty()) {
+
+            description.setError("Please enter a description.");
+            valid = false;
+        }
+        if(countryAct.isEmpty()) {
+            countryActivity.setError("Please enter a country.");
+            valid = false;
+        }
+        if(dateStartAct.isEmpty()) {
+            startDate.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+            valid = false;
+        }
+        if(dateEndAct.isEmpty()) {
+            insertFinishDate.setError("Please enter a date.");
+            valid = false;
+        }
+
+        return valid;
+
+    }
+    private boolean isValidBusiness() {
         Boolean valid = true;
         if(name.isEmpty()) {
             nameEditText.setError("Please enter a username.");

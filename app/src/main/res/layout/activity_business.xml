@@ -17,11 +17,8 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"><!--android:background="#30bebebe"-->
+    android:layout_height="match_parent">
 
-
-
-    <!--android:alpha="0.4"-->
 
         <LinearLayout
         android:layout_width="match_parent"
@@ -52,6 +49,7 @@
             android:hint="@string/business_name"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:backgroundTint="@color/common_action_bar_splitter"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="textCapSentences"
@@ -69,6 +67,7 @@
                 android:id="@+id/address_business"
                 android:hint="@string/business_address"
                 android:layout_weight="1"
+                android:backgroundTint="@color/common_action_bar_splitter"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,6 +80,7 @@
                 android:layout_weight="1"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/common_action_bar_splitter"
                 android:layout_height="wrap_content"
                 android:inputType="textCapSentences"
                 android:nextFocusDown="@+id/zipCode_business"
@@ -99,6 +99,7 @@
                 android:inputType="numberDecimal|numberSigned"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/common_action_bar_splitter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nextFocusDown="@+id/business_country"/>
@@ -107,6 +108,7 @@
                 android:hint="@string/business_country"
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
+                android:backgroundTint="@color/common_action_bar_splitter"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="textCapSentences"
@@ -130,18 +132,20 @@
             android:hint="@string/email_business"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:backgroundTint="@color/common_action_bar_splitter"
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
 
             android:inputType="textEmailAddress"
-            /> <!--style="@style/MyEditTextStyle"-->
+            />
 
         <EditText
             android:hint="@string/business_link"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:backgroundTint="@color/common_action_bar_splitter"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="textUri"

@@ -22,6 +22,8 @@
         <item>Package vacancy</item>
         <item>Entertainment</item>
         <item>Cruise</item>
+        <item>Ski</item>
+        <item>Tourist</item>
     </string-array>
     <string name="activity_price">מחיר</string>
     <string name="activity_businessId">מזהה עסק</string>

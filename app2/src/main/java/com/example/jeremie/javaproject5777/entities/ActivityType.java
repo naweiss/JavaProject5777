@@ -6,19 +6,9 @@ package com.example.jeremie.javaproject5777.entities;
 public enum ActivityType {
     VACATION_PACKAGE,
     ENTERTAINMENT,
-    CRUISE;
-//    VACATION_PACKAGE("Package vacancy"),
-//    ENTERTAINMENT("Entertainment"),
-//    CRUISE ("Cruise");
-//
-//    private String friendlyName;
-//
-//    private ActivityType(String friendlyName){
-//        this.friendlyName = friendlyName;
-//    }
-//
-//    @Override public String toString(){
-//        return friendlyName;
-//    }
+    SKI,
+    TOURIST,
+    CRUISE
+
 }
 
