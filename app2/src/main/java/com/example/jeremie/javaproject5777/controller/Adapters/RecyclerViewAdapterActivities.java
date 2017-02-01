@@ -1,43 +1,19 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller.Adapters;
 
-import android.app.Activity;
-import android.app.ExpandableListActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.support.v4.util.Pair;
 
-import com.example.jeremie.javaproject5777.entities.Activitie;
-import com.example.jeremie.javaproject5777.entities.ActivityType;
-import com.example.jeremie.javaproject5777.entities.Business;
-import com.squareup.picasso.Picasso;
+import com.example.jeremie.javaproject5777.R;
+import com.example.jeremie.javaproject5777.model.entities.Activitie;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.jeremie.javaproject5777.R.id.backgroundImageView;
-import static com.example.jeremie.javaproject5777.R.id.imageView;
 
 /**
  * Created by nadav on 12/25/2016.
@@ -46,13 +22,54 @@ import static com.example.jeremie.javaproject5777.R.id.imageView;
 
 public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
 
+    //the constants value of the header view
+    private static final int TYPE_PLACEHOLDER = Integer.MIN_VALUE;
+    //the size taken by the header
+    private int mPlaceholderSize = 1;
+
     public RecyclerViewAdapterActivities(int resource, List<Activitie> objects) {
         super(resource, objects);
     }
-    
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position < mPlaceholderSize)
+            return TYPE_PLACEHOLDER;
+        else
+            return super.getItemViewType(position - mPlaceholderSize); //call getItemViewType on the adapter, less mPlaceholderSize
+    }
+
+    @Override
+    public int getItemCount() {
+        return super.getItemCount() + mPlaceholderSize;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case TYPE_PLACEHOLDER: {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(com.github.florent37.materialviewpager.R.layout.material_view_pager_placeholder, parent, false);
+                return new ViewHolder(view);
+            }
+            default:
+                return super.onCreateViewHolder(parent, viewType);
+        }
+    }
+
+    @Override
+    public Activitie get(int position) {
+        if (position < mPlaceholderSize)
+            return new Activitie();
+        else
+            return super.get(position- mPlaceholderSize);
+    }
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        if(getItemViewType(position) == TYPE_PLACEHOLDER)
+            return;
         View v = holder.itemView;
         final TextView title = (TextView)v.findViewById(R.id.descriptionActivity);
         final ImageView imageView = (ImageView) v.findViewById(R.id.imageActivity);
@@ -70,13 +87,13 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
         country.setText(get(position).getCountryName());
         date.setText(df.format(get(position).getStartDate())+" - "+df.format(get(position).getEndDate()));
 
-        if(activityType == "CRUISE")
+        if(activityType.equals("CRUISE"))
            imageView.setImageResource(R.drawable.cruise);
-        else if(activityType == "ENTERTAINMENT")
+        else if(activityType.equals("ENTERTAINMENT"))
             imageView.setImageResource(R.drawable.entertainment);
-        else if(activityType == "SKI")
+        else if(activityType.equals("SKI"))
             imageView.setImageResource(R.drawable.ski);
-        else if(activityType == "TOURIST")
+        else if(activityType.equals("TOURIST"))
             imageView.setImageResource(R.drawable.tourist);
         else
             imageView.setImageResource(R.drawable.hotel);

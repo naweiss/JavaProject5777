@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.Fragments;
+package com.example.jeremie.javaproject5777.controller.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jeremie.javaproject5777.ListDB_manager;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
+import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapterActivities;
 
 /**
  * Created by jerem on 28.01.17.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class FragmentBusinessActivities extends Fragment {
@@ -53,7 +54,7 @@ public class FragmentBusinessActivities extends Fragment {
         try {
             mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getAllActivity());
             mRecyclerView.setAdapter(mAdapter);
-        }catch (Exception e){}
+        }catch (Exception ignored){}
     }
 
 }

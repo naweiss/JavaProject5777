@@ -1,4 +1,6 @@
-package com.example.jeremie.javaproject5777.entities;
+package com.example.jeremie.javaproject5777.model.entities;
+
+import com.example.jeremie.javaproject5777.model.entities.Address;
 
 import java.net.URL;
 

@@ -1,14 +1,11 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller.Adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-
-import com.example.jeremie.javaproject5777.entities.Business;
 
 
 import java.util.ArrayList;
@@ -20,8 +17,8 @@ import java.util.List;
  */
 
 public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapter.ViewHolder> implements Filterable {
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View v) {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        ViewHolder(View v) {
             super(v);
         }
     }
@@ -31,8 +28,8 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
     private List<T> mOriginalValues;
     private final int mResource;
 
-    public FilterAdapter(int resource,List<T> objects) {
-        this.mObjects = new ArrayList<T>(objects);
+    FilterAdapter(int resource, List<T> objects) {
+        this.mObjects = new ArrayList<>(objects);
         this.mResource = resource;
     }
 

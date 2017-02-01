@@ -1,10 +1,13 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.model.backend;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.example.jeremie.javaproject5777.controller.AsyncTaskUpdate;
+import com.example.jeremie.javaproject5777.controller.AsyncTaskUpdateActivities;
 
 import java.util.concurrent.ExecutionException;
 
@@ -26,9 +29,7 @@ public class UpdateReceiver extends BroadcastReceiver {
                     new AsyncTaskUpdate().execute(context).get();
                     Toast.makeText(context, "businesses update", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "businesses update");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
             }
@@ -37,9 +38,7 @@ public class UpdateReceiver extends BroadcastReceiver {
                     new AsyncTaskUpdateActivities().execute(context).get();
                     Toast.makeText(context, "activities update", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "activities update");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
+                } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
             }

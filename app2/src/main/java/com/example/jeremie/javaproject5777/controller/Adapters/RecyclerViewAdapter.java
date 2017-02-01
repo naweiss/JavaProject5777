@@ -1,23 +1,22 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.jeremie.javaproject5777.entities.Business;
 
+import com.example.jeremie.javaproject5777.model.backend.ExtractFavicon;
+import com.example.jeremie.javaproject5777.R;
+import com.example.jeremie.javaproject5777.controller.Business_details;
+import com.example.jeremie.javaproject5777.model.entities.Business;
 
 import java.util.List;
 
@@ -28,6 +27,11 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends FilterAdapter<Business> {
 
+    //the constants value of the header view
+    private static final int TYPE_PLACEHOLDER = Integer.MIN_VALUE;
+    //the size taken by the header
+    private int mPlaceholderSize = 1;
+
     private Context context;
     public RecyclerViewAdapter(int resource,Context context, List<Business> objects) {
         super(resource, objects);
@@ -36,7 +40,43 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
     // Replace the contents of a view (invoked by the layout manager)
 
     @Override
+    public int getItemViewType(int position) {
+        if (position < mPlaceholderSize)
+            return TYPE_PLACEHOLDER;
+        else
+            return super.getItemViewType(position - mPlaceholderSize); //call getItemViewType on the adapter, less mPlaceholderSize
+    }
+
+    @Override
+    public int getItemCount() {
+        return super.getItemCount() + mPlaceholderSize;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case TYPE_PLACEHOLDER: {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(com.github.florent37.materialviewpager.R.layout.material_view_pager_placeholder, parent, false);
+                return new ViewHolder(view);
+            }
+            default:
+                return super.onCreateViewHolder(parent, viewType);
+        }
+    }
+
+    @Override
+    public Business get(int position) {
+        if (position < mPlaceholderSize)
+            return new Business();
+        else
+            return super.get(position- mPlaceholderSize);
+    }
+
+    @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+        if(getItemViewType(position) == TYPE_PLACEHOLDER)
+                return;
         View v = holder.itemView;
         final TextView name = (TextView)v.findViewById(R.id.name);
         final TextView address = (TextView)v.findViewById(R.id.address);
@@ -61,9 +101,8 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
 
                 Intent intent = new Intent(context, Business_details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ImageView img = imageView;
-                img.buildDrawingCache();
-                intent.putExtra("Image", img.getDrawingCache());
+                imageView.buildDrawingCache();
+                intent.putExtra("Image", imageView.getDrawingCache());
                 intent.putExtra("ID", get(position).getId());
                 context.startActivity(intent);
             }

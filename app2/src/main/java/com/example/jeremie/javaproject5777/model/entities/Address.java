@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.entities;
+package com.example.jeremie.javaproject5777.model.entities;
 
 /**
  * Created by nadav on 12/25/2016.
@@ -53,6 +53,6 @@ public class Address {
     //Added
     @Override
     public String toString() {
-        return zipCode+": "+Country+", "+City+", "+Street;
+        return zipCode+": "+Street+", "+City+", "+Country;
     }
 }

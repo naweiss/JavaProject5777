@@ -1,14 +1,15 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.model.datasource;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 
 
-import com.example.jeremie.javaproject5777.entities.Activitie;
-import com.example.jeremie.javaproject5777.entities.ActivityType;
-import com.example.jeremie.javaproject5777.entities.Address;
-import com.example.jeremie.javaproject5777.entities.Business;
+import com.example.jeremie.javaproject5777.model.backend.Contract;
+import com.example.jeremie.javaproject5777.model.entities.Activitie;
+import com.example.jeremie.javaproject5777.model.entities.ActivityType;
+import com.example.jeremie.javaproject5777.model.entities.Address;
+import com.example.jeremie.javaproject5777.model.entities.Business;
 
 import java.net.URL;
 import java.text.DateFormat;
@@ -17,10 +18,11 @@ import java.util.List;
 
 /**
  * Created by nadav on 12/10/2016.
+ * Package: ${PACKAGE_NAME}
  */
 
-public class Converter {
-    public static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+class Converter {
+    private static DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
     public static ContentValues businessToContentValues(Business business) {
         ContentValues contentValues = new ContentValues();
@@ -52,7 +54,7 @@ public class Converter {
         return contentValues;
     }
 
-    public static Activitie ContentValuesToActivitie(ContentValues contentValues) throws Exception {
+    static Activitie ContentValuesToActivitie(ContentValues contentValues) throws Exception {
         Activitie act = new Activitie();
         act.setId(contentValues.getAsInteger(Contract.Activitie.ACTIVITIE_ID));
         act.setActType(ActivityType.valueOf(contentValues.getAsString(Contract.Activitie.ACTIVITIE_ACT_TYPE)));
@@ -68,7 +70,7 @@ public class Converter {
 
 
 
-    public static Business ContentValuesToBusiness(ContentValues contentValues) throws Exception{
+    static Business ContentValuesToBusiness(ContentValues contentValues) throws Exception{
 
         Business bus = new Business();
         bus.setId(contentValues.getAsInteger(Contract.Business.BUSINESS_ID));

@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,12 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.example.jeremie.javaproject5777.Fragments.FragmentBusinessActivities;
-import com.example.jeremie.javaproject5777.entities.Business;
-import com.example.jeremie.javaproject5777.Fragments.details;
+import com.example.jeremie.javaproject5777.controller.Fragments.FragmentBusinessActivities;
+import com.example.jeremie.javaproject5777.controller.Fragments.details;
+import com.example.jeremie.javaproject5777.R;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
+import com.example.jeremie.javaproject5777.model.entities.Business;
 
 /**
  * Created by jerem on 25.01.17.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class Business_details extends AppCompatActivity {
@@ -100,7 +103,7 @@ public class Business_details extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

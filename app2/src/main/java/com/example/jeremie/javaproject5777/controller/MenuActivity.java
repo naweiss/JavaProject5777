@@ -1,25 +1,10 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,11 +12,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.example.jeremie.javaproject5777.Fragments.BlankFragment;
-import com.example.jeremie.javaproject5777.Fragments.TabsFragment;
+import com.example.jeremie.javaproject5777.controller.Fragments.BlankFragment;
+import com.example.jeremie.javaproject5777.controller.Fragments.TabsFragment;
+import com.example.jeremie.javaproject5777.R;
 
 import java.util.concurrent.ExecutionException;
 
@@ -51,9 +35,7 @@ public class MenuActivity extends AppCompatActivity
         try {
             new AsyncTaskUpdate().execute(getBaseContext()).get();
             new AsyncTaskUpdateActivities().execute(getBaseContext()).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         fragment= new TabsFragment();
@@ -81,27 +63,19 @@ public class MenuActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_search) {
             fragment = new TabsFragment();
             manager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_empty) {
             fragment = new BlankFragment();
             manager.beginTransaction().replace(R.id.fragment_container,fragment).commit();
-        } else if (id == R.id.nav_slideshow) {
-            Intent mainScreen = new Intent(MenuActivity.this,Business_details.class);
-            startActivity(mainScreen);
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

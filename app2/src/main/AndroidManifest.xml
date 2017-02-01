@@ -12,9 +12,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Business_details" />
+        <activity android:name=".controller.Business_details" />
         <activity
-            android:name=".MenuActivity"
+            android:name=".controller.MenuActivity"
             android:label="@string/title_activity_menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,11 @@
         </activity>
 
         <receiver
-            android:name=".UpdateReceiver"
+            android:name=".model.backend.UpdateReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.example.nadav.javaproject5777.update"></action>
+                <action android:name="com.example.nadav.javaproject5777.update"/>
                 </intent-filter>
         </receiver>
     </application>

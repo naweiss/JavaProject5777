@@ -1,22 +1,22 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.model.datasource;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 
-import com.example.jeremie.javaproject5777.entities.Activitie;
-import com.example.jeremie.javaproject5777.entities.Business;
+import com.example.jeremie.javaproject5777.model.entities.Activitie;
+import com.example.jeremie.javaproject5777.model.entities.Business;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nadav on 12/1/2016.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class ListDB_manager {
 
     public interface NotifyDataSetChangedListener {
-        public void onDataSetChanged();
+        void onDataSetChanged();
     }
 
     private NotifyDataSetChangedListener update = null;
@@ -40,8 +40,8 @@ public class ListDB_manager {
 
     private ListDB_manager(){}
 
-    private List<Activitie> activities = new ArrayList<Activitie>();
-    private List<Business> businesses = new ArrayList<Business>();
+    private List<Activitie> activities = new ArrayList<>();
+    private List<Business> businesses = new ArrayList<>();
 
 
     public void clearActivities(){
@@ -93,7 +93,7 @@ public class ListDB_manager {
 
 
     public List<Activitie> getBusinessActivity(int bussinessId) {
-        List<Activitie> businessActivity = new ArrayList<Activitie>();
+        List<Activitie> businessActivity = new ArrayList<>();
 
         for (Activitie a : activities) {
             if (a.getBusinessId() == bussinessId) {

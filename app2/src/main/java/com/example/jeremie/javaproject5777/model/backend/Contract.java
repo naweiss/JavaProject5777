@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.model.backend;
 
 import android.net.Uri;
 
@@ -11,11 +11,11 @@ public class Contract {
     /**
      * The authority for the contacts provider
      */
-    public static final String AUTHORITY = "com.example.nadav.javaproject5777";
+    private static final String AUTHORITY = "com.example.nadav.javaproject5777";
     /**
      * A content:// style uri to the authority for the contacts provider
      */
-    public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
+    private static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
     public static final String BROADCAST_URI = AUTHORITY+".update";
 
     public static class User {

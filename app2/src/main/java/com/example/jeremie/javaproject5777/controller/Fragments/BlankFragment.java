@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.Fragments;
+package com.example.jeremie.javaproject5777.controller.Fragments;
 
 
 import android.os.Bundle;

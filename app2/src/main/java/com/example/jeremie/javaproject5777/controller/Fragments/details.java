@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.Fragments;
+package com.example.jeremie.javaproject5777.controller.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.jeremie.javaproject5777.ListDB_manager;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.entities.Business;
+import com.example.jeremie.javaproject5777.model.entities.Business;
 
 /**
  * Created by jerem on 24.01.17.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class details extends Fragment {

@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.model.backend;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,7 +22,7 @@ public class ExtractFavicon{
 
     private static Random rand = new Random();
 
-    public static int randomColor() {
+    private static int randomColor() {
         // generate the random integers for r, g and b value
         int r = rand.nextInt(255);
         int g = rand.nextInt(255);
@@ -32,7 +32,7 @@ public class ExtractFavicon{
 
     private static Bitmap defaultIcon(Character latter, int size) throws IOException {
         String hexColor = String.format("%06X", (0xFFFFFF & randomColor()));
-        URL default_url = new URL("http://icons.better-idea.org/lettericons/" + Character.toUpperCase(latter) + "-"+new Integer(size)+"-" + hexColor + ".png");
+        URL default_url = new URL("http://icons.better-idea.org/lettericons/" + Character.toUpperCase(latter) + "-"+Integer.valueOf(size)+"-" + hexColor + ".png");
         HttpURLConnection connection = (HttpURLConnection) default_url.openConnection();
         connection.setReadTimeout(5000);
         connection.setConnectTimeout(5000);
@@ -59,7 +59,7 @@ public class ExtractFavicon{
 
     private static URL findIcon(JsonReader reader, int size) {
         try {
-            String name = null;
+            String name;
             String url = null;
             int width = 0, height = 0;
             reader.beginObject();
@@ -101,7 +101,7 @@ public class ExtractFavicon{
     public static Bitmap getFavicon(Bitmap defaultIcon,String src, int size) {
         try {
             URL url = new URL("http://icons.better-idea.org/allicons.json?url=" + src);
-            HttpURLConnection connection = null;
+            HttpURLConnection connection;
             connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(5000);
             connection.setConnectTimeout(5000);

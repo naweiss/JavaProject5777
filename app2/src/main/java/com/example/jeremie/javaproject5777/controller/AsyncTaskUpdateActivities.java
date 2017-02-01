@@ -1,5 +1,6 @@
-package com.example.jeremie.javaproject5777;
+package com.example.jeremie.javaproject5777.controller;
 
+import android.accounts.AbstractAccountAuthenticator;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +8,12 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.AsyncTask;
 
+import com.example.jeremie.javaproject5777.model.backend.Contract;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
+
 /**
  * Created by jerem on 26.01.17.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class AsyncTaskUpdateActivities extends AsyncTask<Context, Void, Cursor> {
@@ -20,8 +25,7 @@ public class AsyncTaskUpdateActivities extends AsyncTask<Context, Void, Cursor> 
                 if (contexts.length < 1)
                         return null;
                 ContentResolver resolver = contexts[0].getContentResolver();
-                Cursor mCursor = resolver.query(Contract.Activitie.ACTIVITIE_URI, null, null, null, null);
-                return mCursor;
+                return resolver.query(Contract.Activitie.ACTIVITIE_URI, null, null, null, null);
         }
 
         @Override

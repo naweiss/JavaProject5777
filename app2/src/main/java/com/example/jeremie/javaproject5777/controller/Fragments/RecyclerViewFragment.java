@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.Fragments;
+package com.example.jeremie.javaproject5777.controller.Fragments;
 
 import android.app.SearchManager;
 import android.os.Bundle;
@@ -13,19 +13,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 
-import com.example.jeremie.javaproject5777.FilterAdapter;
-import com.example.jeremie.javaproject5777.ListDB_manager;
+import com.example.jeremie.javaproject5777.controller.Adapters.FilterAdapter;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
+import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapter;
+import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapterActivities;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
-import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
 import static android.content.Context.SEARCH_SERVICE;
 
 /**
  * Created by jerem on 19.01.17.
+ * Package: ${PACKAGE_NAME}
  */
 
 public class RecyclerViewFragment extends Fragment  {
@@ -75,22 +76,13 @@ public class RecyclerViewFragment extends Fragment  {
             else if(index==1){
                 mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getAllActivity());
             }
+            //mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setAdapter(mAdapter);
             //mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(mAdapter));
             //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
-            MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    super.onScrolled(recyclerView, dx, dy);
-                    if(dy > 0 && dy < mRecyclerView.getPaddingTop())
-                        mRecyclerView.setPadding(0,mRecyclerView.getPaddingTop()-dy,0,0);
-                    else if(dy > 0)
-                        mRecyclerView.setPadding(0,0,0,0);
-                    int x = recyclerView.getHeight();
-                }
-            });
+            MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
-        }catch (Exception e){}
+        }catch (Exception ignored){}
     }
 
     @Override
@@ -109,7 +101,7 @@ public class RecyclerViewFragment extends Fragment  {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
+                ((Filterable)mRecyclerView.getAdapter()).getFilter().filter(newText);
                 return false;
             }
         });

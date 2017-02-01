@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.entities;
+package com.example.jeremie.javaproject5777.model.entities;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

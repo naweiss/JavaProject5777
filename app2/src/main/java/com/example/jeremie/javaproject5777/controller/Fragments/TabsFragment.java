@@ -1,4 +1,4 @@
-package com.example.jeremie.javaproject5777.Fragments;
+package com.example.jeremie.javaproject5777.controller.Fragments;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,12 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 
-import com.example.jeremie.javaproject5777.FilterAdapter;
-import com.example.jeremie.javaproject5777.ListDB_manager;
+import com.example.jeremie.javaproject5777.controller.Adapters.FilterAdapter;
+import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
+import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapterActivities;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 
 
