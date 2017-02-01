@@ -11,6 +11,7 @@ import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,58 +26,32 @@ import java.util.List;
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
  */
-public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerViewAdapter.ViewHolder> {
-    private List<Business> mDataset;
+public class RecyclerViewAdapter extends FilterAdapter<Business> {
+
     private Context context;
-
-    @Override
-    public void Update(ListDB_manager manager) {
-        mDataset.clear();
-        mDataset.addAll(manager.getAllBusinesses());
-    }
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView name;
-        public TextView address;
-        public TextView email;
-        public TextView phone;
-        public ImageView imageView;
-        public ProgressBar bar;
-        public int Id = 0;
-        public ViewHolder(View v) {
-            super(v);
-            name = (TextView)v.findViewById(R.id.name);
-            address = (TextView)v.findViewById(R.id.address);
-            email = (TextView)v.findViewById(R.id.email);
-            phone = (TextView)v.findViewById(R.id.phone);
-            imageView = (ImageView) v.findViewById(R.id.imageView);
-            bar = (ProgressBar) v.findViewById(R.id.progressBar);
-        }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerViewAdapter(List<Business>myDataset, Context context) {
-        super();
-        mDataset = myDataset;
+    public RecyclerViewAdapter(int resource,Context context, List<Business> objects) {
+        super(resource, objects);
         this.context = context;
     }
+    // Replace the contents of a view (invoked by the layout manager)
 
-
-    // Create new views (invoked by the layout manager)
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_view_row, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        //...
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        View v = holder.itemView;
+        final TextView name = (TextView)v.findViewById(R.id.name);
+        final TextView address = (TextView)v.findViewById(R.id.address);
+        final TextView email = (TextView)v.findViewById(R.id.email);
+        final TextView phone = (TextView)v.findViewById(R.id.phone);
+        final ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
+        final ProgressBar bar = (ProgressBar) v.findViewById(R.id.progressBar);
 
-        final ViewHolder vh = new ViewHolder(v);
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        name.setText(get(position).getName());
+        phone.setText(get(position).getPhone());
+        address.setText(get(position).getAddress().toString());
+        email.setText(get(position).getEmail());
+
         v.setOnClickListener(new View.OnClickListener() {
 
 
@@ -86,39 +61,21 @@ public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerV
 
                 Intent intent = new Intent(context, Business_details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ImageView img = vh.imageView;
+                ImageView img = imageView;
                 img.buildDrawingCache();
                 intent.putExtra("Image", img.getDrawingCache());
-                intent.putExtra("ID", vh.Id);
-                String transitionName = "image";
+                intent.putExtra("ID", get(position).getId());
                 context.startActivity(intent);
-                    //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                            //(Activity) v.getContext(),img,transitionName);
-                    //ActivityCompat.startActivity(context, intent, options.toBundle());
-
-                }
-
+            }
         });
-        return vh;
-    }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.Id = mDataset.get(position).getId();
-        holder.name.setText(mDataset.get(position).getName());
-        holder.phone.setText(mDataset.get(position).getPhone());
-        holder.address.setText(mDataset.get(position).getAddress().toString());
-        holder.email.setText(mDataset.get(position).getEmail());
         new AsyncTask<String,Void,Void>(){
             Bitmap myBitmap = null;
 
             @Override
             protected void onPreExecute() {
-                holder.bar.setVisibility(View.VISIBLE);
-                holder.imageView.setVisibility(View.INVISIBLE);
+                bar.setVisibility(View.VISIBLE);
+                imageView.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -132,19 +89,10 @@ public class RecyclerViewAdapter extends UpdateableRecyclerViewAdapter<RecyclerV
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                holder.bar.setVisibility(View.INVISIBLE);
-                holder.imageView.setVisibility(View.VISIBLE);
-                holder.imageView.setImageBitmap(ExtractFavicon.getRoundedCornerBitmap(myBitmap,myBitmap.getWidth()/10));
+                bar.setVisibility(View.INVISIBLE);
+                imageView.setVisibility(View.VISIBLE);
+                imageView.setImageBitmap(ExtractFavicon.getRoundedCornerBitmap(myBitmap,myBitmap.getWidth()/10));
             }
-        }.execute(mDataset.get(position).getLink().toString());
+        }.execute(get(position).getLink().toString());
     }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return mDataset.size();
-    }
-
-
-
 }

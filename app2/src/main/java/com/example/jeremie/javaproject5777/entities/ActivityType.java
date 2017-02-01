@@ -9,6 +9,5 @@ public enum ActivityType {
     SKI,
     TOURIST,
     CRUISE
-
 }
 

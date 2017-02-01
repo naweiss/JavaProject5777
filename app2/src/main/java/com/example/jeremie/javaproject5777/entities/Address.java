@@ -53,7 +53,6 @@ public class Address {
     //Added
     @Override
     public String toString() {
-        String str ="";
-        return Country+", "+City+", "+Street+". "+zipCode;
+        return zipCode+": "+Country+", "+City+", "+Street;
     }
 }

@@ -32,7 +32,7 @@ public class ListDB_manager {
 
     private static ListDB_manager manager = null;
 
-    public static ListDB_manager newInstance() {
+    public static ListDB_manager getInstance() {
         if(manager == null)
             manager = new ListDB_manager();
         return manager;

@@ -4,24 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.example.jeremie.javaproject5777.FilterAdapter;
+import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
+import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 
 
@@ -50,10 +51,21 @@ public class TabsFragment extends Fragment {
             int oldItemPosition = -1;
 
             @Override
-            public void setPrimaryItem(ViewGroup container, int position, Object object) {
+            public void setPrimaryItem(final ViewGroup container,final int position, Object object) {
                 super.setPrimaryItem(container, position, object);
-
                 //seulement si la page est différente
+                if(container.getChildAt(position) != null)
+                    ListDB_manager.getInstance().setDataSetChangedListener(new ListDB_manager.NotifyDataSetChangedListener() {
+                        @Override
+                        public void onDataSetChanged() {
+                            FilterAdapter adapter = ((FilterAdapter)((RecyclerView)container.getChildAt(position)).getAdapter());
+                            adapter.clear();
+                            if(adapter instanceof RecyclerViewAdapterActivities)
+                                adapter.addAll(ListDB_manager.getInstance().getAllActivity());
+                            else
+                                adapter.addAll(ListDB_manager.getInstance().getAllBusinesses());
+                        }
+                    });
                 if (oldItemPosition != position) {
                     oldItemPosition = position;
 
@@ -122,7 +134,6 @@ public class TabsFragment extends Fragment {
         //this.materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
         //relie les tabs au viewpager
         this.materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
-
     }
 
     private void toggleLogo(final Drawable newLogo, final int newColor, int duration){

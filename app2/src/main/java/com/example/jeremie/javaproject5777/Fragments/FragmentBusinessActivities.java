@@ -11,10 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
-import com.example.jeremie.javaproject5777.RecyclerViewAdapter;
 import com.example.jeremie.javaproject5777.RecyclerViewAdapterActivities;
-import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
-import com.github.florent37.materialviewpager.adapter.RecyclerViewMaterialAdapter;
 
 /**
  * Created by jerem on 28.01.17.
@@ -24,7 +21,7 @@ public class FragmentBusinessActivities extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private ListDB_manager db_manager = ListDB_manager.newInstance();
+    private ListDB_manager db_manager = ListDB_manager.getInstance();
 
     public static FragmentBusinessActivities newInstance(int type) {
         FragmentBusinessActivities frag = new FragmentBusinessActivities();
@@ -46,24 +43,16 @@ public class FragmentBusinessActivities extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        int id = args.getInt("ID", -1);
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        //permet un affichage sous forme liste verticale
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
         try {
-
-            //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
-            mAdapter = new RecyclerViewAdapterActivities(db_manager.getBusinessActivity(id), getActivity().getBaseContext());
+            mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getAllActivity());
             mRecyclerView.setAdapter(mAdapter);
-
-            //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
-
-
         }catch (Exception e){}
     }
 

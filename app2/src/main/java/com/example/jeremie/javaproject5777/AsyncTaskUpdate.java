@@ -14,7 +14,7 @@ import android.os.AsyncTask;
 
 public class AsyncTaskUpdate extends AsyncTask<Context, Void, Cursor> {
 
-    private ListDB_manager db_manager = ListDB_manager.newInstance();
+    private ListDB_manager db_manager = ListDB_manager.getInstance();
 
     @Override
     protected Cursor doInBackground(Context... contexts) {

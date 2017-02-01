@@ -1,5 +1,7 @@
 package com.example.jeremie.javaproject5777.entities;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Activitie {
@@ -92,5 +94,11 @@ public class Activitie {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        return actType+" "+countryName +" "+df.format(startDate) +" "+df.format(endDate) +" "+price +" "+description;
     }
 }

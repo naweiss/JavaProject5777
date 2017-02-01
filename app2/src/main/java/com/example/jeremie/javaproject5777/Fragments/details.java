@@ -1,14 +1,12 @@
 package com.example.jeremie.javaproject5777.Fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.jeremie.javaproject5777.Business_details;
 import com.example.jeremie.javaproject5777.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.entities.Business;
@@ -19,7 +17,7 @@ import com.example.jeremie.javaproject5777.entities.Business;
 
 public class details extends Fragment {
 
-    private ListDB_manager db_manager = ListDB_manager.newInstance();
+    private ListDB_manager db_manager = ListDB_manager.getInstance();
 
     Business business = new Business();
     TextView address;
@@ -42,8 +40,7 @@ public class details extends Fragment {
         int id = getActivity().getIntent().getIntExtra("ID",-1);
         business = db_manager.getBusiness(id);
         phone.setText(business.getPhone().substring(0,3)+"-"+business.getPhone().substring(3,6)+"-"+business.getPhone().substring(6));
-        address.setText(business.getAddress().getZipCode()+": "+business.getAddress().getStreet()+", "+business.getAddress().getCity()
-                +", "+business.getAddress().getCountry().toString());
+        address.setText(business.getAddress().toString());
         email.setText(business.getEmail());
         link.setText(business.getLink().toString());
 
