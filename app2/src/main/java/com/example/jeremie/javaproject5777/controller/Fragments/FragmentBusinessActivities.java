@@ -44,6 +44,7 @@ public class FragmentBusinessActivities extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
+        int id = args.getInt("ID", -1);
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -52,7 +53,7 @@ public class FragmentBusinessActivities extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         try {
-            mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getAllActivity());
+            mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getBusinessActivity(id));
             mRecyclerView.setAdapter(mAdapter);
         }catch (Exception ignored){}
     }

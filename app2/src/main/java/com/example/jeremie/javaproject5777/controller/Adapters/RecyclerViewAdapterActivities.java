@@ -78,7 +78,7 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
         final TextView date = (TextView) v.findViewById(R.id.txtDate);
         final TextView country = (TextView) v.findViewById(R.id.txtcountry);
         final LinearLayout linearLayout1 = (LinearLayout) v.findViewById(R.id.visibleCardview);
-        final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        final DateFormat df = new SimpleDateFormat("dd/MMM/yyyy");
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         title.setText(get(position).getDescription());

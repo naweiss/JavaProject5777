@@ -1,6 +1,7 @@
 package com.example.nadav.javaproject5777.controller;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -24,6 +25,8 @@ import com.example.nadav.javaproject5777.model.entities.User;
 
 public class AddUser extends AppCompatActivity implements View.OnClickListener{
 
+    private final String pref = "MYPREF";
+    private SharedPreferences preferences;
     /**
      * Call the function to initialize the views and connect the layout to the activity
      * @param savedInstanceState
@@ -96,6 +99,11 @@ public class AddUser extends AppCompatActivity implements View.OnClickListener{
             }
         }.execute();
         Toast.makeText(this,"new user added",Toast.LENGTH_LONG).show();
+        preferences = getSharedPreferences(pref,MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("NAME", username);
+        editor.putString("PASSWORD", checkPass);
+        editor.commit();
         Intent mainScreen = new Intent(AddUser.this,MainActivity.class);
         startActivity(mainScreen);
     }
