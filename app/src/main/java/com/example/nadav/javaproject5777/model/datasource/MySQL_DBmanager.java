@@ -1,25 +1,18 @@
 package com.example.nadav.javaproject5777.model.datasource;
-
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.util.Log;
-
-import com.example.nadav.javaproject5777.controller.MainActivity;
 import com.example.nadav.javaproject5777.model.backend.Contract;
 import com.example.nadav.javaproject5777.model.backend.DB_manager;
-import com.example.nadav.javaproject5777.model.backend.UpdateService;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.IOException;
 
 /**
- * Created by jerem on 01.01.17.
+ * Created by jerem on 12/1/2016.
+ * this class implements the functions from the interface for the MySQL-type database
  */
-
 public class MySQL_DBmanager implements DB_manager {
 
     private final String UserName="naweiss";

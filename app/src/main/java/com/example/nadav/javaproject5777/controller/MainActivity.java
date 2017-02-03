@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbar =(Toolbar)findViewById(R.id.logout1);
         setSupportActionBar(toolbar);
-        findview();
+        findviewMenu();
 
         Typeface myTypeface = Typeface.createFromAsset(getAssets(),"segoe_print.ttf");
         SharedPreferences preferences = getSharedPreferences(pref,MODE_PRIVATE);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Find the Views in the layout
      */
-    public void findview(){
+    public void findviewMenu(){
         addActy = (Button)findViewById(R.id.AddActivity_button);
         addBusiness = (Button)findViewById(R.id.AddBusiness_button);
         addActy.setOnClickListener(this);
@@ -132,17 +132,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         welcome = (TextView) findViewById(R.id.textViewWelcome);
     }
 
+    /**
+     * to cancel the back button
+     */
     @Override
     public void onBackPressed() {
         
     }
 
+    /**
+     * the listener for the buttons from the main
+     * @param view
+     */
     @Override
     public void onClick(View view) {
+        /**
+         * When you click on the addbusiness button a dialog opens to put the data of the new business
+         */
          if(view == addBusiness){
-
+             //create a dialog
              AlertDialog.Builder addBusinessDialog= new AlertDialog.Builder(MainActivity.this);
+             //inflate the xml in the view for the dialog
              View viewBusiness = getLayoutInflater().inflate(R.layout.activity_business,null);
+             //find the ressources views in the layout
              nameEditText = (EditText)viewBusiness.findViewById(R.id.name_business);
              streetEditText = (EditText)viewBusiness.findViewById(R.id.address_business);
              cityEdiText = (EditText)viewBusiness.findViewById(R.id.city_business);
@@ -153,10 +165,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              linkEditText = (EditText) viewBusiness.findViewById(R.id.LinkBusiness);
 
              Button add = (Button) viewBusiness.findViewById(R.id.button_addBusiness);
+             //input the view on the dialog and shows him
              addBusinessDialog.setView(viewBusiness);
              dialog = addBusinessDialog.create();
              dialog.show();
              add.setOnClickListener(new View.OnClickListener() {
+                 /**
+                  * when you click the add button in the dialog We verify that the input data are correct and then we add the business to the database.
+                  * @param v
+                  */
                  @Override
                  public void onClick(View v) {
                      name = nameEditText.getText().toString();
@@ -170,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                      if (!isValidBusiness())
                          Toast.makeText(MainActivity.this, "The sign up failed", Toast.LENGTH_SHORT).show();
                      else {
+                         //The implementation of the function is at the bottom
                          addBusiness();
                      }
                  }
@@ -178,10 +196,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
          }
+        /**
+         * When you click on the addActivity button a dialog opens to put the data of the new Activity
+         */
         if(view == addActy){
 
+            //create a dialog
             AlertDialog.Builder addActivityDialog= new AlertDialog.Builder(MainActivity.this);
+            //inflate the xml in the view for the dialog
             View viewActivity = getLayoutInflater().inflate(R.layout.activity_activities,null);
+            //find the ressources views in the layout
             startDate = (ImageButton) viewActivity.findViewById(R.id.imageButton_start);
             insertStartDate = (TextView) viewActivity.findViewById(R.id.txtDateStart);
             insertFinishDate = (TextView) viewActivity.findViewById(R.id.txtDateFinish);
@@ -195,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             businessName = (Spinner)viewActivity.findViewById(R.id.businessId_activity);
             typeOfactivities = (Spinner) viewActivity.findViewById(R.id.spinner_typeActivities);
 
+            //We fill the spinner with the names of the existing business in the database
             try {
                 AsyncTask task = new bussinesIds().execute();
                 ArrayAdapter<String> adapter  = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, (List<String>)task.get());
@@ -203,13 +228,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
                 finish();
             }
-
+            //input the view on the dialog and shows him
             addActivityDialog.setView(viewActivity);
             final AlertDialog dialog1 = addActivityDialog.create();
             dialog1.show();
 
             finishDate.setEnabled(false);
+            /**
+             * listener for the datepicker dialog (the begin date)
+             */
             startDate.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     insertStartDate.setText("");
@@ -218,6 +247,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     finishDate.setEnabled(true);
                 }
             });
+            /**
+             * listener for the datepicker dialog (the end date)
+             */
             finishDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -228,6 +260,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
+            /**
+             * when you click the add button in the dialog We verify that the input data are correct and then we add the activity to the database.
+             */
             addActivity.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -239,15 +274,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(! isValidActivity())
                         Toast.makeText(MainActivity.this, "The sign up failed", Toast.LENGTH_SHORT).show();
                     else {
+                        //The implementation of the function is at the bottom
                         addActivity();
+                        //close the dialog
                         dialog1.dismiss();
                     }
                 }
             });
 
         }
-
-
+        /**
+         * When you click on the logout button we disconnect the user and return to the login activity
+         */
         if(view == logout){
             SharedPreferences preferences = getSharedPreferences(pref,MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -261,14 +299,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void updateTextStart(){
         insertStartDate.setText(dateFormat.format(date.getTime()));
-        Toast.makeText(this,start.getText().toString(),Toast.LENGTH_LONG).show();
+        startDate.setBackgroundColor(getResources().getColor(android.R.color.white));
     }
     private void updateTextFinish(){
         insertFinishDate.setText(dateFormat.format(date.getTime()));
+        finishDate.setBackgroundColor(getResources().getColor(android.R.color.white));
     }
+    //create the DatePickerDialog for the start date
     private void updateDateStart(){
         new DatePickerDialog(this,c,date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH)).show();
     }
+
+    /**
+     * create the DatePickerDialog for the finish date and it is defined in such a way that it is not possible to
+     * select a date earlier than the start date
+     * @throws ParseException
+     */
     private void updateDatefinish() throws ParseException {
         DatePickerDialog dpdialog = new DatePickerDialog(this,d,date.get(Calendar.YEAR),date.get(Calendar.MONTH),date.get(Calendar.DAY_OF_MONTH));
         dpdialog.getDatePicker().setMinDate(dateFormat.parse(insertStartDate.getText().toString()).getTime());
@@ -293,6 +339,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             updateTextFinish();
         }
     };
+
+    /**
+     * The function to add a new activity in the database
+     */
     public void addActivity() {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -319,13 +369,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception ex){}
 
         final ContentValues contentValues = Converter.activitieToContentValues(act);
+        //we use the content provider to add it
         new AsyncTask<Void,Void,Void>()
         {
             @Override
             protected Void doInBackground(Void... params) {
                 getContentResolver().insert(uri,contentValues);
-                //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
-                //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
                 return null;
             }
         }.execute();
@@ -334,6 +383,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
+    /**
+     * The function to add a new business in the database
+     */
     public void addBusiness(){
 
         final Uri uri= Contract.Business.BUSINESS_URI;
@@ -356,14 +408,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception ex){}
 
         final ContentValues contentValues = Converter.businessToContentValues(business);
+        //we use the content provider to add it
         new AsyncTask<Void,Void,Boolean>()
         {
             @Override
             protected Boolean doInBackground(Void... params) {
                 Uri ans = getContentResolver().insert(uri,contentValues);
                 long id = ContentUris.parseId(ans);
-                //Cursor users = getContentResolver().query(uri, null, null, null, null, null);
-                //Toast.makeText(AddUser.this,new Integer(users.getCount()).toString(),Toast.LENGTH_SHORT).show();
                 return (id != -1);
             }
 
@@ -377,9 +428,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getBaseContext(), "failed", Toast.LENGTH_LONG).show();
             }
         }.execute();
-        //Intent mainScreen = new Intent(AddBusiness.this,MainActivity.class);
-        //startActivity(mainScreen);
     }
+
+    /**
+     * This function recovers the names of the existing business (it is to fill the spinner in the activity dialog)
+     */
     private class bussinesIds extends AsyncTask<Void,Void,List<String>>
     {
         @Override
@@ -396,6 +449,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * a boolen function to check if the input data for the activity are correct
+     * @return
+     */
     private  boolean isValidActivity(){
         Boolean valid = true;
         if(priceAct.isEmpty()) {
@@ -416,13 +473,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             valid = false;
         }
         if(dateEndAct.isEmpty()) {
-            insertFinishDate.setError("Please enter a date.");
+            finishDate.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
             valid = false;
         }
 
         return valid;
 
     }
+    /**
+     * a boolen function to check if the input data for the business are correct
+     * @return
+     */
     private boolean isValidBusiness() {
         Boolean valid = true;
         if(name.isEmpty()) {

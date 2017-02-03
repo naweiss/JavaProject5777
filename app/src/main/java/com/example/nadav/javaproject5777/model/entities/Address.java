@@ -2,8 +2,8 @@ package com.example.nadav.javaproject5777.model.entities;
 
 /**
  * Created by nadav on 12/11/2016.
+ * the class for the Business address
  */
-
 public class Address {
 
         private String Country;

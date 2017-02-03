@@ -1,7 +1,5 @@
 package com.example.nadav.javaproject5777.model.datasource;
-
 import android.content.ContentValues;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,8 +10,8 @@ import java.net.URLEncoder;
 
 /**
  * Created by jerem on 01.01.17.
+ * These functions are for sending / receiving data to/from php pages
  */
-
 public class PHPtools {
 
     public static String GET(String url) throws Exception {

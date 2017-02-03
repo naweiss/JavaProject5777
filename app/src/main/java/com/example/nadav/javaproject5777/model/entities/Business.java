@@ -1,13 +1,9 @@
 package com.example.nadav.javaproject5777.model.entities;
-
-import android.provider.ContactsContract;
-
 import java.net.URL;
 
 /**
- * Created by nadav on 12/1/2016.
+ * the Business class with the getters/setters for all these attributes
  */
-
 public class Business {
 
     private static int count =0;
@@ -18,9 +14,7 @@ public class Business {
     private String email;
     private URL link;
 
-    public Business() {
-
-    }
+    public Business() {}
 
     public Business(Address address, String email, URL link, String name, String phone) {
         this.id = count++;

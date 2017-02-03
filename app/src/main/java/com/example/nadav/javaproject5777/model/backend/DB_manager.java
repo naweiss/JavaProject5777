@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by jerem on 07.12.16.
+ *
  */
 
 public interface DB_manager {
