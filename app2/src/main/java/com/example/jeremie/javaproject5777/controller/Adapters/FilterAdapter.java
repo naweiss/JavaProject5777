@@ -16,6 +16,11 @@ import java.util.List;
  * Package: com.example.jeremie.javaproject5777
  */
 
+/**
+ * General Adapter which extends the basic RecyclerView.Adapter
+ * Support Filtering and making most of the work for you
+ * @param <T> Type of records
+ */
 public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapter.ViewHolder> implements Filterable {
     static class ViewHolder extends RecyclerView.ViewHolder {
         ViewHolder(View v) {
@@ -23,16 +28,28 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
         }
     }
 
+
     private Filter mFilter;
     private List<T> mObjects;
     private List<T> mOriginalValues;
     private final int mResource;
 
+    /**
+     *  Constructor
+     * @param resource - resource id of layout for each record
+     * @param objects - list of the records to show
+     */
     FilterAdapter(int resource, List<T> objects) {
         this.mObjects = new ArrayList<>(objects);
         this.mResource = resource;
     }
 
+    /**
+     *  Create new view from a record
+     * @param parent - The Parent of the view
+     * @param viewType - The type of the view
+     * @return
+     */
     @Override
     public FilterAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
@@ -41,6 +58,9 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
         return new FilterAdapter.ViewHolder(v);
     }
 
+    /**
+     *  Clear the list of records and update the layout [notifyDataSetChanged]
+     */
     public void clear() {
         if (mOriginalValues != null) {
             mOriginalValues.clear();
@@ -50,6 +70,11 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
         notifyDataSetChanged();
     }
 
+    /**
+     *  Add list of record to the existing records
+     *      and update the layout [notifyDataSetChanged]
+     * @param objects list of record
+     */
     public void addAll(List<T> objects) {
         if (mOriginalValues != null) {
             mOriginalValues.addAll(objects);
@@ -59,14 +84,28 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
         notifyDataSetChanged();
     }
 
+    /**
+     *  Get record at given place
+     * @param position - The position of the record in the list
+     * @return
+     */
     public T get(int position){
         return mObjects.get(position);
     }
+
+    /**
+     *  Get the number of records
+     * @return
+     */
     @Override
     public int getItemCount() {
         return mObjects.size();
     }
 
+    /**
+     *  Get filter object for filtering the records
+     * @return
+     */
     @Override
     public Filter getFilter() {
         if (mFilter == null) {
@@ -75,18 +114,33 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
         return mFilter;
     }
 
+    /**
+     * General filter class
+     */
     private class MyFilter extends Filter {
+
+        /**
+         *  Create new list of the filtered records
+         * @param constraint string to look for
+         * @return the list of the filtered records
+         */
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
 
             final FilterResults results = new FilterResults();
 
+            /**
+             * Create backup of the records
+             */
             if (mOriginalValues == null) {
                 mOriginalValues = new ArrayList<>(mObjects);
             }
 
             if (constraint == null || constraint.length() == 0) {
+                /**
+                 * If there is no constraint return all the records
+                 */
                 final ArrayList<T> list = new ArrayList<>(mOriginalValues);
                 results.values = list;
                 results.count = list.size();
@@ -94,6 +148,10 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
                 final String prefixString = constraint.toString().toLowerCase();
                 final ArrayList<T> values = new ArrayList<>(mOriginalValues);
 
+                /**
+                 * Run on every record and look for the given constraint in its toString
+                 *      by splitting to words
+                 */
                 final int count = values.size();
                 final ArrayList<T> newValues = new ArrayList<>();
                 for (int i = 0; i < count; i++) {
@@ -121,6 +179,11 @@ public abstract class FilterAdapter<T> extends RecyclerView.Adapter<FilterAdapte
             return results;
         }
 
+        /**
+         *  Return the filtered list and update layout
+         * @param constraint
+         * @param results
+         */
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             mObjects = (List<T>) results.values;

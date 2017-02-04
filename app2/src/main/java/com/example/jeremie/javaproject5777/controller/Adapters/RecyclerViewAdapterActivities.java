@@ -31,6 +31,9 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
         super(resource, objects);
     }
 
+    /**
+     * Return the nuber of records and the Placeholder
+     */
     @Override
     public int getItemViewType(int position) {
         if (position < mPlaceholderSize)
@@ -39,24 +42,40 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
             return super.getItemViewType(position - mPlaceholderSize); //call getItemViewType on the adapter, less mPlaceholderSize
     }
 
+    /**
+     * Return the number of records and the Placeholder
+     */
     @Override
     public int getItemCount() {
         return super.getItemCount() + mPlaceholderSize;
     }
 
+    /**
+     *
+     * @param parent - The Parent of the view
+     * @param viewType - The type of the view
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case TYPE_PLACEHOLDER: {
+                // Place holder for the tabs
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(com.github.florent37.materialviewpager.R.layout.material_view_pager_placeholder, parent, false);
                 return new ViewHolder(view);
             }
             default:
+                // The regular record view
                 return super.onCreateViewHolder(parent, viewType);
         }
     }
 
+    /**
+     * Get record at given place
+     * @param position - The position of the record in the list
+     * @return
+     */
     @Override
     public Activitie get(int position) {
         if (position < mPlaceholderSize)
@@ -65,7 +84,7 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
             return super.get(position- mPlaceholderSize);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+    // Replace the contents of a view
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         if(getItemViewType(position) == TYPE_PLACEHOLDER)
@@ -98,6 +117,9 @@ public class RecyclerViewAdapterActivities extends FilterAdapter<Activitie> {
         else
             imageView.setImageResource(R.drawable.hotel);
 
+        /**
+         * Handle the arrow button click click
+         */
         chieldView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

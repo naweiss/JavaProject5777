@@ -88,7 +88,6 @@ public class Business_details extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // todo: goto back activity from here
                 finish();
                 return true;
 

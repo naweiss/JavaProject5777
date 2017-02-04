@@ -18,14 +18,20 @@ public class UpdateReceiver extends BroadcastReceiver {
     public UpdateReceiver() {
     }
 
+    /**
+     * BroadcastReceiver which updates the local database when new item was found
+     * @param context - The context of this receiver
+     * @param intent -The intent of this receiver, for data purposes
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
         if (intent.getAction().matches("com.example.nadav.javaproject5777.update")) {
             String intentData = intent.getStringExtra("type");
             if(intentData.equals("businesses")) {
+                //New businesses received
                 try {
+                    //AsyncTask for getting the new businesses from the content provider
                     new AsyncTaskUpdate().execute(context).get();
                     Toast.makeText(context, "businesses update", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "businesses update");
@@ -34,7 +40,9 @@ public class UpdateReceiver extends BroadcastReceiver {
                 }
             }
             else if(intentData.equals("activities")) {
+                //New activities received
                 try {
+                    //AsyncTask for getting the new activities from the content provider
                     new AsyncTaskUpdateActivities().execute(context).get();
                     Toast.makeText(context, "activities update", Toast.LENGTH_LONG).show();
                     Log.d(TAG, "activities update");

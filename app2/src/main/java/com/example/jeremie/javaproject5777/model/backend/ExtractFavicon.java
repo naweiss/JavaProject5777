@@ -30,6 +30,13 @@ public class ExtractFavicon{
         return Color.rgb(r,g,b);
     }
 
+    /**
+     * Create a default icon for url if no suitable icon found
+     * @param latter - The first latter in the url
+     * @param size - The wanted size of the icon
+     * @return bitmap of a default icon
+     * @throws IOException if internet request failed
+     */
     private static Bitmap defaultIcon(Character latter, int size) throws IOException {
         String hexColor = String.format("%06X", (0xFFFFFF & randomColor()));
         URL default_url = new URL("http://icons.better-idea.org/lettericons/" + Character.toUpperCase(latter) + "-"+Integer.valueOf(size)+"-" + hexColor + ".png");
@@ -42,6 +49,11 @@ public class ExtractFavicon{
         return BitmapFactory.decodeStream(inputStream);
     }
 
+    /**
+     * Download image from given url
+     * @param src the image url
+     * @return The image as Bitmap
+     */
     private static Bitmap download(URL src){
         try {
             HttpURLConnection connection = (HttpURLConnection) src.openConnection();
@@ -57,6 +69,12 @@ public class ExtractFavicon{
         }
     }
 
+    /**
+     *
+     * @param reader JsonReader with description of icons available
+     * @param size minimal size wanted
+     * @return Icon the is bigger then the minimal size
+     */
     private static URL findIcon(JsonReader reader, int size) {
         try {
             String name;
@@ -98,6 +116,13 @@ public class ExtractFavicon{
         }
     }
 
+    /**
+     *
+     * @param defaultIcon Icon to return if non icon found
+     * @param src Website url for its icon
+     * @param size minimal size wanted
+     * @return Bitmap which is the icon of the website
+     */
     public static Bitmap getFavicon(Bitmap defaultIcon,String src, int size) {
         try {
             URL url = new URL("http://icons.better-idea.org/allicons.json?url=" + src);
@@ -123,6 +148,12 @@ public class ExtractFavicon{
         }
     }
 
+    /**
+     * Round the bitmap by given radius
+     * @param bitmap Original bitmap
+     * @param pixels radius
+     * @return Rounded bitmap
+     */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap
                 .getHeight(), Bitmap.Config.ARGB_8888);

@@ -37,8 +37,8 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
         super(resource, objects);
         this.context = context;
     }
-    // Replace the contents of a view (invoked by the layout manager)
 
+    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public int getItemViewType(int position) {
         if (position < mPlaceholderSize)
@@ -47,24 +47,40 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
             return super.getItemViewType(position - mPlaceholderSize); //call getItemViewType on the adapter, less mPlaceholderSize
     }
 
+    /**
+     * Return the number of records and the Placeholder
+     */
     @Override
     public int getItemCount() {
         return super.getItemCount() + mPlaceholderSize;
     }
 
+    /**
+     * Create view for the records
+     * @param parent - The Parent of the view
+     * @param viewType - The type of the view
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case TYPE_PLACEHOLDER: {
+                // Place holder for the tabs
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(com.github.florent37.materialviewpager.R.layout.material_view_pager_placeholder, parent, false);
                 return new ViewHolder(view);
             }
             default:
+                // The regular record view
                 return super.onCreateViewHolder(parent, viewType);
         }
     }
 
+    /**
+     * Get record at given place
+     * @param position - The position of the record in the list
+     * @return
+     */
     @Override
     public Business get(int position) {
         if (position < mPlaceholderSize)
@@ -92,13 +108,14 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
         address.setText(get(position).getAddress().toString());
         email.setText(get(position).getEmail());
 
+        /**
+         * When click on item is preformed go to new activity and show the item
+         */
         v.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(context, Business_details.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 imageView.buildDrawingCache();
@@ -108,6 +125,9 @@ public class RecyclerViewAdapter extends FilterAdapter<Business> {
             }
         });
 
+        /**
+         * AsyncTask for downloading the image of the business
+         */
         new AsyncTask<String,Void,Void>(){
             Bitmap myBitmap = null;
 
