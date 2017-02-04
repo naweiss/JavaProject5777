@@ -1,9 +1,10 @@
 package com.example.nadav.javaproject5777.model.entities;
 
-import com.example.nadav.javaproject5777.model.backend.Contract;
-
 import java.util.Date;
 
+/**
+ * the Activity class with the getters/setters for all these attributes
+ */
 public class Activitie {
     private static int count=1;
     private int id;

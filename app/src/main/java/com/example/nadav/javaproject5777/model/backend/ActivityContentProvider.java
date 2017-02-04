@@ -33,7 +33,7 @@ public class ActivityContentProvider extends ContentProvider {
         Log.d(TAG, "query " + uri.toString());
 
         String listName = uri.getLastPathSegment();
-        // String s = AcademyContract.Student.STUDENT_URI.getLastPathSegment();
+
         switch (listName) {
             case "user":
                 if(selectionArgs == null)

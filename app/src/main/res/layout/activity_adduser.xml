@@ -43,6 +43,7 @@
         android:id="@+id/editText_addUser"
         android:hint="@string/username"
         android:layout_marginTop="40dp"
+        android:inputType="textCapWords"
         style="@style/MyEditTextStyle"
 
         />

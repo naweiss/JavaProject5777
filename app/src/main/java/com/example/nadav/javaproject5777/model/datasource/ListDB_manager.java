@@ -2,17 +2,16 @@ package com.example.nadav.javaproject5777.model.datasource;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-
 import com.example.nadav.javaproject5777.model.backend.DB_manager;
 import com.example.nadav.javaproject5777.model.entities.Activitie;
 import com.example.nadav.javaproject5777.model.entities.Business;
 import com.example.nadav.javaproject5777.model.entities.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nadav on 12/1/2016.
+ * this class implements the functions from the interface for the list-type database
  */
 
 public class ListDB_manager implements DB_manager{

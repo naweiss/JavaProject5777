@@ -3,7 +3,9 @@ package com.example.jeremie.javaproject5777.model.entities;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/**
+ * the Activity class with the getters/setters for all these attributes
+ */
 public class Activitie {
     private static int count=1;
     private int id;

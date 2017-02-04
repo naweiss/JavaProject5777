@@ -123,6 +123,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_height="40dp"
+        android:backgroundTint="@color/common_action_bar_splitter"
         android:layout_width="match_parent"
         android:id="@id/bsuiness_phone"
         android:inputType="phone" />

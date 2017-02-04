@@ -1,17 +1,13 @@
 package com.example.nadav.javaproject5777.model.datasource;
-
-import android.app.Activity;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-
 import com.example.nadav.javaproject5777.model.backend.Contract;
 import com.example.nadav.javaproject5777.model.entities.Activitie;
 import com.example.nadav.javaproject5777.model.entities.ActivityType;
 import com.example.nadav.javaproject5777.model.entities.Address;
 import com.example.nadav.javaproject5777.model.entities.Business;
 import com.example.nadav.javaproject5777.model.entities.User;
-
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +15,7 @@ import java.util.List;
 
 /**
  * Created by nadav on 12/10/2016.
+ * class to convert object to contectValues and contrary
  */
 
 public class Converter {

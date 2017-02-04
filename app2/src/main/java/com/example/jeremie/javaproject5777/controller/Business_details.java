@@ -1,5 +1,4 @@
 package com.example.jeremie.javaproject5777.controller;
-
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
-
 import com.example.jeremie.javaproject5777.controller.Fragments.FragmentBusinessActivities;
 import com.example.jeremie.javaproject5777.controller.Fragments.details;
 import com.example.jeremie.javaproject5777.R;
@@ -63,7 +61,7 @@ public class Business_details extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        //We recover the id from the selected business
         id = getIntent().getIntExtra("ID",-1);
         if(id == -1)
             finish();
@@ -106,7 +104,11 @@ public class Business_details extends AppCompatActivity {
             super(fm);
         }
 
-
+        /**
+         * Displays the fragment when selecting him from the tabs
+         * @param position
+         * @return
+         */
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
@@ -126,10 +128,15 @@ public class Business_details extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 2 total pages.
             return 2;
         }
 
+        /**
+         * the page title
+         * @param position
+         * @return
+         */
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {

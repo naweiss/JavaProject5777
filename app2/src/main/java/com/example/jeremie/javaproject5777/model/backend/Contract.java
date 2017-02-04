@@ -1,7 +1,5 @@
 package com.example.jeremie.javaproject5777.model.backend;
-
 import android.net.Uri;
-
 /**
  * Created by nadav on 12/10/2016.
  * Package: ${PACKAGE_NAME}

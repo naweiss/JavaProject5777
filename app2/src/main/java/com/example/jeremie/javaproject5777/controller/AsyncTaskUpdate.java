@@ -1,18 +1,17 @@
 package com.example.jeremie.javaproject5777.controller;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.AsyncTask;
-
 import com.example.jeremie.javaproject5777.model.backend.Contract;
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 
 /**
  * Created by nadav on 1/23/2017.
  * Package: com.example.jeremie.javaproject5777
+ * we use this class to update business from the content provider
  */
 
 public class AsyncTaskUpdate extends AsyncTask<Context, Void, Cursor> {

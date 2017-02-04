@@ -1,5 +1,4 @@
 package com.example.jeremie.javaproject5777.controller.Fragments;
-
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,12 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.jeremie.javaproject5777.model.entities.Address;
-import com.example.jeremie.javaproject5777.model.entities.Business;
 import com.example.jeremie.javaproject5777.R;
 
-import java.net.URL;
 
 public class MainFragment extends Fragment {
 
