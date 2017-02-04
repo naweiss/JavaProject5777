@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Created by nadav on 12/10/2016.
- * convert object to contectValues and contrary
+ * class to convert object to contectValues and contrary
  */
 
 public class Converter {

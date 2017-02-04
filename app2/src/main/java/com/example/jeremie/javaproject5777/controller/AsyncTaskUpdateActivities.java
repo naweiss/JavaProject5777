@@ -1,19 +1,19 @@
 package com.example.jeremie.javaproject5777.controller;
 
-import android.accounts.AbstractAccountAuthenticator;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.AsyncTask;
-
 import com.example.jeremie.javaproject5777.model.backend.Contract;
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 
 /**
  * Created by jerem on 26.01.17.
  * Package: ${PACKAGE_NAME}
+ * we use this class to update activities from the content provider
  */
 
 public class AsyncTaskUpdateActivities extends AsyncTask<Context, Void, Cursor> {
@@ -32,7 +32,6 @@ public class AsyncTaskUpdateActivities extends AsyncTask<Context, Void, Cursor> 
         protected void onPostExecute(Cursor cursor) {
                 super.onPostExecute(cursor);
                 try {
-                        int i = 0;
                         db_manager.clearActivities();
                         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                                 // The Cursor is now set to the right position

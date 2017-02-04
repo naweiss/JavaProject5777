@@ -3,14 +3,11 @@ package com.example.jeremie.javaproject5777.model.datasource;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.MatrixCursor;
-
-
 import com.example.jeremie.javaproject5777.model.backend.Contract;
 import com.example.jeremie.javaproject5777.model.entities.Activitie;
 import com.example.jeremie.javaproject5777.model.entities.ActivityType;
 import com.example.jeremie.javaproject5777.model.entities.Address;
 import com.example.jeremie.javaproject5777.model.entities.Business;
-
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,6 +16,7 @@ import java.util.List;
 /**
  * Created by nadav on 12/10/2016.
  * Package: ${PACKAGE_NAME}
+ * class to convert object to contectValues and contrary
  */
 
 class Converter {

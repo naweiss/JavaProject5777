@@ -1,5 +1,4 @@
 package com.example.jeremie.javaproject5777.controller.Fragments;
-
 import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,14 +13,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filterable;
-
 import com.example.jeremie.javaproject5777.controller.Adapters.FilterAdapter;
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapter;
 import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapterActivities;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
-
 import static android.content.Context.SEARCH_SERVICE;
 
 /**
@@ -62,29 +59,34 @@ public class RecyclerViewFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        //permet un affichage sous forme liste verticale
+        //Allows a display in vertical list form
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
         try {
 
-            //penser à passer notre Adapter (ici : TestRecyclerViewAdapter) à un RecyclerViewMaterialAdapter
+            //if the index is 0 we use the adapter for the tabs Business in the menu activity (show all businesses)
             if(index == 0){
                 mAdapter = new RecyclerViewAdapter(R.layout.card_view_row,getActivity().getBaseContext(),db_manager.getAllBusinesses());
             }
+            //if the index is 1 we use the adapter for the tabs activitie in the menu activity(show all activities)
             else if(index==1){
                 mAdapter = new RecyclerViewAdapterActivities(R.layout.cardview_activities,db_manager.getAllActivity());
             }
-            //mRecyclerView.setAdapter(mAdapter);
             mRecyclerView.setAdapter(mAdapter);
-            //mRecyclerView.setAdapter(new RecyclerViewMaterialAdapter(mAdapter));
-            //notifier le MaterialViewPager qu'on va utiliser une RecyclerView
+
+            //Notify the MaterialViewPager that a RecyclerView will be used
             MaterialViewPagerHelper.registerRecyclerView(getActivity(), mRecyclerView, null);
 
         }catch (Exception ignored){}
     }
 
+    /**
+     * function to manage the searchview
+     * @param menu
+     * @param inflater
+     */
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();

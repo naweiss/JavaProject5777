@@ -3,6 +3,7 @@ package com.example.jeremie.javaproject5777.model.entities;
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
+ * the class for the Business address
  */
 
 public class Address {

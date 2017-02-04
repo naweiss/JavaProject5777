@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.model.entities.Business;
@@ -14,6 +13,7 @@ import com.example.jeremie.javaproject5777.model.entities.Business;
 /**
  * Created by jerem on 24.01.17.
  * Package: ${PACKAGE_NAME}
+ * We use this fragment in the recyclerView to show the details of a particular business
  */
 
 public class details extends Fragment {

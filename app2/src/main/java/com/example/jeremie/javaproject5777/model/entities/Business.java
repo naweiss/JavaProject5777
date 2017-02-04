@@ -1,12 +1,10 @@
 package com.example.jeremie.javaproject5777.model.entities;
-
-import com.example.jeremie.javaproject5777.model.entities.Address;
-
 import java.net.URL;
 
 /**
  * Created by nadav on 12/25/2016.
  * Package: com.example.nadav.testproject
+ * the Business class with the getters/setters for all these attributes
  */
 
 public class Business {

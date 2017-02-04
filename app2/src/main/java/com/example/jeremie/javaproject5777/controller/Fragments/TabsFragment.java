@@ -1,5 +1,4 @@
 package com.example.jeremie.javaproject5777.controller.Fragments;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -16,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.example.jeremie.javaproject5777.controller.Adapters.FilterAdapter;
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
@@ -36,12 +34,11 @@ public class TabsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //les vues définies dans @layout/header_logo
         final int tabCount = 2;
         headerLogo = getView().findViewById(R.id.headerLogo);
         headerLogoContent = (ImageView) getView().findViewById(R.id.headerLogoContent);
 
-        //le MaterialViewPager
+        //the MaterialViewPager
         this.materialViewPager = (MaterialViewPager) getView().findViewById(R.id.materialViewPager);
         this.materialViewPager.getToolbar().setVisibility(View.GONE);
         this.materialViewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getFragmentManager()) {
@@ -51,7 +48,7 @@ public class TabsFragment extends Fragment {
             @Override
             public void setPrimaryItem(final ViewGroup container,final int position, Object object) {
                 super.setPrimaryItem(container, position, object);
-                //seulement si la page est différente
+                //only if the page is different
                 if(container.getChildAt(position) != null)
                     ListDB_manager.getInstance().setDataSetChangedListener(new ListDB_manager.NotifyDataSetChangedListener() {
                         @Override
@@ -67,7 +64,7 @@ public class TabsFragment extends Fragment {
                 if (oldItemPosition != position) {
                     oldItemPosition = position;
 
-                    //définir la nouvelle couleur et les nouvelles images
+                    //Define  color and  images for the tabs
                     String imageUrl = null;
                     int color = Color.BLACK;
                     Drawable newDrawable = null;
@@ -86,7 +83,7 @@ public class TabsFragment extends Fragment {
 
                     }
 
-                    //puis modifier les images/couleurs
+                    //Change images / colors
                     int fadeDuration = 400;
                     materialViewPager.setColor(color, fadeDuration);
                     materialViewPager.setImageUrl(imageUrl, fadeDuration);
@@ -96,7 +93,7 @@ public class TabsFragment extends Fragment {
 
             @Override
             public Fragment getItem(int position) {
-                //je créé pour chaque onglet un RecyclerViewFragment
+                //I created for each tab a RecyclerViewFragment
                 Fragment fragment = null;
                 switch (position){
                     case 0:
@@ -113,7 +110,7 @@ public class TabsFragment extends Fragment {
                 return tabCount;
             }
 
-            //le titre à afficher pour chaque page
+            //The title to display for each page
             @Override
             public CharSequence getPageTitle(int position) {
                 switch (position) {
@@ -128,15 +125,14 @@ public class TabsFragment extends Fragment {
             }
         });
 
-        //permet au viewPager de garder 4 pages en mémoire (à ne pas utiliser sur plus de 4 pages !)
-        //this.materialViewPager.getViewPager().setOffscreenPageLimit(tabCount);
-        //relie les tabs au viewpager
+
+        //Connects tabs to viewpager
         this.materialViewPager.getPagerTitleStrip().setViewPager(this.materialViewPager.getViewPager());
     }
 
     private void toggleLogo(final Drawable newLogo, final int newColor, int duration){
 
-        //animation de disparition
+        //Animation of disappearance
         final AnimatorSet animatorSetDisappear = new AnimatorSet();
         animatorSetDisappear.setDuration(duration);
         animatorSetDisappear.playTogether(
@@ -144,7 +140,7 @@ public class TabsFragment extends Fragment {
                 ObjectAnimator.ofFloat(headerLogo, "scaleY", 0)
         );
 
-        //animation d'apparition
+        //Animation of appearance
         final AnimatorSet animatorSetAppear = new AnimatorSet();
         animatorSetAppear.setDuration(duration);
         animatorSetAppear.playTogether(
@@ -152,24 +148,24 @@ public class TabsFragment extends Fragment {
                 ObjectAnimator.ofFloat(headerLogo, "scaleY", 1)
         );
 
-        //après la disparition
+        //After the disappearance
         animatorSetDisappear.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
 
-                //modifie la couleur du cercle
+                //Changes the color of the circle
                 ((GradientDrawable) headerLogo.getBackground()).setColor(newColor);
 
-                //modifie l'image contenue dans le cercle
+                //Modifies the image contained in the circle
                 headerLogoContent.setImageDrawable(newLogo);
 
-                //démarre l'animation d'apparition
+                //Starts the appearance animation
                 animatorSetAppear.start();
             }
         });
 
-        //démarre l'animation de disparition
+        //Starts the animation of disappearance
         animatorSetDisappear.start();
     }
 

@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.example.jeremie.javaproject5777.controller.AsyncTaskUpdate;
 import com.example.jeremie.javaproject5777.controller.AsyncTaskUpdateActivities;
-
 import java.util.concurrent.ExecutionException;
 
 public class UpdateReceiver extends BroadcastReceiver {

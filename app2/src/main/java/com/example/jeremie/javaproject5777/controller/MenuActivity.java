@@ -1,6 +1,5 @@
 package com.example.jeremie.javaproject5777.controller;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -12,11 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
 import com.example.jeremie.javaproject5777.controller.Fragments.BlankFragment;
 import com.example.jeremie.javaproject5777.controller.Fragments.TabsFragment;
 import com.example.jeremie.javaproject5777.R;
-
 import java.util.concurrent.ExecutionException;
 
 public class MenuActivity extends AppCompatActivity
@@ -24,7 +21,11 @@ public class MenuActivity extends AppCompatActivity
 
     private Fragment fragment = null;
     private FragmentManager manager = getSupportFragmentManager();
-
+    /**
+     * this function onnect the layout to the activity and download all
+     * the exsistent data of the first application with use asyncTask and displays them in the tabs
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,11 @@ public class MenuActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * to manage the navigation menu
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

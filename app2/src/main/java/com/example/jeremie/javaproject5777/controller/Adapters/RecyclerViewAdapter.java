@@ -11,13 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-
 import com.example.jeremie.javaproject5777.model.backend.ExtractFavicon;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.controller.Business_details;
 import com.example.jeremie.javaproject5777.model.entities.Business;
-
 import java.util.List;
 
 

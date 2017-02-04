@@ -1,16 +1,13 @@
 package com.example.jeremie.javaproject5777.model.datasource;
 
 import android.content.ContentValues;
-
 import com.example.jeremie.javaproject5777.model.entities.Activitie;
 import com.example.jeremie.javaproject5777.model.entities.Business;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by nadav on 12/1/2016.
- * Package: ${PACKAGE_NAME}
+ * This class manages the database (list-type)
  */
 
 public class ListDB_manager {

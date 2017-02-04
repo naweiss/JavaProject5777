@@ -7,10 +7,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.model.entities.Activitie;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;

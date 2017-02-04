@@ -1,5 +1,4 @@
 package com.example.jeremie.javaproject5777.controller.Fragments;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.jeremie.javaproject5777.model.datasource.ListDB_manager;
 import com.example.jeremie.javaproject5777.R;
 import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapterActivities;
@@ -16,6 +14,7 @@ import com.example.jeremie.javaproject5777.controller.Adapters.RecyclerViewAdapt
 /**
  * Created by jerem on 28.01.17.
  * Package: ${PACKAGE_NAME}
+ * We use this fragment in the recyclerView to show the activities of a particular business
  */
 
 public class FragmentBusinessActivities extends Fragment {
@@ -26,7 +25,7 @@ public class FragmentBusinessActivities extends Fragment {
 
     public static FragmentBusinessActivities newInstance(int type) {
         FragmentBusinessActivities frag = new FragmentBusinessActivities();
-
+        //send the id business you want to display
         Bundle args = new Bundle();
         args.putInt("ID", type);
         frag.setArguments(args);
